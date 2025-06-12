@@ -11,7 +11,7 @@ st.set_page_config(layout="wide")
 st.title("Healthcare Waiting List Simulation")
 
 # Create two columns
-col1, col2, col3 = st.columns([1, 0.25, 2])
+col1, col2 = st.columns([1, 2])
 
 # Left column - Options
 with col1:
@@ -27,8 +27,8 @@ with col1:
     waiting_list_start_length = st.number_input(
         "Initial waiting list length",
         min_value=0,
-        max_value=1000,
-        value=140
+        max_value=200,
+        value=80
     )
 
     st.divider()
@@ -58,14 +58,9 @@ with col1:
 
     run_simulation = st.button("Run Simulation", type="primary")
 
-with col2:
-    pass
-
 # Right column - Results
-with col3:
+with col2:
     if run_simulation:
-        st.warning("Wait times don't include patients who were on the waiting list before the simulation began")
-
         st.header("Simulation Results")
 
         # Initialize tracking variables
@@ -73,6 +68,7 @@ with col3:
         queue_lengths = []
         time_points = []
         patients_seen = []
+        all_patients = []  # Track all patients including those still waiting
 
         # Set random seed for reproducibility
         random.seed(42)
@@ -81,16 +77,27 @@ with col3:
             """A patient arrives, requests a clinician, is seen, and then leaves."""
             service_time = 1 / patients_per_clinician_per_week
 
+            # Record patient in all_patients when they arrive
+            patient_record = {
+                'name': name,
+                'arrival_time': arrival_time,
+                'service_start': None,
+                'wait_time_weeks': None,
+                'status': 'waiting'
+            }
+            all_patients.append(patient_record)
+
             with nurses.request() as request:
                 yield request
                 wait_time = env.now - arrival_time
                 waiting_times.append(wait_time)
-                patients_seen.append({
-                    'name': name,
-                    'arrival_time': arrival_time,
-                    'service_start': env.now,
-                    'wait_time_weeks': wait_time
-                })
+
+                # Update patient record when seen
+                patient_record['service_start'] = env.now
+                patient_record['wait_time_weeks'] = wait_time
+                patient_record['status'] = 'seen'
+
+                patients_seen.append(patient_record.copy())
                 yield env.timeout(service_time)
 
         def patient_generator(env, nurses):
@@ -127,6 +134,7 @@ with col3:
 
         # Run simulation
         env.run(until=sim_duration_years*52)
+
         # Create the matplotlib graph
         fig, ax = plt.subplots(figsize=(10, 4))
         ax.plot(time_points, queue_lengths, linewidth=2, color='#1f77b4')
@@ -174,6 +182,7 @@ with col3:
             over_36_weeks = len(df_patients[df_patients['wait_time_weeks'] > 36])
             over_52_weeks = len(df_patients[df_patients['wait_time_weeks'] > 52])
 
+            st.write("**Patients Who Were Seen:**")
             # Display breakdown in columns
             col3a, col3b, col3c = st.columns(3)
 
@@ -206,12 +215,90 @@ with col3:
             ax2.axvline(x=52, color='darkred', linestyle='--', alpha=0.7, label='52 weeks')
             ax2.set_xlabel('Wait Time (weeks)')
             ax2.set_ylabel('Number of Patients')
-            ax2.set_title('Distribution of Patient Wait Times')
+            ax2.set_title('Distribution of Wait Times - Patients Who Were Seen')
             ax2.legend()
             ax2.grid(True, alpha=0.3)
             st.pyplot(fig2)
         else:
             st.warning("No patients were seen during the simulation period.")
+
+        # Analysis for patients still waiting
+        st.subheader("Patients Still Waiting")
+
+        # Calculate current wait times for patients still in queue
+        patients_still_waiting = [p for p in all_patients if p['status'] == 'waiting']
+
+        if patients_still_waiting:
+            # Calculate current wait times
+            current_wait_times = []
+            for patient in patients_still_waiting:
+                current_wait = (sim_duration_years*52) - patient['arrival_time']
+                patient['current_wait_weeks'] = current_wait
+                current_wait_times.append(current_wait)
+
+            df_waiting = pd.DataFrame(patients_still_waiting)
+
+            # Calculate wait time categories for still waiting patients
+            waiting_over_18 = len(df_waiting[df_waiting['current_wait_weeks'] > 18])
+            waiting_over_36 = len(df_waiting[df_waiting['current_wait_weeks'] > 36])
+            waiting_over_52 = len(df_waiting[df_waiting['current_wait_weeks'] > 52])
+
+            st.write("**Patients Still in Queue:**")
+            col4a, col4b, col4c = st.columns(3)
+
+            with col4a:
+                st.metric(
+                    label="Waiting > 18 weeks",
+                    value=waiting_over_18,
+                    delta=f"{(waiting_over_18/len(patients_still_waiting)*100):.1f}%"
+                )
+
+            with col4b:
+                st.metric(
+                    label="Waiting > 36 weeks",
+                    value=waiting_over_36,
+                    delta=f"{(waiting_over_36/len(patients_still_waiting)*100):.1f}%"
+                )
+
+            with col4c:
+                st.metric(
+                    label="Waiting > 52 weeks",
+                    value=waiting_over_52,
+                    delta=f"{(waiting_over_52/len(patients_still_waiting)*100):.1f}%"
+                )
+
+            # Additional metrics for still waiting patients
+            avg_current_wait = sum(current_wait_times) / len(current_wait_times)
+            max_current_wait = max(current_wait_times)
+
+            col5a, col5b = st.columns(2)
+            with col5a:
+                st.metric(
+                    label="Average Current Wait",
+                    value=f"{avg_current_wait:.1f} weeks",
+                    help="Average wait time for patients still in queue"
+                )
+            with col5b:
+                st.metric(
+                    label="Longest Current Wait",
+                    value=f"{max_current_wait:.1f} weeks",
+                    help="Longest wait time among patients still in queue"
+                )
+
+            # Show distribution histogram for patients still waiting
+            fig3, ax3 = plt.subplots(figsize=(10, 3))
+            ax3.hist(current_wait_times, bins=20, alpha=0.7, color='#d62728')
+            ax3.axvline(x=18, color='red', linestyle='--', alpha=0.7, label='18 weeks')
+            ax3.axvline(x=36, color='orange', linestyle='--', alpha=0.7, label='36 weeks')
+            ax3.axvline(x=52, color='darkred', linestyle='--', alpha=0.7, label='52 weeks')
+            ax3.set_xlabel('Current Wait Time (weeks)')
+            ax3.set_ylabel('Number of Patients')
+            ax3.set_title('Distribution of Current Wait Times - Patients Still Waiting')
+            ax3.legend()
+            ax3.grid(True, alpha=0.3)
+            st.pyplot(fig3)
+        else:
+            st.success("No patients are currently waiting - all patients have been seen!")
 
     else:
         st.info("👈 Configure your simulation parameters and click 'Run Simulation' to see results")
