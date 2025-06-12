@@ -2,74 +2,216 @@ import streamlit as st
 import simpy
 import random
 import math
+import matplotlib.pyplot as plt
+import pandas as pd
 
-waiting_list_start_length = 80
+# Set page config for wide layout
+st.set_page_config(layout="wide")
 
-st.title("Run a Simulation!")
+st.title("Healthcare Waiting List Simulation")
 
-clinicians = st.number_input("Choose the number of clinicians", 1, 10, 5)
+# Create two columns
+col1, col2, col3 = st.columns([1, 0.25, 2])
 
-patients = st.slider("Set the average number of new patients per week", 5, 30, 10)
+# Left column - Options
+with col1:
+    st.header("Simulation Parameters")
 
-patients_per_clinician_per_week = st.number_input("How many people can each clinician see per week?", 2, 16, )
+    patients = st.slider(
+        "Average new patients per week",
+        min_value=5,
+        max_value=50,
+        value=25
+    )
 
-SIM_DURATION_WEEKS = 52
+    waiting_list_start_length = st.number_input(
+        "Initial waiting list length",
+        min_value=0,
+        max_value=1000,
+        value=140
+    )
 
-random.seed(42)
+    st.divider()
 
-def patient(env, name, nurses):
-    """A patient arrives, requests a clinician, is seen, and then leaves."""
+    clinicians = st.number_input(
+        "Number of clinicians",
+        min_value=1,
+        max_value=20,
+        value=4
+    )
 
-    # The time it takes one nurse to see one patient is the inverse of their weekly capacity
-    service_time = 1 / patients_per_clinician_per_week
+    patients_per_clinician_per_week = st.number_input(
+        "Patients per clinician per week",
+        min_value=1,
+        max_value=20,
+        value=5
+    )
 
-    # print(f"{name} arrives at the clinic at week {env.now:.2f}") # Uncomment to see details
+    st.divider()
 
-    # Request a nurse. The 'with' statement handles waiting, acquiring, and releasing.
-    with nurses.request() as request:
-        yield request
+    sim_duration_years = st.number_input(
+        "Simulation duration (years)",
+        min_value=1,
+        max_value=10,
+        value=3
+    )
 
-        # print(f"{name} is seen by a nurse at week {env.now:.2f}") # Uncomment to see details
-        yield env.timeout(service_time) # Patient is being seen
+    run_simulation = st.button("Run Simulation", type="primary")
 
-    # print(f"{name} leaves the clinic at week {env.now:.2f}") # Uncomment to see details
+with col2:
+    pass
 
+# Right column - Results
+with col3:
+    if run_simulation:
+        st.warning("Wait times don't include patients who were on the waiting list before the simulation began")
 
-def patient_generator(env, nurses):
-    """Generates new patients based on a weekly schedule."""
+        st.header("Simulation Results")
 
-    # Create the initial 50 patients who are already on the waiting list at the start
-    for i in range(waiting_list_start_length):
-        env.process(patient(env, f"Initial Patient {i+1}", nurses))
+        # Initialize tracking variables
+        waiting_times = []
+        queue_lengths = []
+        time_points = []
+        patients_seen = []
 
-    # This loop runs each week to generate that week's new patients
-    while True:
-        # Determine how many patients arrive this week using a normal distribution
-        num_arrivals = math.ceil(random.normalvariate(patients, patients*0.1))
-        num_arrivals = max(0, num_arrivals) # Ensure the number is not negative
+        # Set random seed for reproducibility
+        random.seed(42)
 
-        # Create a process for each new patient
-        for i in range(num_arrivals):
-            env.process(patient(env, f"Weekly Patient (Week {math.ceil(env.now)})", nurses))
+        def patient(env, name, nurses, arrival_time):
+            """A patient arrives, requests a clinician, is seen, and then leaves."""
+            service_time = 1 / patients_per_clinician_per_week
 
-        # Wait for the next week to start
-        yield env.timeout(1)
+            with nurses.request() as request:
+                yield request
+                wait_time = env.now - arrival_time
+                waiting_times.append(wait_time)
+                patients_seen.append({
+                    'name': name,
+                    'arrival_time': arrival_time,
+                    'service_start': env.now,
+                    'wait_time_weeks': wait_time
+                })
+                yield env.timeout(service_time)
 
+        def patient_generator(env, nurses):
+            """Generates new patients based on a weekly schedule."""
+            # Create initial patients on waiting list
+            for i in range(waiting_list_start_length):
+                env.process(patient(env, f"Initial Patient {i+1}", nurses, 0))
 
-# --- Running the Simulation ---
-# Set up the simulation environment
-env = simpy.Environment()
+            # Generate new patients each week
+            while True:
+                num_arrivals = math.ceil(random.normalvariate(patients, patients*0.1))
+                num_arrivals = max(0, num_arrivals)
 
-# Create the nurse resource with a capacity of NUM_NURSES
-nurses_resource = simpy.Resource(env, capacity=clinicians)
+                for i in range(num_arrivals):
+                    env.process(patient(env, f"Week {math.ceil(env.now)} Patient {i+1}",
+                                      nurses, env.now))
 
-# Add the patient generator to the environment
-env.process(patient_generator(env, nurses_resource))
+                yield env.timeout(1)
 
-# Run the simulation
-env.run(until=SIM_DURATION_WEEKS)
+        def monitor_queue(env, nurses):
+            """Monitor queue length over time."""
+            while True:
+                queue_lengths.append(len(nurses.queue))
+                time_points.append(env.now)
+                yield env.timeout(1)  # Check every week
 
-# --- Final Result ---
-# The waiting list is the number of patients in the resource's queue
-final_waiting_list = len(nurses_resource.queue)
-st.write(f"After {SIM_DURATION_WEEKS}, the waiting list length is {final_waiting_list}")
+        # Run simulation
+        env = simpy.Environment()
+        nurses_resource = simpy.Resource(env, capacity=clinicians)
+
+        # Start processes
+        env.process(patient_generator(env, nurses_resource))
+        env.process(monitor_queue(env, nurses_resource))
+
+        # Run simulation
+        env.run(until=sim_duration_years*52)
+        # Create the matplotlib graph
+        fig, ax = plt.subplots(figsize=(10, 4))
+        ax.plot(time_points, queue_lengths, linewidth=2, color='#1f77b4')
+        ax.set_xlabel('Time (weeks)')
+        ax.set_ylabel('Waiting List Length')
+        ax.set_title('Waiting List Length Over Time')
+        ax.grid(True, alpha=0.3)
+        st.pyplot(fig)
+
+        # Metric cards
+        final_waiting_list = len(nurses_resource.queue)
+        col2a, col2b, col2c = st.columns(3)
+
+        with col2a:
+            st.metric(
+                label="Final Waiting List",
+                value=final_waiting_list,
+                help="Number of patients still waiting after simulation"
+            )
+
+        with col2b:
+            st.metric(
+                label="Patients Seen",
+                value=len(patients_seen),
+                help="Total number of patients who received treatment"
+            )
+
+        with col2c:
+            avg_wait = sum(waiting_times) / len(waiting_times) if waiting_times else 0
+            st.metric(
+                label="Average Wait (weeks)",
+                value=f"{avg_wait:.1f}",
+                help="Average waiting time for patients who were seen"
+            )
+
+        # Wait time breakdown
+        st.subheader("Wait Time Analysis")
+
+        if patients_seen:
+            # Convert to DataFrame for easier analysis
+            df_patients = pd.DataFrame(patients_seen)
+
+            # Calculate wait time categories
+            over_18_weeks = len(df_patients[df_patients['wait_time_weeks'] > 18])
+            over_36_weeks = len(df_patients[df_patients['wait_time_weeks'] > 36])
+            over_52_weeks = len(df_patients[df_patients['wait_time_weeks'] > 52])
+
+            # Display breakdown in columns
+            col3a, col3b, col3c = st.columns(3)
+
+            with col3a:
+                st.metric(
+                    label="Waited > 18 weeks",
+                    value=over_18_weeks,
+                    delta=f"{(over_18_weeks/len(patients_seen)*100):.1f}%"
+                )
+
+            with col3b:
+                st.metric(
+                    label="Waited > 36 weeks",
+                    value=over_36_weeks,
+                    delta=f"{(over_36_weeks/len(patients_seen)*100):.1f}%"
+                )
+
+            with col3c:
+                st.metric(
+                    label="Waited > 52 weeks",
+                    value=over_52_weeks,
+                    delta=f"{(over_52_weeks/len(patients_seen)*100):.1f}%"
+                )
+
+            # Optional: Show distribution histogram
+            fig2, ax2 = plt.subplots(figsize=(10, 3))
+            ax2.hist(df_patients['wait_time_weeks'], bins=20, alpha=0.7, color='#ff7f0e')
+            ax2.axvline(x=18, color='red', linestyle='--', alpha=0.7, label='18 weeks')
+            ax2.axvline(x=36, color='orange', linestyle='--', alpha=0.7, label='36 weeks')
+            ax2.axvline(x=52, color='darkred', linestyle='--', alpha=0.7, label='52 weeks')
+            ax2.set_xlabel('Wait Time (weeks)')
+            ax2.set_ylabel('Number of Patients')
+            ax2.set_title('Distribution of Patient Wait Times')
+            ax2.legend()
+            ax2.grid(True, alpha=0.3)
+            st.pyplot(fig2)
+        else:
+            st.warning("No patients were seen during the simulation period.")
+
+    else:
+        st.info("👈 Configure your simulation parameters and click 'Run Simulation' to see results")
