@@ -1,0 +1,361 @@
+---
+title: "DESperately Seeking Simulation - Part 2"
+author:
+    name: Sammi Rosser, Dr Dan Chalk
+    affiliation: Health Service Modelling Associates Programme Lambda
+execute:
+  eval: true
+  echo: false
+filters:
+  - whitphx/stlite
+format:
+  revealjs:
+    output-file: index.html
+    embed-resources: true
+    view-distance: 100
+    height: 800
+    width: 1250
+    transition: slide
+    plotly-connected: true
+    background-transition: fade
+    theme: [default, custom.scss]
+    title-slide-attributes:
+        data-background-image: banner.png
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+
+---
+
+```{python}
+#| echo: false
+
+from vidigi.logging import EventLogger
+from vidigi.utils import EventPosition, create_event_position_df
+from vidigi.animation import animate_activity_log, generate_animation
+from vidigi.prep import reshape_for_animations, generate_animation_df
+import simpy
+import numpy as np
+
+import plotly.io as pio
+pio.renderers.default = "notebook"
+```
+
+# Recap
+
+## Entities...
+
+Entities are the service users in your model.
+
+Entities arrive and move through your system...
+
+```{python}
+#| echo: false
+
+class Patient:
+    def __init__(self, p_id):
+        self.id = p_id
+
+class SimpleActivityModel:
+    def __init__(self, master_seed=42):
+        self.env = simpy.Environment()
+        self.patient_counter = 0
+        self.patient_inter = 5
+        self.logger = EventLogger(env=self.env)
+
+        # Seed setup using numpy's SeedSequence
+        self.master_seed = master_seed
+        self.seed_seq = np.random.SeedSequence(master_seed)
+        self.rng = np.random.default_rng(self.seed_seq)
+
+    def generate_arrivals(self):
+        while True:
+            self.patient_counter += 1
+            p = Patient(self.patient_counter)
+            self.logger.log_arrival(entity_id=p.id)
+            self.env.process(self.patient_journey(p))
+            sampled_inter = self.rng.exponential(scale=self.patient_inter)
+            yield self.env.timeout(sampled_inter)
+
+    def patient_journey(self, patient):
+      self.logger.log_queue(entity_id=patient.id, event="wait_here")
+      yield self.env.timeout(10)
+      self.logger.log_departure(entity_id=patient.id)
+
+    def run(self):
+        self.env.process(self.generate_arrivals())
+        self.env.run(until=180)
+
+model = SimpleActivityModel()
+model.run()
+event_log = model.logger.to_dataframe()
+event_log.to_csv("test_log.csv")
+
+animate_activity_log(
+  event_log = event_log,
+  event_position_df = create_event_position_df([
+    EventPosition(event="wait_here", x=200 , y=25 , label="Wait Here!"),
+    EventPosition(event="depart", x=300, y=10, label="Exit")
+    ]),
+  every_x_time_units=1,
+  limit_duration=180,
+  override_x_max=300,
+  override_y_max=50,
+  plotly_height=600,
+  plotly_width=1000,
+  display_stage_labels=False,
+  # time_display_units="%M minutes",
+  gap_between_entities=20,
+  wrap_queues_at=10,
+  simulation_time_unit="minutes",
+  debug_write_intermediate_objects=True
+)
+```
+
+## Entities go off and do different things in our model...
+
+```{python}
+#| echo: false
+
+class Patient:
+    def __init__(self, p_id, path):
+        self.id = p_id
+        self.path = path
+
+class SimpleActivityModelThreeActivities:
+    def __init__(self, master_seed=42):
+        self.env = simpy.Environment()
+        self.patient_counter = 0
+        self.patient_inter = 5
+        self.logger = EventLogger(env=self.env)
+
+        # Seed setup using numpy's SeedSequence
+        self.master_seed = master_seed
+        self.seed_seq = np.random.SeedSequence(master_seed)
+        self.rng = np.random.default_rng(self.seed_seq)
+
+    def generate_arrivals(self):
+        while True:
+            self.patient_counter += 1
+            path_sample = self.rng.uniform(low=0.0, high=1.0)
+
+            if path_sample <= 0.2:
+                p = Patient(self.patient_counter, path="nurse_consult")
+            elif path_sample <= 0.5:
+                p = Patient(self.patient_counter, path="blood_test")
+            else:
+                p = Patient(self.patient_counter, path="doctor_consult")
+
+            self.logger.log_arrival(entity_id=p.id)
+            self.env.process(self.patient_journey(p))
+            sampled_inter = self.rng.exponential(scale=self.patient_inter)
+            yield self.env.timeout(sampled_inter)
+
+    def patient_journey(self, patient):
+
+      self.logger.log_queue(entity_id=patient.id, event=f"wait_here_{patient.path}")
+
+      yield self.env.timeout(self.rng.normal(loc=8, scale=1))
+
+      self.logger.log_departure(entity_id=patient.id)
+
+    def run(self):
+        self.env.process(self.generate_arrivals())
+        self.env.run(until=180)
+
+model = SimpleActivityModelThreeActivities()
+model.run()
+event_log = model.logger.to_dataframe()
+event_log.to_csv("test_log.csv")
+
+animate_activity_log(
+  event_log = event_log,
+  event_position_df = create_event_position_df([
+    EventPosition(event="wait_here_nurse_consult", x=200 , y=25 , label="Seeing a nurse"),
+    EventPosition(event="wait_here_blood_test", x=200 , y=125 , label="Having a blood test"),
+    EventPosition(event="wait_here_doctor_consult", x=200 , y=225 , label="Seeing a doctor"),
+    EventPosition(event="depart", x=400, y=125, label="Exit")
+    ]),
+  every_x_time_units=1,
+  limit_duration=180,
+  override_x_max=300,
+  override_y_max=275,
+  plotly_height=600,
+  plotly_width=1000,
+  display_stage_labels=True,
+  # time_display_units="%M minutes",
+  gap_between_entities=20,
+  wrap_queues_at=10,
+  simulation_time_unit="minutes",
+  debug_write_intermediate_objects=True
+)
+```
+
+## Generators...
+
+Generators bring entities into being.
+
+We might have multiple generators for different kinds of patients, if they arrive at different rates.
+
+*Example of patients arriving via ambulance and via walk-in, with clearly different arrival rates*
+
+
+## Sinks
+
+*Example of multi-step mostly linear pathway, with patients having the possibility of leaving at multiple steps*
+
+
+## Activities and Resources
+
+*Example of simple one-step
+
+
+
+## Queues
+
+## FIFO Queues
+
+## Priority-based Queue
+
+
+## Reneging
+
+
+## Balking
+
+
+## Jockeying
+
+
+# What-if Scenarios
+
+
+## The Power of Questions
+
+
+
+## The Code
+
+
+## Running the Code
+
+
+# Web App Interfaces
+
+## An Example Interface
+
+```{stlite-python}
+import micropip
+await micropip.install("simpy")
+import streamlit as st
+import simpy
+import random
+import math
+
+waiting_list_start_length = 80
+
+st.title("Run a Simulation!")
+
+clinicians = st.number_input("Choose the number of clinicians", 1, 10, 5)
+
+patients = st.slider("Set the average number of new patients per week", 5, 30, 10)
+
+patients_per_clinician_per_week = st.number_input("How many people can each clinician see per week?", 2, 16, )
+
+SIM_DURATION_WEEKS = 52
+
+random.seed(42)
+
+def patient(env, name, nurses):
+    """A patient arrives, requests a clinician, is seen, and then leaves."""
+
+    # The time it takes one nurse to see one patient is the inverse of their weekly capacity
+    service_time = 1 / patients_per_clinician_per_week
+
+    # print(f"{name} arrives at the clinic at week {env.now:.2f}") # Uncomment to see details
+
+    # Request a nurse. The 'with' statement handles waiting, acquiring, and releasing.
+    with nurses.request() as request:
+        yield request
+
+        # print(f"{name} is seen by a nurse at week {env.now:.2f}") # Uncomment to see details
+        yield env.timeout(service_time) # Patient is being seen
+
+    # print(f"{name} leaves the clinic at week {env.now:.2f}") # Uncomment to see details
+
+
+def patient_generator(env, nurses):
+    """Generates new patients based on a weekly schedule."""
+
+    # Create the initial 50 patients who are already on the waiting list at the start
+    for i in range(waiting_list_start_length):
+        env.process(patient(env, f"Initial Patient {i+1}", nurses))
+
+    # This loop runs each week to generate that week's new patients
+    while True:
+        # Determine how many patients arrive this week using a normal distribution
+        num_arrivals = math.ceil(random.normalvariate(patients, patients*0.1))
+        num_arrivals = max(0, num_arrivals) # Ensure the number is not negative
+
+        # Create a process for each new patient
+        for i in range(num_arrivals):
+            env.process(patient(env, f"Weekly Patient (Week {math.ceil(env.now)})", nurses))
+
+        # Wait for the next week to start
+        yield env.timeout(1)
+
+
+# --- Running the Simulation ---
+# Set up the simulation environment
+env = simpy.Environment()
+
+# Create the nurse resource with a capacity of NUM_NURSES
+nurses_resource = simpy.Resource(env, capacity=clinicians)
+
+# Add the patient generator to the environment
+env.process(patient_generator(env, nurses_resource))
+
+# Run the simulation
+env.run(until=SIM_DURATION_WEEKS)
+
+# --- Final Result ---
+# The waiting list is the number of patients in the resource's queue
+final_waiting_list = len(nurses_resource.queue)
+st.write(f"After {SIM_DURATION_WEEKS}, the waiting list length is {final_waiting_list}")
+```
+
+
+
+# Outputs from Models
+
+## Metrics
+
+Talk about the importance of defining your measurable metrics
+
+
+
+# Exercise: The DES Playground
+
+You're now going to have a go with an interactive app.
+
+In the app, you are running a hospital.
+
+You usually have 24 rooms available, which are divided between
+
+With 24 rooms, your system is coping.
+
+Due to building work, you are temporarily going to have 20 rooms available.
+
+You need to reallocate the number of rooms available to different steps of the pathway - but is it possible to keep the hospital running smoothly still?
+
+1. Run the simulation with the default parameters
+
+2. Change some parameters
+
+
+# Exercise: Design your own Discrete Event Simulation + Interface
+
+
+Could get them using something like draw.io or Excalidraw?
+
+Choose a system to model from a couple of suggestions (choose some things that are quite simple), or do one of their own systems from their post-it notes earlier.

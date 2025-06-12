@@ -1,0 +1,7 @@
+project:
+  title: "DESperately Seeking Simulation - Part 2"
+  output-dir: docs
+
+format:
+  html:
+    embed-resources: true
