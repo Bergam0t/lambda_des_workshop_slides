@@ -15,7 +15,7 @@ col1, col2 = st.columns([1, 2])
 
 # Left column - Options
 with col1:
-    st.header("Simulation Parameters")
+    st.header("Community Pathway Clinic")
 
     patients = st.slider(
         "Average new patients per week",
@@ -27,7 +27,7 @@ with col1:
     waiting_list_start_length = st.number_input(
         "Initial waiting list length",
         min_value=0,
-        max_value=200,
+        max_value=5000,
         value=80
     )
 
