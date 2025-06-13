@@ -14,9 +14,9 @@ format:
     height: 800
     width: 1250
     preview-links: true
-    controsl: true
+    controls: true
     controls-layout: bottom-right
-    transition: convex
+    transition: fade
     plotly-connected: true
     background-transition: fade
     preload-iframes: true
@@ -61,11 +61,9 @@ pio.renderers.default = "notebook"
 
 # Recap
 
-## Entities...
+## Entities arrive in your system...
 
-Entities are the service users in your model.
-
-Entities arrive and move through your system...
+Entities are often the service users in your model.
 
 ```{python}
 #| echo: false
@@ -78,7 +76,73 @@ class SimpleActivityModel:
     def __init__(self, master_seed=42):
         self.env = simpy.Environment()
         self.patient_counter = 0
-        self.patient_inter = 5
+        self.logger = EventLogger(env=self.env)
+
+        # Seed setup using numpy's SeedSequence
+        self.master_seed = master_seed
+        self.seed_seq = np.random.SeedSequence(master_seed)
+        self.rng = np.random.default_rng(self.seed_seq)
+
+    def generate_arrivals(self):
+        while True:
+            self.patient_counter += 1
+            p = Patient(self.patient_counter)
+            self.logger.log_arrival(entity_id=p.id)
+            self.env.process(self.patient_journey(p))
+            yield self.env.timeout(3)
+
+    def patient_journey(self, patient):
+      self.logger.log_queue(entity_id=patient.id, event="wait_here")
+      yield self.env.timeout(70)
+      self.logger.log_departure(entity_id=patient.id)
+
+    def run(self):
+        self.env.process(self.generate_arrivals())
+        self.env.run(until=180)
+
+model = SimpleActivityModel()
+model.run()
+event_log = model.logger.to_dataframe()
+event_log.to_csv("test_log.csv")
+
+animate_activity_log(
+  event_log = event_log,
+  event_position_df = create_event_position_df([
+    EventPosition(event="wait_here", x=250 , y=25 , label="Wait Here!"),
+    EventPosition(event="depart", x=300, y=10, label="Exit")
+    ]),
+  every_x_time_units=1,
+  limit_duration=60,
+  override_x_max=300,
+  override_y_max=50,
+  plotly_height=600,
+  plotly_width=1200,
+  display_stage_labels=False,
+  # time_display_units="%M minutes",
+  gap_between_entities=20,
+  entity_icon_size=70,
+  wrap_queues_at=10,
+  simulation_time_unit="minutes",
+  debug_write_intermediate_objects=True
+)
+```
+
+## ... at varying rates...
+
+Like buses, you might have none arrive for ages, then several at once.
+
+```{python}
+#| echo: false
+
+class Patient:
+    def __init__(self, p_id):
+        self.id = p_id
+
+class SimpleActivityModel:
+    def __init__(self, master_seed=42):
+        self.env = simpy.Environment()
+        self.patient_counter = 0
+        self.patient_inter = 2
         self.logger = EventLogger(env=self.env)
 
         # Seed setup using numpy's SeedSequence
@@ -97,7 +161,7 @@ class SimpleActivityModel:
 
     def patient_journey(self, patient):
       self.logger.log_queue(entity_id=patient.id, event="wait_here")
-      yield self.env.timeout(10)
+      yield self.env.timeout(70)
       self.logger.log_departure(entity_id=patient.id)
 
     def run(self):
@@ -112,11 +176,11 @@ event_log.to_csv("test_log.csv")
 animate_activity_log(
   event_log = event_log,
   event_position_df = create_event_position_df([
-    EventPosition(event="wait_here", x=200 , y=25 , label="Wait Here!"),
+    EventPosition(event="wait_here", x=250 , y=25 , label="Wait Here!"),
     EventPosition(event="depart", x=300, y=10, label="Exit")
     ]),
   every_x_time_units=1,
-  limit_duration=180,
+  limit_duration=60,
   override_x_max=300,
   override_y_max=50,
   plotly_height=600,
@@ -124,13 +188,88 @@ animate_activity_log(
   display_stage_labels=False,
   # time_display_units="%M minutes",
   gap_between_entities=20,
+  entity_icon_size=70,
   wrap_queues_at=10,
   simulation_time_unit="minutes",
   debug_write_intermediate_objects=True
 )
 ```
 
-## Entities go off and do different things in our model...
+## ... and spend varying amounts of time in the system
+
+```{python}
+#| echo: false
+
+class Patient:
+    def __init__(self, p_id):
+        self.id = p_id
+
+class SimpleActivityModel:
+    def __init__(self, master_seed=42):
+        self.env = simpy.Environment()
+        self.patient_counter = 0
+        self.patient_inter = 4
+        self.logger = EventLogger(env=self.env)
+
+        # Seed setup using numpy's SeedSequence
+        self.master_seed = master_seed
+        self.seed_seq = np.random.SeedSequence(master_seed)
+        self.rng = np.random.default_rng(self.seed_seq)
+
+    def generate_arrivals(self):
+        while True:
+            self.patient_counter += 1
+            p = Patient(self.patient_counter)
+            self.logger.log_arrival(entity_id=p.id)
+            self.env.process(self.patient_journey(p))
+            sampled_inter = self.rng.exponential(scale=self.patient_inter)
+            yield self.env.timeout(sampled_inter)
+
+    def patient_journey(self, patient):
+      self.logger.log_queue(entity_id=patient.id, event="wait_here")
+      yield self.env.timeout(self.rng.uniform(low=1, high=20))
+      self.logger.log_departure(entity_id=patient.id)
+
+    def run(self):
+        self.env.process(self.generate_arrivals())
+        self.env.run(until=180)
+
+model = SimpleActivityModel()
+model.run()
+event_log = model.logger.to_dataframe()
+event_log.to_csv("test_log.csv")
+
+animate_activity_log(
+  event_log = event_log,
+  event_position_df = create_event_position_df([
+    EventPosition(event="wait_here", x=250 , y=25 , label="Wait Here!"),
+    EventPosition(event="depart", x=300, y=10, label="Exit")
+    ]),
+  every_x_time_units=1,
+  limit_duration=60,
+  override_x_max=300,
+  override_y_max=50,
+  plotly_height=600,
+  plotly_width=1200,
+  display_stage_labels=False,
+  # time_display_units="%M minutes",
+  gap_between_entities=20,
+  entity_icon_size=70,
+  wrap_queues_at=10,
+  simulation_time_unit="minutes",
+  debug_write_intermediate_objects=True
+)
+```
+
+## Generators bring entities into being...
+
+We might have multiple generators for different kinds of patients, if they arrive at different rates.
+
+*Example of patients arriving via ambulance and via walk-in, with clearly different arrival rates*
+
+
+
+## Entities might go off and do different things in our model...
 
 ```{python}
 #| echo: false
@@ -144,7 +283,7 @@ class SimpleActivityModelThreeActivities:
     def __init__(self, master_seed=42):
         self.env = simpy.Environment()
         self.patient_counter = 0
-        self.patient_inter = 5
+        self.patient_inter = 1
         self.logger = EventLogger(env=self.env)
 
         # Seed setup using numpy's SeedSequence
@@ -195,7 +334,7 @@ animate_activity_log(
     EventPosition(event="depart", x=400, y=125, label="Exit")
     ]),
   every_x_time_units=1,
-  limit_duration=180,
+  limit_duration=60,
   override_x_max=300,
   override_y_max=275,
   plotly_height=600,
@@ -204,18 +343,15 @@ animate_activity_log(
   # time_display_units="%M minutes",
   gap_between_entities=20,
   wrap_queues_at=10,
+  entity_icon_size=40,
   simulation_time_unit="minutes",
   debug_write_intermediate_objects=True
 )
 ```
 
-## Generators...
+## Or they might do things in a sequence...
 
-Generators bring entities into being.
 
-We might have multiple generators for different kinds of patients, if they arrive at different rates.
-
-*Example of patients arriving via ambulance and via walk-in, with clearly different arrival rates*
 
 
 ## Sinks
@@ -223,7 +359,9 @@ We might have multiple generators for different kinds of patients, if they arriv
 *Example of multi-step mostly linear pathway, with patients having the possibility of leaving at multiple steps*
 
 
-## Activities and Resources
+## Activities
+
+## Resources
 
 *Example of simple one-step resource use with a constrained resource*
 
@@ -251,6 +389,7 @@ We might have multiple generators for different kinds of patients, if they arriv
 ## The Power of Questions
 
 
+# Interacting with Models
 
 ## The Code
 
@@ -2328,14 +2467,36 @@ A model is only as good as it's spec.
 
 ## Understanding the Process
 
+What is the process - *really*?
+
+:::{.fragment}
+
+:::: {.columns}
+
+::: {.column width='60%'}
+
+I mean *really really*...
+
 :::{.incremental}
 
-- What is the process - *really*?
-    - I mean *really really*...
+- You're setting the model up for failure if you don't have the experts in the process in the room from the start
 
-- Setting the model up for failure if you don't have the experts in the process in the room from the start
+- Even then, it can be complex to work out what to model and what to simplify (and the scenarios you want to test can really influence this)
 
-- Do you actually have the data you need to parameterise the model?
+- And do you actually hold the data you need to parameterise the model?
+  - Expert opinions can be used where data is missing, but this needs to be documented!
+:::
+
+:::
+
+::: {.column width='40%'}
+
+![](assets/2025-06-13-17-09-28.png){height="600px"}
+
+:::
+
+::::
+
 :::
 
 ## Measuring Up
@@ -2377,6 +2538,63 @@ Testing needs to be done to make sure that the outputs are sensible
 - How do you assess that it made good predictions, and refine it?
 
 :::
+
+## How soon do you need it?
+
+How long does a model take?
+
+:::: {.columns}
+
+::: {.column width='40%'}
+
+:::{.fragment}
+
+![](assets/2025-06-13-16-57-39.png){height="600px"}
+
+:::
+
+:::
+
+::: {.column width='60%'}
+
+:::{.incremental}
+- A good model can take time to create
+  - it's not quite like a regular analysis
+- You can help it go faster by carefully considering the things on the preceding slides
+- Set your analysts up for success!
+- A rushed model can do more harm than good
+:::
+
+
+:::
+
+::::
+
+
+
+## No, really, how long?
+
+:::{.incremental}
+- A simple model can go together pretty quickly ()
+  - but your analysts may need time to upskill in R or Python + DES-specific concepts...
+  - and add in a Streamlit frontend...
+  - and clear visuals...
+  - and animations...
+  - and more complex inputs and scenarios...
+  - and the ability to compare things side-by-side
+  - and the ability to download a summary table...
+  - and robust tests...
+  - and conform with the [20-item best-practice guidance on model reporting](https://des.hsma.co.uk/stress_des.html) and the [7 essential components and 5 optional components of the STARS reproducibility framework](https://des.hsma.co.uk/stars.html)...
+:::
+
+:::{.callout-tip}
+
+In reality, a good model may take weeks to months - and may be iterated on for years
+
+:::
+
+## Alternatives to FOSS
+
 
 
 # Exercise: The DES Playground
