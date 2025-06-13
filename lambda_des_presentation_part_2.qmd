@@ -256,7 +256,7 @@ We might have multiple generators for different kinds of patients, if they arriv
 
 # Web App Interfaces
 
-##  {#webappslide-id data-menu-title="An Example Web App"}
+##  {#webappdemo-basic data-menu-title="An Example Web App"}
 
 ```{stlite-python}
 import micropip
@@ -273,6 +273,17 @@ import pandas as pd
 
 # Set page config for wide layout
 st.set_page_config(layout="wide")
+
+st.markdown(
+    """
+    <style>
+    [data-testid="stMetricDelta"] svg {
+        display: none;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 st.title("Healthcare Waiting List Simulation")
 
@@ -298,15 +309,17 @@ with col1:
         value=80
     )
 
-    clinicians = st.number_input(
-        "Number of clinicians",
+    input_col_1, input_col_2 = st.columns([0.4, 0.6])
+
+    clinicians = input_col_1.number_input(
+        "Number of\nclinicians",
         min_value=1,
         max_value=20,
         value=4
     )
 
-    patients_per_clinician_per_week = st.number_input(
-        "Patients per clinician per week",
+    patients_per_clinician_per_week = input_col_2.number_input(
+        "Patients per clinician\nper week",
         min_value=1,
         max_value=20,
         value=5
@@ -325,6 +338,12 @@ with col1:
 with col2:
     if run_simulation:
         st.header("Simulation Results")
+
+        tab1, tab2, tab3 = st.tabs([
+          "Waiting List",
+          "Wait Times - Seen",
+          "Wait Times - Still Waiting"
+          ])
 
         # Initialize tracking variables
         waiting_times = []
@@ -371,7 +390,7 @@ with col2:
 
             # Generate new patients each week
             while True:
-                num_arrivals = math.ceil(random.normalvariate(patients, patients*0.1))
+                num_arrivals = math.ceil(random.normalvariate(patients, patients*0.2))
                 num_arrivals = max(0, num_arrivals)
 
                 for i in range(num_arrivals):
@@ -398,178 +417,188 @@ with col2:
         # Run simulation
         env.run(until=sim_duration_years*52)
 
-        # Create the matplotlib graph
-        fig, ax = plt.subplots(figsize=(10, 4))
-        ax.plot(time_points, queue_lengths, linewidth=2, color='#1f77b4')
-        ax.set_xlabel('Time (weeks)')
-        ax.set_ylabel('Waiting List Length')
-        ax.set_title('Waiting List Length Over Time')
-        ax.grid(True, alpha=0.3)
-        st.pyplot(fig)
+        with tab1:
+            # Create the matplotlib graph
+            fig, ax = plt.subplots(figsize=(10, 4))
+            ax.plot(time_points, queue_lengths, linewidth=2, color='#1f77b4')
+            ax.set_xlabel('Time (weeks)')
+            ax.set_ylabel('Waiting List Length')
+            ax.set_title('Waiting List Length Over Time')
+            ax.grid(True, alpha=0.3)
+            st.pyplot(fig)
 
-        # Metric cards
-        final_waiting_list = len(nurses_resource.queue)
-        col2a, col2b, col2c = st.columns(3)
+            # Metric cards
+            final_waiting_list = len(nurses_resource.queue)
+            col2a, col2b, col2c = st.columns(3)
 
-        with col2a:
-            st.metric(
-                label="Final Waiting List",
-                value=final_waiting_list,
-                help="Number of patients still waiting after simulation"
-            )
-
-        with col2b:
-            st.metric(
-                label="Patients Seen",
-                value=len(patients_seen),
-                help="Total number of patients who received treatment"
-            )
-
-        with col2c:
-            avg_wait = sum(waiting_times) / len(waiting_times) if waiting_times else 0
-            st.metric(
-                label="Average Wait (weeks)",
-                value=f"{avg_wait:.1f}",
-                help="Average waiting time for patients who were seen"
-            )
-
-        # Wait time breakdown
-        st.subheader("Wait Time Analysis")
-
-        if patients_seen:
-            # Convert to DataFrame for easier analysis
-            df_patients = pd.DataFrame(patients_seen)
-
-            # Calculate wait time categories
-            over_18_weeks = len(df_patients[df_patients['wait_time_weeks'] > 18])
-            over_36_weeks = len(df_patients[df_patients['wait_time_weeks'] > 36])
-            over_52_weeks = len(df_patients[df_patients['wait_time_weeks'] > 52])
-
-            st.write("**Patients Who Were Seen:**")
-            # Display breakdown in columns
-            col3a, col3b, col3c = st.columns(3)
-
-            with col3a:
+            with col2a:
                 st.metric(
-                    label="Waited > 18 weeks",
-                    value=over_18_weeks,
-                    delta=f"{(over_18_weeks/len(patients_seen)*100):.1f}%"
+                    label="Final Waiting List",
+                    value=final_waiting_list,
+                    help="Number of patients still waiting after simulation"
                 )
 
-            with col3b:
+            with col2b:
                 st.metric(
-                    label="Waited > 36 weeks",
-                    value=over_36_weeks,
-                    delta=f"{(over_36_weeks/len(patients_seen)*100):.1f}%"
+                    label="Patients Seen",
+                    value=len(patients_seen),
+                    help="Total number of patients who received treatment"
                 )
 
-            with col3c:
+            with col2c:
+                avg_wait = sum(waiting_times) / len(waiting_times) if waiting_times else 0
                 st.metric(
-                    label="Waited > 52 weeks",
-                    value=over_52_weeks,
-                    delta=f"{(over_52_weeks/len(patients_seen)*100):.1f}%"
+                    label="Average Wait (weeks)",
+                    value=f"{avg_wait:.1f}",
+                    help="Average waiting time for patients who were seen"
                 )
 
-            # Optional: Show distribution histogram
-            fig2, ax2 = plt.subplots(figsize=(10, 3))
-            ax2.hist(df_patients['wait_time_weeks'], bins=20, alpha=0.7, color='#ff7f0e')
-            ax2.axvline(x=18, color='red', linestyle='--', alpha=0.7, label='18 weeks')
-            ax2.axvline(x=36, color='orange', linestyle='--', alpha=0.7, label='36 weeks')
-            ax2.axvline(x=52, color='darkred', linestyle='--', alpha=0.7, label='52 weeks')
-            ax2.set_xlabel('Wait Time (weeks)')
-            ax2.set_ylabel('Number of Patients')
-            ax2.set_title('Distribution of Wait Times - Patients Who Were Seen')
-            ax2.legend()
-            ax2.grid(True, alpha=0.3)
-            st.pyplot(fig2)
-        else:
-            st.warning("No patients were seen during the simulation period.")
+        with tab2:
+            # Wait time breakdown
+            st.subheader("Wait Time Analysis")
 
-        # Analysis for patients still waiting
-        st.subheader("Patients Still Waiting")
+            if patients_seen:
+                # Convert to DataFrame for easier analysis
+                df_patients = pd.DataFrame(patients_seen)
 
-        # Calculate current wait times for patients still in queue
-        patients_still_waiting = [p for p in all_patients if p['status'] == 'waiting']
+                # Calculate wait time categories
+                over_18_weeks = len(df_patients[df_patients['wait_time_weeks'] > 18])
+                over_36_weeks = len(df_patients[df_patients['wait_time_weeks'] > 36])
+                over_52_weeks = len(df_patients[df_patients['wait_time_weeks'] > 52])
 
-        if patients_still_waiting:
-            # Calculate current wait times
-            current_wait_times = []
-            for patient in patients_still_waiting:
-                current_wait = (sim_duration_years*52) - patient['arrival_time']
-                patient['current_wait_weeks'] = current_wait
-                current_wait_times.append(current_wait)
+                st.write("**Patients Who Were Seen:**")
+                # Display breakdown in columns
+                col3a, col3b, col3c = st.columns(3)
 
-            df_waiting = pd.DataFrame(patients_still_waiting)
+                with col3a:
+                    st.metric(
+                        label="Waited > 18 weeks",
+                        value=over_18_weeks,
+                        delta=f"{(over_18_weeks/len(patients_seen)*100):.1f}%",
+                        delta_color="off"
+                    )
 
-            # Calculate wait time categories for still waiting patients
-            waiting_over_18 = len(df_waiting[df_waiting['current_wait_weeks'] > 18])
-            waiting_over_36 = len(df_waiting[df_waiting['current_wait_weeks'] > 36])
-            waiting_over_52 = len(df_waiting[df_waiting['current_wait_weeks'] > 52])
+                with col3b:
+                    st.metric(
+                        label="Waited > 36 weeks",
+                        value=over_36_weeks,
+                        delta=f"{(over_36_weeks/len(patients_seen)*100):.1f}%",
+                        delta_color="off"
 
-            st.write("**Patients Still in Queue:**")
-            col4a, col4b, col4c = st.columns(3)
+                    )
 
-            with col4a:
-                st.metric(
-                    label="Waiting > 18 weeks",
-                    value=waiting_over_18,
-                    delta=f"{(waiting_over_18/len(patients_still_waiting)*100):.1f}%"
-                )
+                with col3c:
+                    st.metric(
+                        label="Waited > 52 weeks",
+                        value=over_52_weeks,
+                        delta=f"{(over_52_weeks/len(patients_seen)*100):.1f}%",
+                        delta_color="off"
+                    )
 
-            with col4b:
-                st.metric(
-                    label="Waiting > 36 weeks",
-                    value=waiting_over_36,
-                    delta=f"{(waiting_over_36/len(patients_still_waiting)*100):.1f}%"
-                )
+                # Optional: Show distribution histogram
+                fig2, ax2 = plt.subplots(figsize=(10, 3))
+                ax2.hist(df_patients['wait_time_weeks'], bins=20, alpha=0.7, color='#ff7f0e')
+                ax2.axvline(x=18, color='red', linestyle='--', alpha=0.7, label='18 weeks')
+                ax2.axvline(x=36, color='orange', linestyle='--', alpha=0.7, label='36 weeks')
+                ax2.axvline(x=52, color='darkred', linestyle='--', alpha=0.7, label='52 weeks')
+                ax2.set_xlabel('Wait Time (weeks)')
+                ax2.set_ylabel('Number of Patients')
+                ax2.set_title('Distribution of Wait Times - Patients Who Were Seen')
+                ax2.legend()
+                ax2.grid(True, alpha=0.3)
+                st.pyplot(fig2)
+            else:
+                st.warning("No patients were seen during the simulation period.")
 
-            with col4c:
-                st.metric(
-                    label="Waiting > 52 weeks",
-                    value=waiting_over_52,
-                    delta=f"{(waiting_over_52/len(patients_still_waiting)*100):.1f}%"
-                )
+        with tab3:
+            # Analysis for patients still waiting
+            st.subheader("Patients Still Waiting")
 
-            # Additional metrics for still waiting patients
-            avg_current_wait = sum(current_wait_times) / len(current_wait_times)
-            max_current_wait = max(current_wait_times)
+            # Calculate current wait times for patients still in queue
+            patients_still_waiting = [p for p in all_patients if p['status'] == 'waiting']
 
-            col5a, col5b = st.columns(2)
-            with col5a:
-                st.metric(
-                    label="Average Current Wait",
-                    value=f"{avg_current_wait:.1f} weeks",
-                    help="Average wait time for patients still in queue"
-                )
-            with col5b:
-                st.metric(
-                    label="Longest Current Wait",
-                    value=f"{max_current_wait:.1f} weeks",
-                    help="Longest wait time among patients still in queue"
-                )
+            if patients_still_waiting:
+                # Calculate current wait times
+                current_wait_times = []
+                for patient in patients_still_waiting:
+                    current_wait = (sim_duration_years*52) - patient['arrival_time']
+                    patient['current_wait_weeks'] = current_wait
+                    current_wait_times.append(current_wait)
 
-            # Show distribution histogram for patients still waiting
-            fig3, ax3 = plt.subplots(figsize=(10, 3))
-            ax3.hist(current_wait_times, bins=20, alpha=0.7, color='#d62728')
-            ax3.axvline(x=18, color='red', linestyle='--', alpha=0.7, label='18 weeks')
-            ax3.axvline(x=36, color='orange', linestyle='--', alpha=0.7, label='36 weeks')
-            ax3.axvline(x=52, color='darkred', linestyle='--', alpha=0.7, label='52 weeks')
-            ax3.set_xlabel('Current Wait Time (weeks)')
-            ax3.set_ylabel('Number of Patients')
-            ax3.set_title('Distribution of Current Wait Times - Patients Still Waiting')
-            ax3.legend()
-            ax3.grid(True, alpha=0.3)
-            st.pyplot(fig3)
-        else:
-            st.success("No patients are currently waiting - all patients have been seen!")
+                df_waiting = pd.DataFrame(patients_still_waiting)
+
+                # Calculate wait time categories for still waiting patients
+                waiting_over_18 = len(df_waiting[df_waiting['current_wait_weeks'] > 18])
+                waiting_over_36 = len(df_waiting[df_waiting['current_wait_weeks'] > 36])
+                waiting_over_52 = len(df_waiting[df_waiting['current_wait_weeks'] > 52])
+
+                st.write("**Patients Still in Queue:**")
+                col4a, col4b, col4c = st.columns(3)
+
+                with col4a:
+                    st.metric(
+                        label="Waiting > 18 weeks",
+                        value=waiting_over_18,
+                        delta=f"{(waiting_over_18/len(patients_still_waiting)*100):.1f}%",
+                        delta_color="off"
+                    )
+
+                with col4b:
+                    st.metric(
+                        label="Waiting > 36 weeks",
+                        value=waiting_over_36,
+                        delta=f"{(waiting_over_36/len(patients_still_waiting)*100):.1f}%",
+                        delta_color="off"
+                    )
+
+                with col4c:
+                    st.metric(
+                        label="Waiting > 52 weeks",
+                        value=waiting_over_52,
+                        delta=f"{(waiting_over_52/len(patients_still_waiting)*100):.1f}%",
+                        delta_color="off"
+                    )
+
+                # Additional metrics for still waiting patients
+                avg_current_wait = sum(current_wait_times) / len(current_wait_times)
+                max_current_wait = max(current_wait_times)
+
+                col5a, col5b = st.columns(2)
+                with col5a:
+                    st.metric(
+                        label="Average Current Wait",
+                        value=f"{avg_current_wait:.1f} weeks",
+                        help="Average wait time for patients still in queue"
+                    )
+                with col5b:
+                    st.metric(
+                        label="Longest Current Wait",
+                        value=f"{max_current_wait:.1f} weeks",
+                        help="Longest wait time among patients still in queue"
+                    )
+
+                # Show distribution histogram for patients still waiting
+                fig3, ax3 = plt.subplots(figsize=(10, 3))
+                ax3.hist(current_wait_times, bins=20, alpha=0.7, color='#d62728')
+                ax3.axvline(x=18, color='red', linestyle='--', alpha=0.7, label='18 weeks')
+                ax3.axvline(x=36, color='orange', linestyle='--', alpha=0.7, label='36 weeks')
+                ax3.axvline(x=52, color='darkred', linestyle='--', alpha=0.7, label='52 weeks')
+                ax3.set_xlabel('Current Wait Time (weeks)')
+                ax3.set_ylabel('Number of Patients')
+                ax3.set_title('Distribution of Current Wait Times - Patients Still Waiting')
+                ax3.legend()
+                ax3.grid(True, alpha=0.3)
+                st.pyplot(fig3)
+            else:
+                st.success("No patients are currently waiting - all patients have been seen!")
 
     else:
-        st.info("Configure your simulation parameters and click 'Run Simulation' to see results")
+        st.info("👈 Configure your simulation parameters and click 'Run Simulation' to see results")
 ```
 
 
 
-##  {#webappslide-id data-menu-title="An Example Web App - Multiple Runs"}
+##  {#webappdemo-multiple-runs data-menu-title="An Example Web App - Multiple Runs"}
 
 ```{stlite-python}
 import micropip
@@ -587,6 +616,17 @@ import numpy as np
 
 # Set page config for wide layout
 st.set_page_config(layout="wide")
+
+st.markdown(
+    """
+    <style>
+    [data-testid="stMetricDelta"] svg {
+        display: none;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 st.title("Healthcare Waiting List Simulation")
 
@@ -612,31 +652,35 @@ with col1:
         value=80
     )
 
-    clinicians = st.number_input(
+    input_col_1, input_col_2 = st.columns([0.4, 0.6])
+
+    clinicians = input_col_1.number_input(
         "Number of clinicians",
         min_value=1,
         max_value=20,
         value=4
     )
 
-    patients_per_clinician_per_week = st.number_input(
+    patients_per_clinician_per_week = input_col_2.number_input(
         "Patients per clinician per week",
         min_value=1,
         max_value=20,
         value=5
     )
 
-    sim_duration_years = st.number_input(
+    input_col_3, input_col_4 = st.columns(2)
+
+    sim_duration_years = input_col_3.number_input(
         "Simulation duration (years)",
         min_value=1,
         max_value=10,
         value=3
     )
 
-    num_runs = st.number_input(
-        "Number of simulation runs",
+    num_runs = input_col_4.number_input(
+        "Number of runs",
         min_value=1,
-        max_value=100,
+        max_value=50,
         value=10,
         help="More runs provide better uncertainty estimates but take longer to compute"
     )
@@ -647,6 +691,11 @@ with col1:
 with col2:
     if run_simulation:
         st.header("Simulation Results")
+        tab1, tab2, tab3 = st.tabs([
+          "Waiting List",
+          "Waiting List - Variability",
+          "Wait Times"
+          ])
 
         # Progress bar
         progress_bar = st.progress(0)
@@ -704,7 +753,7 @@ with col2:
 
                 # Generate new patients each week
                 while True:
-                    num_arrivals = math.ceil(random.normalvariate(patients, patients*0.1))
+                    num_arrivals = math.ceil(random.normalvariate(patients, patients*0.2))
                     num_arrivals = max(0, num_arrivals)
 
                     for i in range(num_arrivals):
@@ -813,118 +862,245 @@ with col2:
         ax.set_title(f'Waiting List Length Over Time ({num_runs} simulation runs)')
         ax.grid(True, alpha=0.3)
         ax.legend()
-        st.pyplot(fig)
 
-        # Summary statistics
-        st.subheader("Summary Statistics Across All Runs")
+        with tab1:
+            st.pyplot(fig)
 
-        # Calculate summary metrics
-        final_waiting_mean = np.mean([m['final_waiting_list'] for m in all_final_metrics])
-        final_waiting_std = np.std([m['final_waiting_list'] for m in all_final_metrics])
-        patients_seen_mean = np.mean([m['patients_seen'] for m in all_final_metrics])
-        patients_seen_std = np.std([m['patients_seen'] for m in all_final_metrics])
-        avg_wait_mean = np.mean([m['avg_wait'] for m in all_final_metrics])
-        avg_wait_std = np.std([m['avg_wait'] for m in all_final_metrics])
+            # Summary statistics
+            st.subheader("Summary Statistics Across All Runs")
 
-        # Metric cards with uncertainty
-        col2a, col2b, col2c = st.columns(3)
+            # Calculate summary metrics
+            final_waiting_mean = np.mean([m['final_waiting_list'] for m in all_final_metrics])
+            final_waiting_std = np.std([m['final_waiting_list'] for m in all_final_metrics])
+            patients_seen_mean = np.mean([m['patients_seen'] for m in all_final_metrics])
+            patients_seen_std = np.std([m['patients_seen'] for m in all_final_metrics])
+            avg_wait_mean = np.mean([m['avg_wait'] for m in all_final_metrics])
+            avg_wait_std = np.std([m['avg_wait'] for m in all_final_metrics])
 
-        with col2a:
-            st.metric(
-                label="Final Waiting List",
-                value=f"{final_waiting_mean:.0f} ± {final_waiting_std:.0f}",
-                help=f"Mean ± standard deviation across {num_runs} runs"
-            )
+            # Metric cards with uncertainty
+            col2a, col2b, col2c = st.columns(3)
 
-        with col2b:
-            st.metric(
-                label="Patients Seen",
-                value=f"{patients_seen_mean:.0f} ± {patients_seen_std:.0f}",
-                help=f"Mean ± standard deviation across {num_runs} runs"
-            )
-
-        with col2c:
-            st.metric(
-                label="Average Wait (weeks)",
-                value=f"{avg_wait_mean:.1f} ± {avg_wait_std:.1f}",
-                help=f"Mean ± standard deviation across {num_runs} runs"
-            )
-
-        # Show distribution of final waiting list lengths
-        st.subheader("Variability in Final Outcomes")
-
-        final_waiting_lists = [m['final_waiting_list'] for m in all_final_metrics]
-
-        fig2, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
-
-        # Histogram of final waiting list lengths
-        ax1.hist(final_waiting_lists, bins=min(10, num_runs), alpha=0.7, color='#ff7f0e')
-        ax1.axvline(x=final_waiting_mean, color='red', linestyle='--',
-                   label=f'Mean: {final_waiting_mean:.0f}')
-        ax1.set_xlabel('Final Waiting List Length')
-        ax1.set_ylabel('Number of Runs')
-        ax1.set_title('Distribution of Final Waiting List Lengths')
-        ax1.legend()
-        ax1.grid(True, alpha=0.3)
-
-        # Box plot showing variability over time (every 13 weeks)
-        sample_weeks = range(0, max_length, 13)  # Sample every quarter
-        sample_data = [queue_array[:, week] for week in sample_weeks if week < max_length]
-        sample_labels = [f'Week {week}' for week in sample_weeks if week < max_length]
-
-        ax2.boxplot(sample_data, labels=sample_labels)
-        ax2.set_xlabel('Time Points')
-        ax2.set_ylabel('Waiting List Length')
-        ax2.set_title('Waiting List Variability Over Time')
-        ax2.tick_params(axis='x', rotation=45)
-        ax2.grid(True, alpha=0.3)
-
-        plt.tight_layout()
-        st.pyplot(fig2)
-
-        # Show detailed results from the first run for backward compatibility
-        st.subheader("Detailed Analysis (First Run)")
-
-        # Use the first run's detailed data
-        first_run = run_single_simulation(42)
-        patients_seen_data = first_run['patients_seen_data']
-        all_patients_data = first_run['all_patients']
-
-        if patients_seen_data:
-            # Convert to DataFrame for easier analysis
-            df_patients = pd.DataFrame(patients_seen_data)
-
-            # Calculate wait time categories
-            over_18_weeks = len(df_patients[df_patients['wait_time_weeks'] > 18])
-            over_36_weeks = len(df_patients[df_patients['wait_time_weeks'] > 36])
-            over_52_weeks = len(df_patients[df_patients['wait_time_weeks'] > 52])
-
-            st.write("**Patients Who Were Seen (First Run):**")
-            col3a, col3b, col3c = st.columns(3)
-
-            with col3a:
+            with col2a:
                 st.metric(
-                    label="Waited > 18 weeks",
-                    value=over_18_weeks,
-                    delta=f"{(over_18_weeks/len(patients_seen_data)*100):.1f}%"
+                    label="Final Waiting List",
+                    value=f"{final_waiting_mean:.0f} ± {final_waiting_std:.0f}",
+                    help=f"Mean ± standard deviation across {num_runs} runs"
                 )
 
-            with col3b:
+            with col2b:
                 st.metric(
-                    label="Waited > 36 weeks",
-                    value=over_36_weeks,
-                    delta=f"{(over_36_weeks/len(patients_seen_data)*100):.1f}%"
+                    label="Patients Seen",
+                    value=f"{patients_seen_mean:.0f} ± {patients_seen_std:.0f}",
+                    help=f"Mean ± standard deviation across {num_runs} runs"
                 )
 
-            with col3c:
+            with col2c:
                 st.metric(
-                    label="Waited > 52 weeks",
-                    value=over_52_weeks,
-                    delta=f"{(over_52_weeks/len(patients_seen_data)*100):.1f}%"
+                    label="Average Wait (weeks)",
+                    value=f"{avg_wait_mean:.1f} ± {avg_wait_std:.1f}",
+                    help=f"Mean ± standard deviation across {num_runs} runs"
                 )
+
+        with tab2:
+            # Show distribution of final waiting list lengths
+            st.subheader("Variability in Final Outcomes")
+
+            final_waiting_lists = [m['final_waiting_list'] for m in all_final_metrics]
+
+            # First plot - Histogram of final waiting list lengths
+            fig2, ax1 = plt.subplots(figsize=(12, 4))
+            ax1.hist(final_waiting_lists, bins=min(10, num_runs), alpha=0.7, color='#ff7f0e')
+            ax1.axvline(x=final_waiting_mean, color='red', linestyle='--',
+                      label=f'Mean: {final_waiting_mean:.0f}')
+            ax1.set_xlabel('Final Waiting List Length')
+            ax1.set_ylabel('Number of Runs')
+            ax1.set_title('Distribution of Final Waiting List Lengths')
+            ax1.legend()
+            ax1.grid(True, alpha=0.3)
+            st.pyplot(fig2)
+
+            # Second plot - Box plot showing variability over time
+            fig3, ax2 = plt.subplots(figsize=(12, 4))
+            sample_weeks = range(0, max_length, 13)  # Sample every quarter
+            sample_data = [queue_array[:, week] for week in sample_weeks if week < max_length]
+            sample_labels = [f'Week {week}' for week in sample_weeks if week < max_length]
+
+            ax2.boxplot(sample_data, labels=sample_labels)
+            ax2.set_xlabel('Time Points')
+            ax2.set_ylabel('Waiting List Length')
+            ax2.set_title('Waiting List Variability Over Time')
+            ax2.tick_params(axis='x', rotation=45)
+            ax2.grid(True, alpha=0.3)
+            st.pyplot(fig3)
+
+        with tab3:
+            # Show detailed analysis with variability across all runs
+            st.subheader("Detailed Wait Time Analysis")
+
+            # Collect detailed data from multiple runs for variability analysis
+            all_seen_metrics = []
+            all_waiting_metrics = []
+
+            for run_idx in range(num_runs):
+                # Re-run simulation to get detailed patient data
+                detailed_result = run_single_simulation(42 + run_idx)
+                patients_seen_data = detailed_result['patients_seen_data']
+                all_patients_data = detailed_result['all_patients']
+
+                # Calculate metrics for patients who were seen
+                if patients_seen_data:
+                    df_patients = pd.DataFrame(patients_seen_data)
+                    seen_over_18 = len(df_patients[df_patients['wait_time_weeks'] > 18])
+                    seen_over_36 = len(df_patients[df_patients['wait_time_weeks'] > 36])
+                    seen_over_52 = len(df_patients[df_patients['wait_time_weeks'] > 52])
+                    total_seen = len(patients_seen_data)
+
+                    all_seen_metrics.append({
+                        'over_18_count': seen_over_18,
+                        'over_36_count': seen_over_36,
+                        'over_52_count': seen_over_52,
+                        'over_18_pct': (seen_over_18/total_seen*100) if total_seen > 0 else 0,
+                        'over_36_pct': (seen_over_36/total_seen*100) if total_seen > 0 else 0,
+                        'over_52_pct': (seen_over_52/total_seen*100) if total_seen > 0 else 0,
+                        'total_seen': total_seen
+                    })
+
+                # Calculate metrics for patients still waiting
+                patients_still_waiting = [p for p in all_patients_data if p['status'] == 'waiting']
+                if patients_still_waiting:
+                    # Calculate current wait times
+                    current_wait_times = []
+                    for patient in patients_still_waiting:
+                        current_wait = (sim_duration_years*52) - patient['arrival_time']
+                        current_wait_times.append(current_wait)
+
+                    waiting_over_18 = sum(1 for wait in current_wait_times if wait > 18)
+                    waiting_over_36 = sum(1 for wait in current_wait_times if wait > 36)
+                    waiting_over_52 = sum(1 for wait in current_wait_times if wait > 52)
+                    total_waiting = len(patients_still_waiting)
+
+                    all_waiting_metrics.append({
+                        'over_18_count': waiting_over_18,
+                        'over_36_count': waiting_over_36,
+                        'over_52_count': waiting_over_52,
+                        'over_18_pct': (waiting_over_18/total_waiting*100) if total_waiting > 0 else 0,
+                        'over_36_pct': (waiting_over_36/total_waiting*100) if total_waiting > 0 else 0,
+                        'over_52_pct': (waiting_over_52/total_waiting*100) if total_waiting > 0 else 0,
+                        'total_waiting': total_waiting,
+                        'avg_wait': np.mean(current_wait_times) if current_wait_times else 0,
+                        'max_wait': max(current_wait_times) if current_wait_times else 0
+                    })
+
+            # Calculate summary statistics for patients who were seen
+            if all_seen_metrics:
+                seen_18_mean = np.mean([m['over_18_count'] for m in all_seen_metrics])
+                seen_18_std = np.std([m['over_18_count'] for m in all_seen_metrics])
+                seen_36_mean = np.mean([m['over_36_count'] for m in all_seen_metrics])
+                seen_36_std = np.std([m['over_36_count'] for m in all_seen_metrics])
+                seen_52_mean = np.mean([m['over_52_count'] for m in all_seen_metrics])
+                seen_52_std = np.std([m['over_52_count'] for m in all_seen_metrics])
+
+                seen_18_pct_mean = np.mean([m['over_18_pct'] for m in all_seen_metrics])
+                seen_36_pct_mean = np.mean([m['over_36_pct'] for m in all_seen_metrics])
+                seen_52_pct_mean = np.mean([m['over_52_pct'] for m in all_seen_metrics])
+
+                st.write("**Patients Who Were Seen:**")
+                col3a, col3b, col3c = st.columns(3)
+
+                with col3a:
+                    st.metric(
+                        label="Waited > 18 weeks",
+                        value=f"{seen_18_mean:.0f} ± {seen_18_std:.0f}",
+                        delta=f"{seen_18_pct_mean:.1f}% avg",
+                        help=f"Mean ± std dev across {num_runs} runs",
+                        delta_color="off"
+                    )
+
+                with col3b:
+                    st.metric(
+                        label="Waited > 36 weeks",
+                        value=f"{seen_36_mean:.0f} ± {seen_36_std:.0f}",
+                        delta=f"{seen_36_pct_mean:.1f}% avg",
+                        help=f"Mean ± std dev across {num_runs} runs",
+                        delta_color="off"
+                    )
+
+                with col3c:
+                    st.metric(
+                        label="Waited > 52 weeks",
+                        value=f"{seen_52_mean:.0f} ± {seen_52_std:.0f}",
+                        delta=f"{seen_52_pct_mean:.1f}% avg",
+                        help=f"Mean ± std dev across {num_runs} runs",
+                        delta_color="off"
+                    )
+
+            # Calculate summary statistics for patients still waiting
+            if all_waiting_metrics:
+                waiting_18_mean = np.mean([m['over_18_count'] for m in all_waiting_metrics])
+                waiting_18_std = np.std([m['over_18_count'] for m in all_waiting_metrics])
+                waiting_36_mean = np.mean([m['over_36_count'] for m in all_waiting_metrics])
+                waiting_36_std = np.std([m['over_36_count'] for m in all_waiting_metrics])
+                waiting_52_mean = np.mean([m['over_52_count'] for m in all_waiting_metrics])
+                waiting_52_std = np.std([m['over_52_count'] for m in all_waiting_metrics])
+
+                waiting_18_pct_mean = np.mean([m['over_18_pct'] for m in all_waiting_metrics])
+                waiting_36_pct_mean = np.mean([m['over_36_pct'] for m in all_waiting_metrics])
+                waiting_52_pct_mean = np.mean([m['over_52_pct'] for m in all_waiting_metrics])
+
+                avg_wait_mean = np.mean([m['avg_wait'] for m in all_waiting_metrics])
+                avg_wait_std = np.std([m['avg_wait'] for m in all_waiting_metrics])
+                max_wait_mean = np.mean([m['max_wait'] for m in all_waiting_metrics])
+                max_wait_std = np.std([m['max_wait'] for m in all_waiting_metrics])
+
+                st.write("**Patients Still Waiting:**")
+                col4a, col4b, col4c = st.columns(3)
+
+                with col4a:
+                    st.metric(
+                        label="Waiting > 18 weeks",
+                        value=f"{waiting_18_mean:.0f} ± {waiting_18_std:.0f}",
+                        delta=f"{waiting_18_pct_mean:.1f}% avg",
+                        help=f"Mean ± std dev across {num_runs} runs",
+                        delta_color="off"
+                    )
+
+                with col4b:
+                    st.metric(
+                        label="Waiting > 36 weeks",
+                        value=f"{waiting_36_mean:.0f} ± {waiting_36_std:.0f}",
+                        delta=f"{waiting_36_pct_mean:.1f}% avg",
+                        help=f"Mean ± std dev across {num_runs} runs",
+                        delta_color="off"
+                    )
+
+                with col4c:
+                    st.metric(
+                        label="Waiting > 52 weeks",
+                        value=f"{waiting_52_mean:.0f} ± {waiting_52_std:.0f}",
+                        delta=f"{waiting_52_pct_mean:.1f}% avg",
+                        help=f"Mean ± std dev across {num_runs} runs",
+                        delta_color="off"
+                    )
+
+                # Additional summary metrics for patients still waiting
+                col5a, col5b = st.columns(2)
+                with col5a:
+                    st.metric(
+                        label="Average Current Wait",
+                        value=f"{avg_wait_mean:.1f} ± {avg_wait_std:.1f} weeks",
+                        help=f"Mean ± std dev across {num_runs} runs",
+                        delta_color="off"
+                    )
+                with col5b:
+                    st.metric(
+                        label="Longest Current Wait",
+                        value=f"{max_wait_mean:.1f} ± {max_wait_std:.1f} weeks",
+                        help=f"Mean ± std dev across {num_runs} runs",
+                        delta_color="off"
+                    )
 
     else:
-        st.info("Configure your simulation parameters and click 'Run Simulation' to see results")
+        st.info("👈 Configure your simulation parameters and click 'Run Simulation' to see results")
 ```
 
 
