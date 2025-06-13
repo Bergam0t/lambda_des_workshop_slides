@@ -8,6 +8,7 @@ execute:
   echo: false
 format:
   revealjs:
+    embed-resources: false # necessary for stlite-quarto embedding to work
     output-file: index.html
     view-distance: 100
     height: 800
@@ -255,39 +256,7 @@ We might have multiple generators for different kinds of patients, if they arriv
 
 # Web App Interfaces
 
-## An Example Interface
-
-```{=html}
-<iframe src="https://lambdadesworkshopslides-qq8afijruasph6hkyqgvuq.streamlit.app/?embed_options=dark_theme" style="height: 650px; width: 100%;"></iframe>
-```
-
-## Another
-
-<iframe class="stretch" data-src="https://lambdadesworkshopslides-qq8afijruasph6hkyqgvuq.streamlit.app/?embed_options=dark_theme"></iframe>
-
-
-## And Another
-
-<iframe class="stretch" src="https://pythonhealthdatascience.github.io/stars-reproduce-kim-2021/evaluation/reproduction_report.html"></iframe>
-
-
-## A different approach
-
-```{r}
-#| echo: false
-knitr::include_url({"https://lambdadesworkshopslides-qq8afijruasph6hkyqgvuq.streamlit.app/?embed_options=dark_theme"})
-```
-
-## A fully contained example
-
-```{stlite-python}
-import streamlit as st
-
-st.title("Hello world!")
-```
-
-
-## A more complex fully contained example
+##  {#webappslide-id data-menu-title="An Example Web App"}
 
 ```{stlite-python}
 import micropip
@@ -328,8 +297,6 @@ with col1:
         value=80
     )
 
-    st.divider()
-
     clinicians = st.number_input(
         "Number of clinicians",
         min_value=1,
@@ -343,8 +310,6 @@ with col1:
         max_value=20,
         value=5
     )
-
-    st.divider()
 
     sim_duration_years = st.number_input(
         "Simulation duration (years)",
@@ -598,7 +563,7 @@ with col2:
             st.success("No patients are currently waiting - all patients have been seen!")
 
     else:
-        st.info("👈 Configure your simulation parameters and click 'Run Simulation' to see results")
+        st.info("Configure your simulation parameters and click 'Run Simulation' to see results")
 ```
 
 # Outputs from Models
