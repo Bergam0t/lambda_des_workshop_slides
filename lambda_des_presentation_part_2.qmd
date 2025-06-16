@@ -2469,13 +2469,9 @@ A model is only as good as it's spec.
 
 What is the process - *really*?
 
-:::{.fragment}
-
 :::: {.columns}
 
-::: {.column width='60%'}
-
-I mean *really really*...
+::: {.column width='67%'}
 
 :::{.incremental}
 
@@ -2489,35 +2485,71 @@ I mean *really really*...
 
 :::
 
-::: {.column width='40%'}
+::: {.column width='30%'}
 
-![](assets/2025-06-13-17-09-28.png){height="600px"}
+![](assets/2025-06-13-17-09-28.png){height="500px"}
 
 :::
 
 ::::
 
-:::
 
 ## Measuring Up
 
-:::{.incremental}
+:::: {.columns}
+
+:::{.fragment}
+
+::: {.column width='45%'}
 
 - What metrics/KPIs do you want to be able to measure?
+
+:::{.fragment}
 
 - How are you going to measure that the model reflects the current reality?
 
 :::
 
+:::
+
+::: {.column width='10%'}
+
+:::
+
+::: {.column width='45%'}
+
+![](assets/2025-06-13-17-36-01.png)
+
+:::
+
+:::
+
+::::
+
+
 ## Scenarios
 
-:::{.incremental}
+:::: {.columns}
 
+::: {.column width='50%'}
+
+![](assets/2025-06-16-16-17-54.png)
+
+:::
+
+::: {.column width='50%'}
 - What do you need to be able to change?
+
+:::{.fragment}
 
 - Will the simplified model logic support the scenarios you want to test?
 
 :::
+
+:::
+
+::::
+
 
 :::{.notes}
 
@@ -2529,15 +2561,35 @@ Testing needs to be done to make sure that the outputs are sensible
 
 ## Using it for decisions
 
-:::{.incremental}
+:::: {.columns}
+
+::: {.column width='50%'}
 
 - What do you need to be able to export?
 
+:::{.fragment}
+
 - Is this a one and done output, or an ongoing tool?
+
+:::
+
+:::{.fragment}
 
 - How do you assess that it made good predictions, and refine it?
 
 :::
+
+:::
+
+::: {.column width='50%'}
+
+![](assets/2025-06-16-16-24-05.png){height="600px"}
+
+:::
+
+::::
+
+
 
 ## How soon do you need it?
 
@@ -2549,7 +2601,7 @@ How long does a model take?
 
 :::{.fragment}
 
-![](assets/2025-06-13-16-57-39.png){height="600px"}
+![](assets/2025-06-16-16-29-51.png){height="600px"}
 
 :::
 
@@ -2574,18 +2626,28 @@ How long does a model take?
 
 ## No, really, how long?
 
-:::{.incremental}
-- A simple model can go together pretty quickly ()
-  - but your analysts may need time to upskill in R or Python + DES-specific concepts...
+:::{.incremental .smaller}
+- A simple model can go together pretty quickly (hours to days)
+  - but your analysts may need time to upskill in R or Python...
+  - and upskill in DES-specific concepts...
   - and add in a Streamlit frontend...
   - and clear visuals...
   - and animations...
   - and more complex inputs and scenarios...
-  - and the ability to compare things side-by-side
+  - and the ability to compare things side-by-side...
   - and the ability to download a summary table...
   - and robust tests...
+
+:::
+
+
+## There's more?
+
+:::{.incremental}
   - and conform with the [20-item best-practice guidance on model reporting](https://des.hsma.co.uk/stress_des.html) and the [7 essential components and 5 optional components of the STARS reproducibility framework](https://des.hsma.co.uk/stars.html)...
 :::
+
+:::{.fragment}
 
 :::{.callout-tip}
 
@@ -2593,8 +2655,11 @@ In reality, a good model may take weeks to months - and may be iterated on for y
 
 :::
 
+:::
+
 ## Alternatives to FOSS
 
+![](assets/2025-06-16-16-39-53.png)
 
 
 # Exercise: The DES Playground
