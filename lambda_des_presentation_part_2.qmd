@@ -67,64 +67,7 @@ Entities are often the service users in your model.
 
 ```{python}
 #| echo: false
-
-class Patient:
-    def __init__(self, p_id):
-        self.id = p_id
-
-class SimpleActivityModel:
-    def __init__(self, master_seed=42):
-        self.env = simpy.Environment()
-        self.patient_counter = 0
-        self.logger = EventLogger(env=self.env)
-
-        # Seed setup using numpy's SeedSequence
-        self.master_seed = master_seed
-        self.seed_seq = np.random.SeedSequence(master_seed)
-        self.rng = np.random.default_rng(self.seed_seq)
-
-    def generate_arrivals(self):
-        while True:
-            self.patient_counter += 1
-            p = Patient(self.patient_counter)
-            self.logger.log_arrival(entity_id=p.id)
-            self.env.process(self.patient_journey(p))
-            yield self.env.timeout(3)
-
-    def patient_journey(self, patient):
-      self.logger.log_queue(entity_id=patient.id, event="wait_here")
-      yield self.env.timeout(70)
-      self.logger.log_departure(entity_id=patient.id)
-
-    def run(self):
-        self.env.process(self.generate_arrivals())
-        self.env.run(until=180)
-
-model = SimpleActivityModel()
-model.run()
-event_log = model.logger.to_dataframe()
-event_log.to_csv("test_log.csv")
-
-animate_activity_log(
-  event_log = event_log,
-  event_position_df = create_event_position_df([
-    EventPosition(event="wait_here", x=250 , y=25 , label="Wait Here!"),
-    EventPosition(event="depart", x=300, y=10, label="Exit")
-    ]),
-  every_x_time_units=1,
-  limit_duration=60,
-  override_x_max=300,
-  override_y_max=50,
-  plotly_height=600,
-  plotly_width=1200,
-  display_stage_labels=False,
-  # time_display_units="%M minutes",
-  gap_between_entities=20,
-  entity_icon_size=70,
-  wrap_queues_at=10,
-  simulation_time_unit="minutes",
-  debug_write_intermediate_objects=True
-)
+{{< include animation_examples/entity_arrival.py >}}
 ```
 
 ## ... at varying rates...
@@ -133,132 +76,14 @@ Like buses, you might have none arrive for ages, then several at once.
 
 ```{python}
 #| echo: false
-
-class Patient:
-    def __init__(self, p_id):
-        self.id = p_id
-
-class SimpleActivityModel:
-    def __init__(self, master_seed=42):
-        self.env = simpy.Environment()
-        self.patient_counter = 0
-        self.patient_inter = 2
-        self.logger = EventLogger(env=self.env)
-
-        # Seed setup using numpy's SeedSequence
-        self.master_seed = master_seed
-        self.seed_seq = np.random.SeedSequence(master_seed)
-        self.rng = np.random.default_rng(self.seed_seq)
-
-    def generate_arrivals(self):
-        while True:
-            self.patient_counter += 1
-            p = Patient(self.patient_counter)
-            self.logger.log_arrival(entity_id=p.id)
-            self.env.process(self.patient_journey(p))
-            sampled_inter = self.rng.exponential(scale=self.patient_inter)
-            yield self.env.timeout(sampled_inter)
-
-    def patient_journey(self, patient):
-      self.logger.log_queue(entity_id=patient.id, event="wait_here")
-      yield self.env.timeout(70)
-      self.logger.log_departure(entity_id=patient.id)
-
-    def run(self):
-        self.env.process(self.generate_arrivals())
-        self.env.run(until=180)
-
-model = SimpleActivityModel()
-model.run()
-event_log = model.logger.to_dataframe()
-event_log.to_csv("test_log.csv")
-
-animate_activity_log(
-  event_log = event_log,
-  event_position_df = create_event_position_df([
-    EventPosition(event="wait_here", x=250 , y=25 , label="Wait Here!"),
-    EventPosition(event="depart", x=300, y=10, label="Exit")
-    ]),
-  every_x_time_units=1,
-  limit_duration=60,
-  override_x_max=300,
-  override_y_max=50,
-  plotly_height=600,
-  plotly_width=1200,
-  display_stage_labels=False,
-  # time_display_units="%M minutes",
-  gap_between_entities=20,
-  entity_icon_size=70,
-  wrap_queues_at=10,
-  simulation_time_unit="minutes",
-  debug_write_intermediate_objects=True
-)
+{{< include animation_examples/entity_arrival_varying_rates.py >}}
 ```
 
 ## ... and spend varying amounts of time in the system
 
 ```{python}
 #| echo: false
-
-class Patient:
-    def __init__(self, p_id):
-        self.id = p_id
-
-class SimpleActivityModel:
-    def __init__(self, master_seed=42):
-        self.env = simpy.Environment()
-        self.patient_counter = 0
-        self.patient_inter = 4
-        self.logger = EventLogger(env=self.env)
-
-        # Seed setup using numpy's SeedSequence
-        self.master_seed = master_seed
-        self.seed_seq = np.random.SeedSequence(master_seed)
-        self.rng = np.random.default_rng(self.seed_seq)
-
-    def generate_arrivals(self):
-        while True:
-            self.patient_counter += 1
-            p = Patient(self.patient_counter)
-            self.logger.log_arrival(entity_id=p.id)
-            self.env.process(self.patient_journey(p))
-            sampled_inter = self.rng.exponential(scale=self.patient_inter)
-            yield self.env.timeout(sampled_inter)
-
-    def patient_journey(self, patient):
-      self.logger.log_queue(entity_id=patient.id, event="wait_here")
-      yield self.env.timeout(self.rng.uniform(low=1, high=20))
-      self.logger.log_departure(entity_id=patient.id)
-
-    def run(self):
-        self.env.process(self.generate_arrivals())
-        self.env.run(until=180)
-
-model = SimpleActivityModel()
-model.run()
-event_log = model.logger.to_dataframe()
-event_log.to_csv("test_log.csv")
-
-animate_activity_log(
-  event_log = event_log,
-  event_position_df = create_event_position_df([
-    EventPosition(event="wait_here", x=250 , y=25 , label="Wait Here!"),
-    EventPosition(event="depart", x=300, y=10, label="Exit")
-    ]),
-  every_x_time_units=1,
-  limit_duration=60,
-  override_x_max=300,
-  override_y_max=50,
-  plotly_height=600,
-  plotly_width=1200,
-  display_stage_labels=False,
-  # time_display_units="%M minutes",
-  gap_between_entities=20,
-  entity_icon_size=70,
-  wrap_queues_at=10,
-  simulation_time_unit="minutes",
-  debug_write_intermediate_objects=True
-)
+{{< include animation_examples/entity_arrival_varying_rates_varying_time_in_system.py >}}
 ```
 
 ## Generators bring entities into being...
@@ -268,85 +93,11 @@ We might have multiple generators for different kinds of patients, if they arriv
 *Example of patients arriving via ambulance and via walk-in, with clearly different arrival rates*
 
 
-
 ## Entities might go off and do different things in our model...
 
 ```{python}
 #| echo: false
-
-class Patient:
-    def __init__(self, p_id, path):
-        self.id = p_id
-        self.path = path
-
-class SimpleActivityModelThreeActivities:
-    def __init__(self, master_seed=42):
-        self.env = simpy.Environment()
-        self.patient_counter = 0
-        self.patient_inter = 1
-        self.logger = EventLogger(env=self.env)
-
-        # Seed setup using numpy's SeedSequence
-        self.master_seed = master_seed
-        self.seed_seq = np.random.SeedSequence(master_seed)
-        self.rng = np.random.default_rng(self.seed_seq)
-
-    def generate_arrivals(self):
-        while True:
-            self.patient_counter += 1
-            path_sample = self.rng.uniform(low=0.0, high=1.0)
-
-            if path_sample <= 0.2:
-                p = Patient(self.patient_counter, path="nurse_consult")
-            elif path_sample <= 0.5:
-                p = Patient(self.patient_counter, path="blood_test")
-            else:
-                p = Patient(self.patient_counter, path="doctor_consult")
-
-            self.logger.log_arrival(entity_id=p.id)
-            self.env.process(self.patient_journey(p))
-            sampled_inter = self.rng.exponential(scale=self.patient_inter)
-            yield self.env.timeout(sampled_inter)
-
-    def patient_journey(self, patient):
-
-      self.logger.log_queue(entity_id=patient.id, event=f"wait_here_{patient.path}")
-
-      yield self.env.timeout(self.rng.normal(loc=8, scale=1))
-
-      self.logger.log_departure(entity_id=patient.id)
-
-    def run(self):
-        self.env.process(self.generate_arrivals())
-        self.env.run(until=180)
-
-model = SimpleActivityModelThreeActivities()
-model.run()
-event_log = model.logger.to_dataframe()
-event_log.to_csv("test_log.csv")
-
-animate_activity_log(
-  event_log = event_log,
-  event_position_df = create_event_position_df([
-    EventPosition(event="wait_here_nurse_consult", x=200 , y=25 , label="Seeing a nurse"),
-    EventPosition(event="wait_here_blood_test", x=200 , y=125 , label="Having a blood test"),
-    EventPosition(event="wait_here_doctor_consult", x=200 , y=225 , label="Seeing a doctor"),
-    EventPosition(event="depart", x=400, y=125, label="Exit")
-    ]),
-  every_x_time_units=1,
-  limit_duration=60,
-  override_x_max=300,
-  override_y_max=275,
-  plotly_height=600,
-  plotly_width=1200,
-  display_stage_labels=True,
-  # time_display_units="%M minutes",
-  gap_between_entities=20,
-  wrap_queues_at=10,
-  entity_icon_size=40,
-  simulation_time_unit="minutes",
-  debug_write_intermediate_objects=True
-)
+{{< include animation_examples/entity_different_paths.py >}}
 ```
 
 ## Or they might do things in a sequence...
@@ -382,136 +133,45 @@ animate_activity_log(
 
 ## Jockeying
 
+# The Power of Animations
+
+We've demonstrated a few simple animations here to help recap the concepts.
+
+But these animations can be applied to any simulation!
+
+## From an emergency department...
+
+## To a community-based appointment booking system...
+
+## To a simple ward...
+
+## To a complex ward with ringfenced beds and slot cancellation...
+
 
 # What-if Scenarios
 
 
+
 ## The Power of Questions
+
+
+## And how animations can help you understand the answer to your questions
+
+Demonstrate two animations side-by-side
+
 
 
 # Interacting with Models
 
 ## The Code
 
-Here's a sample of some code for a
+Here's a sample of some code for a simulation model
 
 ```{python}
 #| eval: false
 #| echo: true
 
-import simpy
-import random
-import math
-import matplotlib.pyplot as plt
-import argparse
-
-# --------------------------
-# Parse command-line arguments
-# --------------------------
-parser = argparse.ArgumentParser(description="Healthcare Waiting List Simulation")
-parser.add_argument("--patients", type=int, default=25, help="Average new patients per week (default: 25)")
-parser.add_argument("--clinicians", type=int, default=4, help="Number of clinicians (default: 4)")
-parser.add_argument("--patients_per_clinician_per_week", type=int, default=5, help="Patients each clinician can see per week (default: 5)")
-parser.add_argument("--duration_years", type=int, default=3, help="Simulation duration in years (default: 3)")
-parser.add_argument("--initial_waitlist", type=int, default=0, help="Initial waiting list length (default: 0)")
-
-args = parser.parse_args()
-
-# --------------------------
-# Assign from arguments
-# --------------------------
-patients = args.patients
-clinicians = args.clinicians
-patients_per_clinician_per_week = args.patients_per_clinician_per_week
-sim_duration_years = args.duration_years
-waiting_list_start_length = args.initial_waitlist
-
-# --------------------------
-# Tracking variables
-# --------------------------
-waiting_times = []
-queue_lengths = []
-time_points = []
-patients_seen = []
-all_patients = []
-
-random.seed(42)
-
-# --------------------------
-# Simulation functions
-# --------------------------
-def patient(env, name, nurses, arrival_time):
-    service_time = 1 / patients_per_clinician_per_week
-    patient_record = {
-        'name': name,
-        'arrival_time': arrival_time,
-        'service_start': None,
-        'wait_time_weeks': None,
-        'status': 'waiting'
-    }
-    all_patients.append(patient_record)
-
-    with nurses.request() as request:
-        yield request
-        wait_time = env.now - arrival_time
-        waiting_times.append(wait_time)
-
-        patient_record['service_start'] = env.now
-        patient_record['wait_time_weeks'] = wait_time
-        patient_record['status'] = 'seen'
-
-        patients_seen.append(patient_record.copy())
-        yield env.timeout(service_time)
-
-def patient_generator(env, nurses):
-    for i in range(waiting_list_start_length):
-        env.process(patient(env, f"Initial Patient {i+1}", nurses, 0))
-
-    while True:
-        num_arrivals = math.ceil(random.normalvariate(patients, patients * 0.2))
-        num_arrivals = max(0, num_arrivals)
-        for i in range(num_arrivals):
-            env.process(patient(env, f"Week {math.ceil(env.now)} Patient {i+1}", nurses, env.now))
-        yield env.timeout(1)
-
-def monitor_queue(env, nurses):
-    while True:
-        queue_lengths.append(len(nurses.queue))
-        time_points.append(env.now)
-        yield env.timeout(1)
-
-# --------------------------
-# Run simulation
-# --------------------------
-env = simpy.Environment()
-nurses_resource = simpy.Resource(env, capacity=clinicians)
-env.process(patient_generator(env, nurses_resource))
-env.process(monitor_queue(env, nurses_resource))
-env.run(until=sim_duration_years * 52)
-
-# --------------------------
-# Plot results
-# --------------------------
-plt.figure(figsize=(10, 4))
-plt.plot(time_points, queue_lengths, linewidth=2, color='#1f77b4')
-plt.xlabel('Time (weeks)')
-plt.ylabel('Waiting List Length')
-plt.title('Waiting List Length Over Time')
-plt.grid(True, alpha=0.3)
-plt.tight_layout()
-plt.show()
-
-# --------------------------
-# Print summary
-# --------------------------
-final_waiting_list = len(nurses_resource.queue)
-patients_seen_count = len(patients_seen)
-avg_wait = sum(waiting_times) / len(waiting_times) if waiting_times else 0
-
-print("\n--- Simulation Summary ---")
-print(f"Final Waiting List: {final_waiting_list}")
-print(f"Patients Seen: {patients_seen_count}")
-print(f"Average Wait (weeks): {avg_wait:.1f}")
+{{< include other_examples/sample_model.py >}}
 
 ```
 
@@ -751,7 +411,6 @@ with col2:
 :::
 
 ::::
-
 
 ## Making our app more useful
 
@@ -2455,6 +2114,37 @@ else:
 ```
 
 
+## Animations
+
+*DEMO  incorporating animations into a streamlit web app interface*
+
+
+
+# Exercise: The DES Playground
+
+You're now going to have a go with an interactive app.
+
+In the app, you are running a hospital.
+
+You usually have 24 rooms available, which are divided between
+
+With 24 rooms, your system is coping.
+
+Due to building work, you are temporarily going to have 20 rooms available.
+
+You need to reallocate the number of rooms available to different steps of the pathway - but is it possible to keep the hospital running smoothly still?
+
+1. Run the simulation with the default parameters
+
+2. Change some parameters and run it again. How do the results change?
+
+3. Try to meet all of the goals!
+
+Afterwards, we'll regroup and discuss the following:
+- What combination allowed you to achieve the target?
+- What do you like about this app?
+- What would you want to change?
+
 # How to Make a Useless Model
 
 ## ... and How to Avoid that.
@@ -2660,36 +2350,6 @@ In reality, a good model may take weeks to months - and may be iterated on for y
 ## Alternatives to FOSS
 
 ![](assets/2025-06-16-16-39-53.png)
-
-
-# Exercise: The DES Playground
-
-You're now going to have a go with an interactive app.
-
-In the app, you are running a hospital.
-
-You usually have 24 rooms available, which are divided between
-
-With 24 rooms, your system is coping.
-
-Due to building work, you are temporarily going to have 20 rooms available.
-
-You need to reallocate the number of rooms available to different steps of the pathway - but is it possible to keep the hospital running smoothly still?
-
-1. Run the simulation with the default parameters
-
-2. Change some parameters
-
-3.
-
-What do you like about this app?
-
-What would you want to change?
-
-
-# Reflection
-
-##
 
 
 # Exercise: Design your own Discrete Event Simulation + Interface
