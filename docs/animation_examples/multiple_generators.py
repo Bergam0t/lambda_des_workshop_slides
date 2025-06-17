@@ -107,7 +107,7 @@ generate_animation(
     event_position_df,
     override_x_max=300,
     override_y_max=100,
-    plotly_height=600,
+    plotly_height=500,
     plotly_width=1100
 ).update_layout(
         plot_bgcolor='white',

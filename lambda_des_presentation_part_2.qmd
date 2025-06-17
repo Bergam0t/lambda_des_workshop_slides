@@ -22,7 +22,9 @@ format:
     preload-iframes: true
     logo: "assets/Chalky HSMA-07-wide white logo.png"
     footer-logo-link: "https://hsma.co.uk"
-    background-image: "assets/hsma_bg_1.png"
+    # background-image: "assets/hsma_bg_1.png"
+    background-image: "banner_hq.png"
+    # background-size: cover
     theme: [default, custom.scss]
     title-slide-attributes:
         data-background-image: banner.png
@@ -44,7 +46,7 @@ format:
       - verticator
       - fullscreen
 filters:
-  - whitphx/stlite
+  - stlite
   - reveal-header
 ---
 
@@ -65,7 +67,6 @@ pio.renderers.default = "notebook"
 # Recap
 
 ## Entities arrive in your system...
-
 Entities are often the service users in your model.
 
 ```{python}

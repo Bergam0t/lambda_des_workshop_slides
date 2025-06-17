@@ -9,7 +9,7 @@ function CodeBlock(el)
       quarto.doc.add_html_dependency(
         {
           name = "stlite",
-          stylesheets = {"style.css"},
+          stylesheets = {"stlite_iframe_style.css"},
           scripts = {"iframeResizer.min.js", "stlite.js"},
         }
       )

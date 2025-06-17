@@ -54,25 +54,44 @@ body {
 //   overflow-wrap: break-word;
 // }
 
+// Create a grey box
 /* Remove extra padding from the slides container */
 .reveal .slides {
   padding: 0 !important;
   /* Style top-level slide sections */
   background-color: rgba(56, 56, 56, 0.7);
-  margin: 20px auto;
-  padding: 3em 0.5em 1em 0.5em; /* top, right, bottom, left */
+  margin: 0px 20px 20px 20px auto;
+  padding: 0; /* top, right, bottom, left */
   border-radius: 12px;
   box-sizing: border-box;
   display: block;
   word-wrap: break-word;
   overflow-wrap: break-word;
-}
 
+  /* Overspill effect */
+  transform: scaleX(1.1); /* 10% wider */
+  transform-origin: center;
+}
 
 /* Nested slide sections (if any) — remove padding but keep content */
 .reveal .slides section > section {
   background: none;
-  padding: 20px;
+  padding: 10px 20px 20px 20px;
   margin: 0;
   border: none;
 }
+
+.sourceCode {
+  width: 95% !important;
+  max-width: 95% !important;
+}
+
+iframe.stlite {
+    width: 1px;
+    min-width: 95% !important;
+}
+
+// .slide-background-content{
+//   background-image: "https://raw.githubusercontent.com/Bergam0t/lambda_des_workshop_slides/refs/heads/main/banner.png";
+//   background-size: 100% 100%;
+// }

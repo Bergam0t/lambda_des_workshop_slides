@@ -1,3 +1,9 @@
 window.addEventListener("load", function(event) {
-  iFrameResize({ minHeight: 140 }, ".stlite")
+  iFrameResize({
+    // log: true, // Use for debugging
+    minHeight: 140,
+    sizeWidth: true,
+    maxWidth: 800,
+    widthCalculationMethod: 'rightMostElement' // Or 'bodyOffset'
+  }, ".stlite");
 });
