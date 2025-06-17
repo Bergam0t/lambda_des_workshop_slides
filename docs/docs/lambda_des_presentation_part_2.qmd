@@ -1,0 +1,558 @@
+---
+title: "DESperately Seeking Simulation - Part 2"
+author:
+    name: Sammi Rosser, Dr Dan Chalk
+    affiliation: Health Service Modelling Associates Programme Lambda
+execute:
+  eval: true
+  echo: false
+format:
+  revealjs:
+    embed-resources: false # necessary for stlite-quarto embedding to work
+    output-file: index.html
+    view-distance: 100
+    height: 800
+    width: 1250
+    preview-links: true
+    controls: false
+    controls-layout: edges
+    transition: fade
+    plotly-connected: true
+    background-transition: fade
+    preload-iframes: true
+    logo: "assets/Chalky HSMA-07-wide white logo.png"
+    footer-logo-link: "https://hsma.co.uk"
+    background-image: "assets/hsma_bg_1.png"
+    theme: [default, custom.scss]
+    title-slide-attributes:
+        data-background-image: banner.png
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+    verticator:
+      themetag: 'h1'
+      color: ''
+      inversecolor: ''
+      skipuncounted: false
+      clickable: true
+      position: 'auto'
+      offset: '3vmin'
+      autogenerate: true
+      tooltip: false
+      scale: 1
+    revealjs-plugins:
+      - verticator
+      - fullscreen
+filters:
+  - whitphx/stlite
+  - reveal-header
+---
+
+```{python}
+#| echo: false
+
+from vidigi.logging import EventLogger
+from vidigi.utils import EventPosition, create_event_position_df
+from vidigi.animation import animate_activity_log, generate_animation
+from vidigi.prep import reshape_for_animations, generate_animation_df
+import simpy
+import numpy as np
+
+import plotly.io as pio
+pio.renderers.default = "notebook"
+```
+
+# Recap
+
+## Entities arrive in your system...
+
+Entities are often the service users in your model.
+
+```{python}
+#| echo: false
+{{< include animation_examples/entity_arrival.py >}}
+```
+
+## ... at varying rates...
+
+Like buses, you might have none arrive for ages, then several at once.
+
+```{python}
+#| echo: false
+{{< include animation_examples/entity_arrival_varying_rates.py >}}
+```
+
+## ... and spend varying amounts of time in the system
+
+```{python}
+#| echo: false
+{{< include animation_examples/entity_arrival_varying_rates_varying_time_in_system.py >}}
+```
+
+
+## Entities might go off and do different things in our model...
+
+```{python}
+#| echo: false
+{{< include animation_examples/entity_different_paths.py >}}
+```
+
+## Or they might do things in a sequence...
+
+
+
+## Or they might take a range of different routes through the system...
+
+
+## Generators bring entities into being...
+
+We might have multiple generators for different kinds of patients, if they arrive at different rates.
+
+```{python}
+#| echo: false
+{{< include animation_examples/multiple_generators.py >}}
+```
+
+
+## ...and sinks take entities out of being!
+
+*Example of multi-step mostly linear pathway, with patients having the possibility of leaving at multiple steps*
+
+
+## Activities
+
+## Resources
+
+*Example of simple one-step resource use with a constrained resource*
+
+
+
+## Queues
+
+## FIFO Queues
+
+## Priority-based Queue
+
+
+## Reneging
+
+
+## Balking
+
+
+## Jockeying
+
+# The Power of Animations
+
+We've demonstrated a few simple animations here to help recap the concepts.
+
+But these animations can be applied to any simulation!
+
+## From an emergency department...
+
+## To a community-based appointment booking system...
+
+## To a simple ward...
+
+## To a complex ward with ringfenced beds and slot cancellation...
+
+
+# What-if Scenarios
+
+
+
+## The Power of Questions
+
+
+## And how animations can help you understand the answer to your questions
+
+Demonstrate two animations side-by-side
+
+
+
+# Interacting with Models
+
+## The Code
+
+Here's a sample of some code for a simulation model
+
+```{python}
+#| eval: false
+#| echo: true
+
+{{< include other_examples/sample_model.py >}}
+
+```
+
+## Running the Code
+
+:::: {.columns}
+
+::: {.column width='25%'}
+
+:::{.incremental .smaller}
+- Ask IT for approval to install **Python**
+- Install the additional packages into an **environment**
+:::
+
+:::
+
+::: {.column width='75%'}
+
+:::{.fragment}
+Run it from the **terminal**...
+
+![](assets/Code_Dlz655dql1.gif)
+:::
+
+:::
+
+::::
+
+
+# Web App Interfaces
+
+##  {#webappdemo-basic data-menu-title="An Example Web App"}
+
+```{stlite-python}
+{{< include streamlit_app_examples/simple_interface_app.py >}}
+```
+
+## Streamlit
+
+:::: {.columns}
+
+::: {.column width='40%'}
+
+:::{.incremental}
+
+- Free Python-based web app framework
+
+- App users don't have to install Python
+
+- Hosting
+  - free online hosting
+  - on-premisis hosting
+  - browser-based running
+
+- Alternatives exit (Shiny, Dash)
+
+:::
+
+:::
+
+::: {.column width='60%'}
+
+:::{.fragment}
+
+<iframe data-src="https://webapps.hsma.co.uk/warnings_errors_success_messages.html" style="width:100%; height:700px;"></iframe>
+
+:::
+
+:::
+
+::::
+
+## Making our app more useful
+
+Let's return to our sample web app.
+
+We'll add
+
+- some extra inputs
+- some analysis of the patient wait times
+
+##  {#webappdemo-intermediate-1 data-menu-title="An Example Web App - Additional Parameters and Outputs"}
+
+```{stlite-python}
+{{< include streamlit_app_examples/intermediate_interface_app.py >}}
+```
+
+Are we seeing the full picture here?
+
+##  {#webappdemo-intermediate-2 data-menu-title="An Example Web App - Better Outputs"}
+
+Let's make it clearer what the wait times mean.
+
+```{stlite-python}
+{{< include streamlit_app_examples/better_outputs_app.py >}}
+```
+
+## Introducing Variability
+
+
+
+##  {#webappdemo-multiple-runs data-menu-title="An Example Web App - Multiple Runs"}
+
+```{stlite-python}
+{{< include streamlit_app_examples/multiple_runs_app.py >}}
+```
+
+
+## Comparing scenarios
+
+##  {#webappdemo-multiple-runs-scenario-comparison data-menu-title="An Example Web App - Comparing Scenarios"}
+
+```{stlite-python}
+{{< include streamlit_app_examples/scenario_comparison_app.py >}}
+```
+
+
+## Animations
+
+*DEMO  incorporating animations into a streamlit web app interface*
+
+# Exercise: The DES Playground
+
+You're now going to have a go with an interactive app.
+
+In the app, you are running a hospital.
+
+You usually have 24 rooms available, which are divided between
+
+With 24 rooms, your system is coping.
+
+Due to building work, you are temporarily going to have 20 rooms available.
+
+You need to reallocate the number of rooms available to different steps of the pathway - but is it possible to keep the hospital running smoothly still?
+
+1. Run the simulation with the default parameters
+
+2. Change some parameters and run it again. How do the results change?
+
+3. Try to meet all of the goals!
+
+Afterwards, we'll regroup and discuss the following:
+- What combination allowed you to achieve the target?
+- What do you like about this app?
+- What would you want to change?
+
+# How to Make a Useless Model
+
+## ... and How to Avoid that.
+
+:::{.fragment}
+
+A model is only as good as it's spec.
+
+:::
+
+## Understanding the Process
+
+What is the process - *really*?
+
+:::: {.columns}
+
+::: {.column width='67%'}
+
+:::{.incremental}
+
+- You're setting the model up for failure if you don't have the experts in the process in the room from the start
+
+- Even then, it can be complex to work out what to model and what to simplify (and the scenarios you want to test can really influence this)
+
+- And do you actually hold the data you need to parameterise the model?
+  - Expert opinions can be used where data is missing, but this needs to be documented!
+:::
+
+:::
+
+::: {.column width='30%'}
+
+![](assets/2025-06-13-17-09-28.png){height="500px"}
+
+:::
+
+::::
+
+
+## Measuring Up
+
+:::: {.columns}
+
+:::{.fragment}
+
+::: {.column width='45%'}
+
+- What metrics/KPIs do you want to be able to measure?
+
+:::{.fragment}
+
+- How are you going to measure that the model reflects the current reality?
+
+:::
+
+:::
+
+::: {.column width='10%'}
+
+:::
+
+::: {.column width='45%'}
+
+![](assets/2025-06-13-17-36-01.png)
+
+:::
+
+:::
+
+::::
+
+
+## Scenarios
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+![](assets/2025-06-16-16-17-54.png)
+
+:::
+
+::: {.column width='50%'}
+- What do you need to be able to change?
+
+:::{.fragment}
+
+- Will the simplified model logic support the scenarios you want to test?
+
+:::
+
+:::
+
+::::
+
+
+:::{.notes}
+
+You can't just want to be able to change everything
+
+Testing needs to be done to make sure that the outputs are sensible
+
+:::
+
+## Using it for decisions
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+- What do you need to be able to export?
+
+:::{.fragment}
+
+- Is this a one and done output, or an ongoing tool?
+
+:::
+
+:::{.fragment}
+
+- How do you assess that it made good predictions, and refine it?
+
+:::
+
+:::
+
+::: {.column width='50%'}
+
+![](assets/2025-06-16-16-24-05.png){height="600px"}
+
+:::
+
+::::
+
+
+
+## How soon do you need it?
+
+How long does a model take?
+
+:::: {.columns}
+
+::: {.column width='40%'}
+
+:::{.fragment}
+
+![](assets/2025-06-16-16-29-51.png){height="600px"}
+
+:::
+
+:::
+
+::: {.column width='60%'}
+
+:::{.incremental}
+- A good model can take time to create
+  - it's not quite like a regular analysis
+- You can help it go faster by carefully considering the things on the preceding slides
+- Set your analysts up for success!
+- A rushed model can do more harm than good
+:::
+
+
+:::
+
+::::
+
+
+
+## No, really, how long?
+
+:::{.incremental .smaller}
+- A simple model can go together pretty quickly (hours to days)
+  - but your analysts may need time to upskill in R or Python...
+  - and upskill in DES-specific concepts...
+  - and add in a Streamlit frontend...
+  - and clear visuals...
+  - and animations...
+  - and more complex inputs and scenarios...
+  - and the ability to compare things side-by-side...
+  - and the ability to download a summary table...
+  - and robust tests...
+
+:::
+
+
+## There's more?
+
+:::{.incremental}
+  - and conform with the [20-item best-practice guidance on model reporting](https://des.hsma.co.uk/stress_des.html) and the [7 essential components and 5 optional components of the STARS reproducibility framework](https://des.hsma.co.uk/stars.html)...
+:::
+
+:::{.fragment}
+
+:::{.callout-tip}
+
+In reality, a good model may take weeks to months - and may be iterated on for years
+
+:::
+
+:::
+
+## Alternatives to FOSS
+
+![](assets/2025-06-16-16-39-53.png)
+
+
+# Exercise: Design your own Discrete Event Simulation + Interface
+
+We're going to take your model ideas from earlier and design a web app interface to go with them.
+
+## What can these web apps contain?
+
+```{stlite-python}
+{{< include streamlit_app_examples/streamlit_input_demo_app.py >}}
+```
+
+## And what can they output?
+
+Text, metric cards, static plots, interactive plots, maps, downloadable reports
+
+
+## Your Task
+
+
+
+Could get them using something like draw.io or Excalidraw?
+
+Choose a system to model from a couple of suggestions (choose some things that are quite simple), or do one of their own systems from their post-it notes earlier.

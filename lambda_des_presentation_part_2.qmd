@@ -14,13 +14,15 @@ format:
     height: 800
     width: 1250
     preview-links: true
-    controls: true
-    controls-layout: bottom-right
+    controls: false
+    controls-layout: edges
     transition: fade
     plotly-connected: true
     background-transition: fade
     preload-iframes: true
-    footer: "<https://hsma.co.uk>"
+    logo: "assets/Chalky HSMA-07-wide white logo.png"
+    footer-logo-link: "https://hsma.co.uk"
+    background-image: "assets/hsma_bg_1.png"
     theme: [default, custom.scss]
     title-slide-attributes:
         data-background-image: banner.png
@@ -43,6 +45,7 @@ format:
       - fullscreen
 filters:
   - whitphx/stlite
+  - reveal-header
 ---
 
 ```{python}
@@ -86,12 +89,6 @@ Like buses, you might have none arrive for ages, then several at once.
 {{< include animation_examples/entity_arrival_varying_rates_varying_time_in_system.py >}}
 ```
 
-## Generators bring entities into being...
-
-We might have multiple generators for different kinds of patients, if they arrive at different rates.
-
-*Example of patients arriving via ambulance and via walk-in, with clearly different arrival rates*
-
 
 ## Entities might go off and do different things in our model...
 
@@ -104,8 +101,20 @@ We might have multiple generators for different kinds of patients, if they arriv
 
 
 
+## Or they might take a range of different routes through the system...
 
-## Sinks
+
+## Generators bring entities into being...
+
+We might have multiple generators for different kinds of patients, if they arrive at different rates.
+
+```{python}
+#| echo: false
+{{< include animation_examples/multiple_generators.py >}}
+```
+
+
+## and sinks take entities out of being!
 
 *Example of multi-step mostly linear pathway, with patients having the possibility of leaving at multiple steps*
 

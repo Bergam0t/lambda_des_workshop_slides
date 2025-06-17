@@ -37,3 +37,50 @@ body {
     font-family: 'Lexend';
     font-size: 22px;
 }
+
+
+
+// /* Style top-level slide sections */
+// .reveal .slides > section {
+//   background-color: rgba(56, 56, 56, 0.7);
+//   max-width: 100%; /* Prevent accidental overflow */
+//   margin: 20px auto;
+//   padding: 1em 0.5em 1.5em 0.5em; /* top, right, bottom, left */
+//   border-radius: 12px;
+//   box-sizing: border-box;
+//   color: white;
+//   display: block;
+//   word-wrap: break-word;
+//   overflow-wrap: break-word;
+// }
+
+/* Remove extra padding from the slides container */
+.reveal .slides {
+  padding: 0 !important;
+  /* Style top-level slide sections */
+  background-color: rgba(56, 56, 56, 0.7);
+  margin: 20px auto;
+  padding: 0; /* top, right, bottom, left */
+  border-radius: 12px;
+  box-sizing: border-box;
+  display: block;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+  /* Overspill effect */
+  transform: scaleX(1.1); /* 10% wider */
+  transform-origin: center;
+}
+
+/* Nested slide sections (if any) — remove padding but keep content */
+.reveal .slides section > section {
+  background: none;
+  padding: 20px;
+  margin: 0;
+  border: none;
+}
+
+.reveal div.sourceCode.cell-code > pre.sourceCode {
+  width: 60% !important;
+  max-width: 60% !important;
+}
