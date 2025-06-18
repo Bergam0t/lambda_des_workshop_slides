@@ -45,7 +45,7 @@ event_log = model.logger.to_dataframe()
 # event_log.to_csv("test_log.csv")
 
 event_position_df =    event_position_df = create_event_position_df([
-    EventPosition(event="wait_here", x=250 , y=15 , label="Wait Here!"),
+    EventPosition(event="wait_here", x=250 , y=20 , label="Wait Here!"),
     EventPosition(event="depart", x=300, y=5, label="Exit")
     ])
 
@@ -57,8 +57,8 @@ animation_df = generate_animation_df(
     step_snapshot_max=100
 ),
     event_position_df=event_position_df,
-    gap_between_entities=20,
-    wrap_queues_at=3,
+    gap_between_entities=40,
+    wrap_queues_at=7,
     gap_between_queue_rows=10
 )
 
@@ -79,6 +79,14 @@ animation_df = generate_animation_df(
 #             icon=animation_df.apply(show_priority_icon, axis=1)
 #             )
 
+def add_los_to_icon(row):
+    if row["event"] == "wait_here":
+        return f'{row["icon"]}<br>{row["snapshot_time"]-row["time"]:.0f}'
+    else:
+        return row["icon"]
+
+animation_df = animation_df.assign(icon=animation_df.apply(add_los_to_icon, axis=1))
+
 generate_animation(
     animation_df,
     event_position_df,
@@ -86,7 +94,10 @@ generate_animation(
     override_x_max=300,
     override_y_max=100,
     plotly_height=600,
-    plotly_width=1100
+    plotly_width=1100,
+    entity_icon_size=60,
+    frame_duration=800,
+    frame_transition_duration=600
 ).update_layout(
         plot_bgcolor='white',
     )
