@@ -66,6 +66,12 @@ pio.renderers.default = "notebook"
 
 # Recap
 
+So far we've talked about the different parts of a discrete event simulation.
+
+But what if we could actually see the simulation panning out?
+
+Let's revisit the key concepts.
+
 ## Entities arrive in your system...
 Entities are often the service users in your model.
 
@@ -100,14 +106,22 @@ Like buses, you might have none arrive for ages, then several at once.
 
 ## Or they might do things in a sequence...
 
+```{python}
+#| echo: false
+{{< include animation_examples/entity_sequential_paths.py >}}
+```
 
 
 ## Or they might take a range of different routes through the system...
 
+```{python}
+#| echo: false
+{{< include animation_examples/entity_sequential_paths_variable.py >}}
+```
 
 ## Generators bring entities into being...
 
-We might have multiple generators for different kinds of patients, if they arrive at different rates.
+And we might have multiple generators for different kinds of patients, if they arrive at different rates.
 
 ```{python}
 #| echo: false
@@ -115,9 +129,13 @@ We might have multiple generators for different kinds of patients, if they arriv
 ```
 
 
-## and sinks take entities out of being!
+## And sinks take entities out of being!
 
-*Example of multi-step mostly linear pathway, with patients having the possibility of leaving at multiple steps*
+```{python}
+#| echo: false
+{{< include animation_examples/entity_sequential_paths_sinks.py >}}
+```
+
 
 
 ## Activities
@@ -147,7 +165,9 @@ We might have multiple generators for different kinds of patients, if they arriv
 
 We've demonstrated a few simple animations here to help recap the concepts.
 
-But these animations can be applied to any simulation!
+Each animation is actually a real discrete event simulation running under the hood, using real simulation code.
+
+But these animations aren't just limited to toy examples - they can be applied to real simulations too!
 
 ## From an emergency department...
 
@@ -161,7 +181,6 @@ But these animations can be applied to any simulation!
 # What-if Scenarios
 
 
-
 ## The Power of Questions
 
 
@@ -169,6 +188,21 @@ But these animations can be applied to any simulation!
 
 Demonstrate two animations side-by-side
 
+:::: {.columns}
+
+::: {.column width='50%'}
+
+## With 3 cubicles
+
+:::
+
+::: {.column width='50%'}
+
+## With 4 cubicles
+
+:::
+
+::::
 
 
 # Interacting with Models
@@ -269,7 +303,11 @@ We'll add
 {{< include streamlit_app_examples/intermediate_interface_app.py >}}
 ```
 
+:::{.notes}
 Are we seeing the full picture here?
+
+'wait times' too vague.
+:::
 
 ##  {#webappdemo-intermediate-2 data-menu-title="An Example Web App - Better Outputs"}
 

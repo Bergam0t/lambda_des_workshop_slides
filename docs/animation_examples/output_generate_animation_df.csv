@@ -1,0 +1,455 @@
+,index,entity_id,event_type,event,time,pathway,run_number,timestamp,resource_id,rank,snapshot_time,x,y_final,label,resource,x_final,row,y,icon
+0,18,6,queue,depart,20.84256866270682,,,,,1.0,27,400,125.0,Exit,,400.0,0.0,,🤰
+1,29,9,queue,depart,28.969448301098115,,,,,1.0,38,400,125.0,Exit,,400.0,0.0,,👨🏿‍🦳
+2,41,7,queue,depart,37.62436805151159,,,,,1.0,47,400,125.0,Exit,,400.0,0.0,,👳🏽
+3,49,13,queue,depart,41.73454977939981,,,,,1.0,52,400,125.0,Exit,,400.0,0.0,,👩🏻‍🦰
+4,4,2,queue,wait_here_app,7.0085689674733604,,,,,1.0,8,75,225.0,Checked in<br>via app,,75.0,0.0,,👨🏿‍🦯
+5,4,2,queue,wait_here_app,7.0085689674733604,,,,,1.0,9,75,225.0,Checked in<br>via app,,75.0,0.0,,👨🏿‍🦯
+6,12,5,queue,wait_here_app,17.99772356015599,,,,,1.0,18,75,225.0,Checked in<br>via app,,75.0,0.0,,👩🏿‍🦱
+7,12,5,queue,wait_here_app,17.99772356015599,,,,,1.0,19,75,225.0,Checked in<br>via app,,75.0,0.0,,👩🏿‍🦱
+8,12,5,queue,wait_here_app,17.99772356015599,,,,,1.0,20,75,225.0,Checked in<br>via app,,75.0,0.0,,👩🏿‍🦱
+9,12,5,queue,wait_here_app,17.99772356015599,,,,,1.0,21,75,225.0,Checked in<br>via app,,75.0,0.0,,👩🏿‍🦱
+10,31,10,queue,wait_here_app,31.90229347732875,,,,,1.0,32,75,225.0,Checked in<br>via app,,75.0,0.0,,👩🏼‍🦱
+11,31,10,queue,wait_here_app,31.90229347732875,,,,,1.0,33,75,225.0,Checked in<br>via app,,75.0,0.0,,👩🏼‍🦱
+12,31,10,queue,wait_here_app,31.90229347732875,,,,,1.0,34,75,225.0,Checked in<br>via app,,75.0,0.0,,👩🏼‍🦱
+13,34,11,queue,wait_here_app,35.03276792325856,,,,,1.0,36,75,225.0,Checked in<br>via app,,75.0,0.0,,🧍🏽‍♀️
+14,34,11,queue,wait_here_app,35.03276792325856,,,,,1.0,37,75,225.0,Checked in<br>via app,,75.0,0.0,,🧍🏽‍♀️
+15,37,12,queue,wait_here_app,36.02897436735037,,,,,2.0,37,75,225.0,Checked in<br>via app,,65.0,0.0,,👨🏼‍🔬
+16,34,11,queue,wait_here_app,35.03276792325856,,,,,1.0,38,75,225.0,Checked in<br>via app,,75.0,0.0,,🧍🏽‍♀️
+17,37,12,queue,wait_here_app,36.02897436735037,,,,,2.0,38,75,225.0,Checked in<br>via app,,65.0,0.0,,👨🏼‍🔬
+18,48,14,queue,wait_here_app,41.092896607143885,,,,,1.0,42,75,225.0,Checked in<br>via app,,75.0,0.0,,🧕🏿
+19,48,14,queue,wait_here_app,41.092896607143885,,,,,1.0,43,75,225.0,Checked in<br>via app,,75.0,0.0,,🧕🏿
+20,48,14,queue,wait_here_app,41.092896607143885,,,,,1.0,44,75,225.0,Checked in<br>via app,,75.0,0.0,,🧕🏿
+21,48,14,queue,wait_here_app,41.092896607143885,,,,,1.0,45,75,225.0,Checked in<br>via app,,75.0,0.0,,🧕🏿
+22,56,15,queue,wait_here_app,50.34013028398037,,,,,1.0,51,75,225.0,Checked in<br>via app,,75.0,0.0,,👨🏼‍🦽
+23,56,15,queue,wait_here_app,50.34013028398037,,,,,1.0,52,75,225.0,Checked in<br>via app,,75.0,0.0,,👨🏼‍🦽
+24,56,15,queue,wait_here_app,50.34013028398037,,,,,1.0,53,75,225.0,Checked in<br>via app,,75.0,0.0,,👨🏼‍🦽
+25,2,1,queue,wait_here_blood_test,3.940564716391214,,,,,1.0,4,175,125.0,Having a<br>blood test,,175.0,0.0,,🧔🏼
+26,2,1,queue,wait_here_blood_test,3.940564716391214,,,,,1.0,5,175,125.0,Having a<br>blood test,,175.0,0.0,,🧔🏼
+27,2,1,queue,wait_here_blood_test,3.940564716391214,,,,,1.0,6,175,125.0,Having a<br>blood test,,175.0,0.0,,🧔🏼
+28,2,1,queue,wait_here_blood_test,3.940564716391214,,,,,1.0,7,175,125.0,Having a<br>blood test,,175.0,0.0,,🧔🏼
+29,2,1,queue,wait_here_blood_test,3.940564716391214,,,,,1.0,8,175,125.0,Having a<br>blood test,,175.0,0.0,,🧔🏼
+30,2,1,queue,wait_here_blood_test,3.940564716391214,,,,,1.0,9,175,125.0,Having a<br>blood test,,175.0,0.0,,🧔🏼
+31,2,1,queue,wait_here_blood_test,3.940564716391214,,,,,1.0,10,175,125.0,Having a<br>blood test,,175.0,0.0,,🧔🏼
+32,2,1,queue,wait_here_blood_test,3.940564716391214,,,,,1.0,11,175,125.0,Having a<br>blood test,,175.0,0.0,,🧔🏼
+33,2,1,queue,wait_here_blood_test,3.940564716391214,,,,,1.0,12,175,125.0,Having a<br>blood test,,175.0,0.0,,🧔🏼
+34,2,1,queue,wait_here_blood_test,3.940564716391214,,,,,1.0,13,175,125.0,Having a<br>blood test,,175.0,0.0,,🧔🏼
+35,2,1,queue,wait_here_blood_test,3.940564716391214,,,,,1.0,14,175,125.0,Having a<br>blood test,,175.0,0.0,,🧔🏼
+36,22,7,queue,wait_here_blood_test,23.421630843044916,,,,,1.0,24,175,125.0,Having a<br>blood test,,175.0,0.0,,👳🏽
+37,22,7,queue,wait_here_blood_test,23.421630843044916,,,,,1.0,25,175,125.0,Having a<br>blood test,,175.0,0.0,,👳🏽
+38,22,7,queue,wait_here_blood_test,23.421630843044916,,,,,1.0,26,175,125.0,Having a<br>blood test,,175.0,0.0,,👳🏽
+39,22,7,queue,wait_here_blood_test,23.421630843044916,,,,,1.0,27,175,125.0,Having a<br>blood test,,175.0,0.0,,👳🏽
+40,22,7,queue,wait_here_blood_test,23.421630843044916,,,,,1.0,28,175,125.0,Having a<br>blood test,,175.0,0.0,,👳🏽
+41,22,7,queue,wait_here_blood_test,23.421630843044916,,,,,1.0,29,175,125.0,Having a<br>blood test,,175.0,0.0,,👳🏽
+42,22,7,queue,wait_here_blood_test,23.421630843044916,,,,,1.0,30,175,125.0,Having a<br>blood test,,175.0,0.0,,👳🏽
+43,22,7,queue,wait_here_blood_test,23.421630843044916,,,,,1.0,31,175,125.0,Having a<br>blood test,,175.0,0.0,,👳🏽
+44,22,7,queue,wait_here_blood_test,23.421630843044916,,,,,1.0,32,175,125.0,Having a<br>blood test,,175.0,0.0,,👳🏽
+45,22,7,queue,wait_here_blood_test,23.421630843044916,,,,,1.0,33,175,125.0,Having a<br>blood test,,175.0,0.0,,👳🏽
+46,22,7,queue,wait_here_blood_test,23.421630843044916,,,,,1.0,34,175,125.0,Having a<br>blood test,,175.0,0.0,,👳🏽
+47,22,7,queue,wait_here_blood_test,23.421630843044916,,,,,1.0,35,175,125.0,Having a<br>blood test,,175.0,0.0,,👳🏽
+48,22,7,queue,wait_here_blood_test,23.421630843044916,,,,,1.0,36,175,125.0,Having a<br>blood test,,175.0,0.0,,👳🏽
+49,35,3,queue,wait_here_blood_test,35.17946919386209,,,,,2.0,36,175,125.0,Having a<br>blood test,,165.0,0.0,,👨🏻‍🦰
+50,22,7,queue,wait_here_blood_test,23.421630843044916,,,,,1.0,37,175,125.0,Having a<br>blood test,,175.0,0.0,,👳🏽
+51,35,3,queue,wait_here_blood_test,35.17946919386209,,,,,2.0,37,175,125.0,Having a<br>blood test,,165.0,0.0,,👨🏻‍🦰
+52,39,4,queue,wait_here_blood_test,36.12424332492433,,,,,3.0,37,175,125.0,Having a<br>blood test,,155.0,0.0,,🧑🏻
+53,35,3,queue,wait_here_blood_test,35.17946919386209,,,,,1.0,38,175,125.0,Having a<br>blood test,,175.0,0.0,,👨🏻‍🦰
+54,39,4,queue,wait_here_blood_test,36.12424332492433,,,,,2.0,38,175,125.0,Having a<br>blood test,,165.0,0.0,,🧑🏻
+55,35,3,queue,wait_here_blood_test,35.17946919386209,,,,,1.0,39,175,125.0,Having a<br>blood test,,175.0,0.0,,👨🏻‍🦰
+56,39,4,queue,wait_here_blood_test,36.12424332492433,,,,,2.0,39,175,125.0,Having a<br>blood test,,165.0,0.0,,🧑🏻
+57,35,3,queue,wait_here_blood_test,35.17946919386209,,,,,1.0,40,175,125.0,Having a<br>blood test,,175.0,0.0,,👨🏻‍🦰
+58,39,4,queue,wait_here_blood_test,36.12424332492433,,,,,2.0,40,175,125.0,Having a<br>blood test,,165.0,0.0,,🧑🏻
+59,35,3,queue,wait_here_blood_test,35.17946919386209,,,,,1.0,41,175,125.0,Having a<br>blood test,,175.0,0.0,,👨🏻‍🦰
+60,39,4,queue,wait_here_blood_test,36.12424332492433,,,,,2.0,41,175,125.0,Having a<br>blood test,,165.0,0.0,,🧑🏻
+61,46,8,queue,wait_here_blood_test,40.562049569035096,,,,,3.0,41,175,125.0,Having a<br>blood test,,155.0,0.0,,👩🏼‍🦳
+62,35,3,queue,wait_here_blood_test,35.17946919386209,,,,,1.0,42,175,125.0,Having a<br>blood test,,175.0,0.0,,👨🏻‍🦰
+63,39,4,queue,wait_here_blood_test,36.12424332492433,,,,,2.0,42,175,125.0,Having a<br>blood test,,165.0,0.0,,🧑🏻
+64,46,8,queue,wait_here_blood_test,40.562049569035096,,,,,3.0,42,175,125.0,Having a<br>blood test,,155.0,0.0,,👩🏼‍🦳
+65,35,3,queue,wait_here_blood_test,35.17946919386209,,,,,1.0,43,175,125.0,Having a<br>blood test,,175.0,0.0,,👨🏻‍🦰
+66,39,4,queue,wait_here_blood_test,36.12424332492433,,,,,2.0,43,175,125.0,Having a<br>blood test,,165.0,0.0,,🧑🏻
+67,46,8,queue,wait_here_blood_test,40.562049569035096,,,,,3.0,43,175,125.0,Having a<br>blood test,,155.0,0.0,,👩🏼‍🦳
+68,35,3,queue,wait_here_blood_test,35.17946919386209,,,,,1.0,44,175,125.0,Having a<br>blood test,,175.0,0.0,,👨🏻‍🦰
+69,39,4,queue,wait_here_blood_test,36.12424332492433,,,,,2.0,44,175,125.0,Having a<br>blood test,,165.0,0.0,,🧑🏻
+70,46,8,queue,wait_here_blood_test,40.562049569035096,,,,,3.0,44,175,125.0,Having a<br>blood test,,155.0,0.0,,👩🏼‍🦳
+71,35,3,queue,wait_here_blood_test,35.17946919386209,,,,,1.0,45,175,125.0,Having a<br>blood test,,175.0,0.0,,👨🏻‍🦰
+72,39,4,queue,wait_here_blood_test,36.12424332492433,,,,,2.0,45,175,125.0,Having a<br>blood test,,165.0,0.0,,🧑🏻
+73,46,8,queue,wait_here_blood_test,40.562049569035096,,,,,3.0,45,175,125.0,Having a<br>blood test,,155.0,0.0,,👩🏼‍🦳
+74,35,3,queue,wait_here_blood_test,35.17946919386209,,,,,1.0,46,175,125.0,Having a<br>blood test,,175.0,0.0,,👨🏻‍🦰
+75,39,4,queue,wait_here_blood_test,36.12424332492433,,,,,2.0,46,175,125.0,Having a<br>blood test,,165.0,0.0,,🧑🏻
+76,46,8,queue,wait_here_blood_test,40.562049569035096,,,,,3.0,46,175,125.0,Having a<br>blood test,,155.0,0.0,,👩🏼‍🦳
+77,35,3,queue,wait_here_blood_test,35.17946919386209,,,,,1.0,47,175,125.0,Having a<br>blood test,,175.0,0.0,,👨🏻‍🦰
+78,46,8,queue,wait_here_blood_test,40.562049569035096,,,,,2.0,47,175,125.0,Having a<br>blood test,,165.0,0.0,,👩🏼‍🦳
+79,35,3,queue,wait_here_blood_test,35.17946919386209,,,,,1.0,48,175,125.0,Having a<br>blood test,,175.0,0.0,,👨🏻‍🦰
+80,46,8,queue,wait_here_blood_test,40.562049569035096,,,,,2.0,48,175,125.0,Having a<br>blood test,,165.0,0.0,,👩🏼‍🦳
+81,53,10,queue,wait_here_blood_test,47.97965543043547,,,,,3.0,48,175,125.0,Having a<br>blood test,,155.0,0.0,,👩🏼‍🦱
+82,35,3,queue,wait_here_blood_test,35.17946919386209,,,,,1.0,49,175,125.0,Having a<br>blood test,,175.0,0.0,,👨🏻‍🦰
+83,46,8,queue,wait_here_blood_test,40.562049569035096,,,,,2.0,49,175,125.0,Having a<br>blood test,,165.0,0.0,,👩🏼‍🦳
+84,53,10,queue,wait_here_blood_test,47.97965543043547,,,,,3.0,49,175,125.0,Having a<br>blood test,,155.0,0.0,,👩🏼‍🦱
+85,54,12,queue,wait_here_blood_test,48.378290410360876,,,,,4.0,49,175,125.0,Having a<br>blood test,,145.0,0.0,,👨🏼‍🔬
+86,35,3,queue,wait_here_blood_test,35.17946919386209,,,,,1.0,50,175,125.0,Having a<br>blood test,,175.0,0.0,,👨🏻‍🦰
+87,46,8,queue,wait_here_blood_test,40.562049569035096,,,,,2.0,50,175,125.0,Having a<br>blood test,,165.0,0.0,,👩🏼‍🦳
+88,53,10,queue,wait_here_blood_test,47.97965543043547,,,,,3.0,50,175,125.0,Having a<br>blood test,,155.0,0.0,,👩🏼‍🦱
+89,54,12,queue,wait_here_blood_test,48.378290410360876,,,,,4.0,50,175,125.0,Having a<br>blood test,,145.0,0.0,,👨🏼‍🔬
+90,35,3,queue,wait_here_blood_test,35.17946919386209,,,,,1.0,51,175,125.0,Having a<br>blood test,,175.0,0.0,,👨🏻‍🦰
+91,46,8,queue,wait_here_blood_test,40.562049569035096,,,,,2.0,51,175,125.0,Having a<br>blood test,,165.0,0.0,,👩🏼‍🦳
+92,53,10,queue,wait_here_blood_test,47.97965543043547,,,,,3.0,51,175,125.0,Having a<br>blood test,,155.0,0.0,,👩🏼‍🦱
+93,54,12,queue,wait_here_blood_test,48.378290410360876,,,,,4.0,51,175,125.0,Having a<br>blood test,,145.0,0.0,,👨🏼‍🔬
+94,53,10,queue,wait_here_blood_test,47.97965543043547,,,,,1.0,52,175,125.0,Having a<br>blood test,,175.0,0.0,,👩🏼‍🦱
+95,54,12,queue,wait_here_blood_test,48.378290410360876,,,,,2.0,52,175,125.0,Having a<br>blood test,,165.0,0.0,,👨🏼‍🔬
+96,59,11,queue,wait_here_blood_test,51.26003373117987,,,,,3.0,52,175,125.0,Having a<br>blood test,,155.0,0.0,,🧍🏽‍♀️
+97,53,10,queue,wait_here_blood_test,47.97965543043547,,,,,1.0,53,175,125.0,Having a<br>blood test,,175.0,0.0,,👩🏼‍🦱
+98,54,12,queue,wait_here_blood_test,48.378290410360876,,,,,2.0,53,175,125.0,Having a<br>blood test,,165.0,0.0,,👨🏼‍🔬
+99,59,11,queue,wait_here_blood_test,51.26003373117987,,,,,3.0,53,175,125.0,Having a<br>blood test,,155.0,0.0,,🧍🏽‍♀️
+100,53,10,queue,wait_here_blood_test,47.97965543043547,,,,,1.0,54,175,125.0,Having a<br>blood test,,175.0,0.0,,👩🏼‍🦱
+101,54,12,queue,wait_here_blood_test,48.378290410360876,,,,,2.0,54,175,125.0,Having a<br>blood test,,165.0,0.0,,👨🏼‍🔬
+102,59,11,queue,wait_here_blood_test,51.26003373117987,,,,,3.0,54,175,125.0,Having a<br>blood test,,155.0,0.0,,🧍🏽‍♀️
+103,61,15,queue,wait_here_blood_test,53.36198242950381,,,,,4.0,54,175,125.0,Having a<br>blood test,,145.0,0.0,,👨🏼‍🦽
+104,53,10,queue,wait_here_blood_test,47.97965543043547,,,,,1.0,55,175,125.0,Having a<br>blood test,,175.0,0.0,,👩🏼‍🦱
+105,54,12,queue,wait_here_blood_test,48.378290410360876,,,,,2.0,55,175,125.0,Having a<br>blood test,,165.0,0.0,,👨🏼‍🔬
+106,59,11,queue,wait_here_blood_test,51.26003373117987,,,,,3.0,55,175,125.0,Having a<br>blood test,,155.0,0.0,,🧍🏽‍♀️
+107,61,15,queue,wait_here_blood_test,53.36198242950381,,,,,4.0,55,175,125.0,Having a<br>blood test,,145.0,0.0,,👨🏼‍🦽
+108,53,10,queue,wait_here_blood_test,47.97965543043547,,,,,1.0,56,175,125.0,Having a<br>blood test,,175.0,0.0,,👩🏼‍🦱
+109,54,12,queue,wait_here_blood_test,48.378290410360876,,,,,2.0,56,175,125.0,Having a<br>blood test,,165.0,0.0,,👨🏼‍🔬
+110,59,11,queue,wait_here_blood_test,51.26003373117987,,,,,3.0,56,175,125.0,Having a<br>blood test,,155.0,0.0,,🧍🏽‍♀️
+111,61,15,queue,wait_here_blood_test,53.36198242950381,,,,,4.0,56,175,125.0,Having a<br>blood test,,145.0,0.0,,👨🏼‍🦽
+112,53,10,queue,wait_here_blood_test,47.97965543043547,,,,,1.0,57,175,125.0,Having a<br>blood test,,175.0,0.0,,👩🏼‍🦱
+113,54,12,queue,wait_here_blood_test,48.378290410360876,,,,,2.0,57,175,125.0,Having a<br>blood test,,165.0,0.0,,👨🏼‍🔬
+114,59,11,queue,wait_here_blood_test,51.26003373117987,,,,,3.0,57,175,125.0,Having a<br>blood test,,155.0,0.0,,🧍🏽‍♀️
+115,61,15,queue,wait_here_blood_test,53.36198242950381,,,,,4.0,57,175,125.0,Having a<br>blood test,,145.0,0.0,,👨🏼‍🦽
+116,53,10,queue,wait_here_blood_test,47.97965543043547,,,,,1.0,58,175,125.0,Having a<br>blood test,,175.0,0.0,,👩🏼‍🦱
+117,54,12,queue,wait_here_blood_test,48.378290410360876,,,,,2.0,58,175,125.0,Having a<br>blood test,,165.0,0.0,,👨🏼‍🔬
+118,59,11,queue,wait_here_blood_test,51.26003373117987,,,,,3.0,58,175,125.0,Having a<br>blood test,,155.0,0.0,,🧍🏽‍♀️
+119,61,15,queue,wait_here_blood_test,53.36198242950381,,,,,4.0,58,175,125.0,Having a<br>blood test,,145.0,0.0,,👨🏼‍🦽
+120,67,16,queue,wait_here_blood_test,57.5754811889274,,,,,5.0,58,175,125.0,Having a<br>blood test,,135.0,0.0,,👴🏾
+121,53,10,queue,wait_here_blood_test,47.97965543043547,,,,,1.0,59,175,125.0,Having a<br>blood test,,175.0,0.0,,👩🏼‍🦱
+122,59,11,queue,wait_here_blood_test,51.26003373117987,,,,,2.0,59,175,125.0,Having a<br>blood test,,165.0,0.0,,🧍🏽‍♀️
+123,61,15,queue,wait_here_blood_test,53.36198242950381,,,,,3.0,59,175,125.0,Having a<br>blood test,,155.0,0.0,,👨🏼‍🦽
+124,67,16,queue,wait_here_blood_test,57.5754811889274,,,,,4.0,59,175,125.0,Having a<br>blood test,,145.0,0.0,,👴🏾
+125,69,14,queue,wait_here_blood_test,58.375025677228265,,,,,5.0,59,175,125.0,Having a<br>blood test,,135.0,0.0,,🧕🏿
+126,53,10,queue,wait_here_blood_test,47.97965543043547,,,,,1.0,60,175,125.0,Having a<br>blood test,,175.0,0.0,,👩🏼‍🦱
+127,59,11,queue,wait_here_blood_test,51.26003373117987,,,,,2.0,60,175,125.0,Having a<br>blood test,,165.0,0.0,,🧍🏽‍♀️
+128,61,15,queue,wait_here_blood_test,53.36198242950381,,,,,3.0,60,175,125.0,Having a<br>blood test,,155.0,0.0,,👨🏼‍🦽
+129,67,16,queue,wait_here_blood_test,57.5754811889274,,,,,4.0,60,175,125.0,Having a<br>blood test,,145.0,0.0,,👴🏾
+130,69,14,queue,wait_here_blood_test,58.375025677228265,,,,,5.0,60,175,125.0,Having a<br>blood test,,135.0,0.0,,🧕🏿
+131,70,17,queue,wait_here_blood_test,59.70220231813474,,,,,6.0,60,175,155.0,Having a<br>blood test,,175.0,1.0,,👨🏼‍🦱
+132,5,2,queue,wait_here_doctor_consult,9.15552503989978,,,,,1.0,10,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,👨🏿‍🦯
+133,5,2,queue,wait_here_doctor_consult,9.15552503989978,,,,,1.0,11,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,👨🏿‍🦯
+134,5,2,queue,wait_here_doctor_consult,9.15552503989978,,,,,1.0,12,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,👨🏿‍🦯
+135,5,2,queue,wait_here_doctor_consult,9.15552503989978,,,,,1.0,13,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,👨🏿‍🦯
+136,5,2,queue,wait_here_doctor_consult,9.15552503989978,,,,,1.0,14,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,👨🏿‍🦯
+137,5,2,queue,wait_here_doctor_consult,9.15552503989978,,,,,1.0,15,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,👨🏿‍🦯
+138,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,2.0,15,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,🧔🏼
+139,5,2,queue,wait_here_doctor_consult,9.15552503989978,,,,,1.0,16,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,👨🏿‍🦯
+140,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,2.0,16,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,🧔🏼
+141,5,2,queue,wait_here_doctor_consult,9.15552503989978,,,,,1.0,17,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,👨🏿‍🦯
+142,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,2.0,17,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,🧔🏼
+143,5,2,queue,wait_here_doctor_consult,9.15552503989978,,,,,1.0,18,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,👨🏿‍🦯
+144,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,2.0,18,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,🧔🏼
+145,5,2,queue,wait_here_doctor_consult,9.15552503989978,,,,,1.0,19,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,👨🏿‍🦯
+146,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,2.0,19,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,🧔🏼
+147,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,20,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+148,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,21,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+149,18,6,queue,wait_here_doctor_consult,20.84256866270682,,,,,2.0,21,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,🤰
+150,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,22,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+151,18,6,queue,wait_here_doctor_consult,20.84256866270682,,,,,2.0,22,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,🤰
+152,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,23,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+153,18,6,queue,wait_here_doctor_consult,20.84256866270682,,,,,2.0,23,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,🤰
+154,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,24,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+155,18,6,queue,wait_here_doctor_consult,20.84256866270682,,,,,2.0,24,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,🤰
+156,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,25,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+157,18,6,queue,wait_here_doctor_consult,20.84256866270682,,,,,2.0,25,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,🤰
+158,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,26,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+159,18,6,queue,wait_here_doctor_consult,20.84256866270682,,,,,2.0,26,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,🤰
+160,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,27,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+161,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,28,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+162,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,29,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+163,29,9,queue,wait_here_doctor_consult,28.969448301098115,,,,,2.0,29,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👨🏿‍🦳
+164,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,30,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+165,29,9,queue,wait_here_doctor_consult,28.969448301098115,,,,,2.0,30,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👨🏿‍🦳
+166,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,31,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+167,29,9,queue,wait_here_doctor_consult,28.969448301098115,,,,,2.0,31,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👨🏿‍🦳
+168,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,32,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+169,29,9,queue,wait_here_doctor_consult,28.969448301098115,,,,,2.0,32,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👨🏿‍🦳
+170,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,33,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+171,29,9,queue,wait_here_doctor_consult,28.969448301098115,,,,,2.0,33,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👨🏿‍🦳
+172,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,34,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+173,29,9,queue,wait_here_doctor_consult,28.969448301098115,,,,,2.0,34,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👨🏿‍🦳
+174,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,35,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+175,29,9,queue,wait_here_doctor_consult,28.969448301098115,,,,,2.0,35,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👨🏿‍🦳
+176,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,36,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+177,29,9,queue,wait_here_doctor_consult,28.969448301098115,,,,,2.0,36,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👨🏿‍🦳
+178,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,37,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+179,29,9,queue,wait_here_doctor_consult,28.969448301098115,,,,,2.0,37,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👨🏿‍🦳
+180,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,3.0,37,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,👩🏿‍🦱
+181,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,38,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+182,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,38,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+183,41,7,queue,wait_here_doctor_consult,37.62436805151159,,,,,3.0,38,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,👳🏽
+184,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,39,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+185,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,39,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+186,41,7,queue,wait_here_doctor_consult,37.62436805151159,,,,,3.0,39,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,👳🏽
+187,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,40,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+188,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,40,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+189,41,7,queue,wait_here_doctor_consult,37.62436805151159,,,,,3.0,40,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,👳🏽
+190,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,41,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+191,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,41,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+192,41,7,queue,wait_here_doctor_consult,37.62436805151159,,,,,3.0,41,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,👳🏽
+193,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,42,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+194,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,42,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+195,41,7,queue,wait_here_doctor_consult,37.62436805151159,,,,,3.0,42,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,👳🏽
+196,49,13,queue,wait_here_doctor_consult,41.73454977939981,,,,,4.0,42,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,👩🏻‍🦰
+197,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,43,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+198,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,43,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+199,41,7,queue,wait_here_doctor_consult,37.62436805151159,,,,,3.0,43,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,👳🏽
+200,49,13,queue,wait_here_doctor_consult,41.73454977939981,,,,,4.0,43,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,👩🏻‍🦰
+201,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,44,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+202,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,44,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+203,41,7,queue,wait_here_doctor_consult,37.62436805151159,,,,,3.0,44,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,👳🏽
+204,49,13,queue,wait_here_doctor_consult,41.73454977939981,,,,,4.0,44,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,👩🏻‍🦰
+205,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,45,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+206,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,45,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+207,41,7,queue,wait_here_doctor_consult,37.62436805151159,,,,,3.0,45,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,👳🏽
+208,49,13,queue,wait_here_doctor_consult,41.73454977939981,,,,,4.0,45,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,👩🏻‍🦰
+209,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,46,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+210,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,46,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+211,41,7,queue,wait_here_doctor_consult,37.62436805151159,,,,,3.0,46,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,👳🏽
+212,49,13,queue,wait_here_doctor_consult,41.73454977939981,,,,,4.0,46,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,👩🏻‍🦰
+213,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,47,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+214,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,47,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+215,49,13,queue,wait_here_doctor_consult,41.73454977939981,,,,,3.0,47,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,👩🏻‍🦰
+216,51,4,queue,wait_here_doctor_consult,46.53672438815721,,,,,4.0,47,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,🧑🏻
+217,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,48,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+218,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,48,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+219,49,13,queue,wait_here_doctor_consult,41.73454977939981,,,,,3.0,48,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,👩🏻‍🦰
+220,51,4,queue,wait_here_doctor_consult,46.53672438815721,,,,,4.0,48,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,🧑🏻
+221,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,49,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+222,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,49,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+223,49,13,queue,wait_here_doctor_consult,41.73454977939981,,,,,3.0,49,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,👩🏻‍🦰
+224,51,4,queue,wait_here_doctor_consult,46.53672438815721,,,,,4.0,49,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,🧑🏻
+225,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,50,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+226,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,50,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+227,49,13,queue,wait_here_doctor_consult,41.73454977939981,,,,,3.0,50,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,👩🏻‍🦰
+228,51,4,queue,wait_here_doctor_consult,46.53672438815721,,,,,4.0,50,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,🧑🏻
+229,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,51,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+230,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,51,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+231,49,13,queue,wait_here_doctor_consult,41.73454977939981,,,,,3.0,51,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,👩🏻‍🦰
+232,51,4,queue,wait_here_doctor_consult,46.53672438815721,,,,,4.0,51,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,🧑🏻
+233,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,52,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+234,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,52,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+235,51,4,queue,wait_here_doctor_consult,46.53672438815721,,,,,3.0,52,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,🧑🏻
+236,58,3,queue,wait_here_doctor_consult,51.25092525606539,,,,,4.0,52,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,👨🏻‍🦰
+237,60,8,queue,wait_here_doctor_consult,51.57030908623065,,,,,5.0,52,275,225.0,Seeing<br>a<br>doctor,,235.0,0.0,,👩🏼‍🦳
+238,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,53,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+239,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,53,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+240,51,4,queue,wait_here_doctor_consult,46.53672438815721,,,,,3.0,53,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,🧑🏻
+241,58,3,queue,wait_here_doctor_consult,51.25092525606539,,,,,4.0,53,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,👨🏻‍🦰
+242,60,8,queue,wait_here_doctor_consult,51.57030908623065,,,,,5.0,53,275,225.0,Seeing<br>a<br>doctor,,235.0,0.0,,👩🏼‍🦳
+243,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,54,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+244,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,54,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+245,51,4,queue,wait_here_doctor_consult,46.53672438815721,,,,,3.0,54,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,🧑🏻
+246,58,3,queue,wait_here_doctor_consult,51.25092525606539,,,,,4.0,54,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,👨🏻‍🦰
+247,60,8,queue,wait_here_doctor_consult,51.57030908623065,,,,,5.0,54,275,225.0,Seeing<br>a<br>doctor,,235.0,0.0,,👩🏼‍🦳
+248,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,55,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+249,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,55,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+250,51,4,queue,wait_here_doctor_consult,46.53672438815721,,,,,3.0,55,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,🧑🏻
+251,58,3,queue,wait_here_doctor_consult,51.25092525606539,,,,,4.0,55,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,👨🏻‍🦰
+252,60,8,queue,wait_here_doctor_consult,51.57030908623065,,,,,5.0,55,275,225.0,Seeing<br>a<br>doctor,,235.0,0.0,,👩🏼‍🦳
+253,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,56,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+254,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,56,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+255,51,4,queue,wait_here_doctor_consult,46.53672438815721,,,,,3.0,56,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,🧑🏻
+256,58,3,queue,wait_here_doctor_consult,51.25092525606539,,,,,4.0,56,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,👨🏻‍🦰
+257,60,8,queue,wait_here_doctor_consult,51.57030908623065,,,,,5.0,56,275,225.0,Seeing<br>a<br>doctor,,235.0,0.0,,👩🏼‍🦳
+258,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,57,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+259,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,57,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+260,51,4,queue,wait_here_doctor_consult,46.53672438815721,,,,,3.0,57,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,🧑🏻
+261,58,3,queue,wait_here_doctor_consult,51.25092525606539,,,,,4.0,57,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,👨🏻‍🦰
+262,60,8,queue,wait_here_doctor_consult,51.57030908623065,,,,,5.0,57,275,225.0,Seeing<br>a<br>doctor,,235.0,0.0,,👩🏼‍🦳
+263,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,58,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+264,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,58,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+265,51,4,queue,wait_here_doctor_consult,46.53672438815721,,,,,3.0,58,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,🧑🏻
+266,60,8,queue,wait_here_doctor_consult,51.57030908623065,,,,,4.0,58,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,👩🏼‍🦳
+267,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,59,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+268,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,59,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+269,51,4,queue,wait_here_doctor_consult,46.53672438815721,,,,,3.0,59,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,🧑🏻
+270,60,8,queue,wait_here_doctor_consult,51.57030908623065,,,,,4.0,59,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,👩🏼‍🦳
+271,68,12,queue,wait_here_doctor_consult,58.04011684719551,,,,,5.0,59,275,225.0,Seeing<br>a<br>doctor,,235.0,0.0,,👨🏼‍🔬
+272,6,1,queue,wait_here_doctor_consult,14.034026195804259,,,,,1.0,60,275,225.0,Seeing<br>a<br>doctor,,275.0,0.0,,🧔🏼
+273,38,5,queue,wait_here_doctor_consult,36.03395427084411,,,,,2.0,60,275,225.0,Seeing<br>a<br>doctor,,265.0,0.0,,👩🏿‍🦱
+274,51,4,queue,wait_here_doctor_consult,46.53672438815721,,,,,3.0,60,275,225.0,Seeing<br>a<br>doctor,,255.0,0.0,,🧑🏻
+275,60,8,queue,wait_here_doctor_consult,51.57030908623065,,,,,4.0,60,275,225.0,Seeing<br>a<br>doctor,,245.0,0.0,,👩🏼‍🦳
+276,68,12,queue,wait_here_doctor_consult,58.04011684719551,,,,,5.0,60,275,225.0,Seeing<br>a<br>doctor,,235.0,0.0,,👨🏼‍🔬
+277,15,3,queue,wait_here_health_check,19.3315309261356,,,,,1.0,20,175,225.0,Having a<br>health check,,175.0,0.0,,👨🏻‍🦰
+278,15,3,queue,wait_here_health_check,19.3315309261356,,,,,1.0,21,175,225.0,Having a<br>health check,,175.0,0.0,,👨🏻‍🦰
+279,17,4,queue,wait_here_health_check,20.172464961450228,,,,,2.0,21,175,225.0,Having a<br>health check,,165.0,0.0,,🧑🏻
+280,15,3,queue,wait_here_health_check,19.3315309261356,,,,,1.0,22,175,225.0,Having a<br>health check,,175.0,0.0,,👨🏻‍🦰
+281,17,4,queue,wait_here_health_check,20.172464961450228,,,,,2.0,22,175,225.0,Having a<br>health check,,165.0,0.0,,🧑🏻
+282,21,5,queue,wait_here_health_check,21.363167624520067,,,,,3.0,22,175,225.0,Having a<br>health check,,155.0,0.0,,👩🏿‍🦱
+283,15,3,queue,wait_here_health_check,19.3315309261356,,,,,1.0,23,175,225.0,Having a<br>health check,,175.0,0.0,,👨🏻‍🦰
+284,17,4,queue,wait_here_health_check,20.172464961450228,,,,,2.0,23,175,225.0,Having a<br>health check,,165.0,0.0,,🧑🏻
+285,21,5,queue,wait_here_health_check,21.363167624520067,,,,,3.0,23,175,225.0,Having a<br>health check,,155.0,0.0,,👩🏿‍🦱
+286,15,3,queue,wait_here_health_check,19.3315309261356,,,,,1.0,24,175,225.0,Having a<br>health check,,175.0,0.0,,👨🏻‍🦰
+287,17,4,queue,wait_here_health_check,20.172464961450228,,,,,2.0,24,175,225.0,Having a<br>health check,,165.0,0.0,,🧑🏻
+288,21,5,queue,wait_here_health_check,21.363167624520067,,,,,3.0,24,175,225.0,Having a<br>health check,,155.0,0.0,,👩🏿‍🦱
+289,15,3,queue,wait_here_health_check,19.3315309261356,,,,,1.0,25,175,225.0,Having a<br>health check,,175.0,0.0,,👨🏻‍🦰
+290,17,4,queue,wait_here_health_check,20.172464961450228,,,,,2.0,25,175,225.0,Having a<br>health check,,165.0,0.0,,🧑🏻
+291,21,5,queue,wait_here_health_check,21.363167624520067,,,,,3.0,25,175,225.0,Having a<br>health check,,155.0,0.0,,👩🏿‍🦱
+292,15,3,queue,wait_here_health_check,19.3315309261356,,,,,1.0,26,175,225.0,Having a<br>health check,,175.0,0.0,,👨🏻‍🦰
+293,17,4,queue,wait_here_health_check,20.172464961450228,,,,,2.0,26,175,225.0,Having a<br>health check,,165.0,0.0,,🧑🏻
+294,21,5,queue,wait_here_health_check,21.363167624520067,,,,,3.0,26,175,225.0,Having a<br>health check,,155.0,0.0,,👩🏿‍🦱
+295,15,3,queue,wait_here_health_check,19.3315309261356,,,,,1.0,27,175,225.0,Having a<br>health check,,175.0,0.0,,👨🏻‍🦰
+296,17,4,queue,wait_here_health_check,20.172464961450228,,,,,2.0,27,175,225.0,Having a<br>health check,,165.0,0.0,,🧑🏻
+297,21,5,queue,wait_here_health_check,21.363167624520067,,,,,3.0,27,175,225.0,Having a<br>health check,,155.0,0.0,,👩🏿‍🦱
+298,15,3,queue,wait_here_health_check,19.3315309261356,,,,,1.0,28,175,225.0,Having a<br>health check,,175.0,0.0,,👨🏻‍🦰
+299,17,4,queue,wait_here_health_check,20.172464961450228,,,,,2.0,28,175,225.0,Having a<br>health check,,165.0,0.0,,🧑🏻
+300,21,5,queue,wait_here_health_check,21.363167624520067,,,,,3.0,28,175,225.0,Having a<br>health check,,155.0,0.0,,👩🏿‍🦱
+301,26,8,queue,wait_here_health_check,27.387476322715152,,,,,4.0,28,175,225.0,Having a<br>health check,,145.0,0.0,,👩🏼‍🦳
+302,15,3,queue,wait_here_health_check,19.3315309261356,,,,,1.0,29,175,225.0,Having a<br>health check,,175.0,0.0,,👨🏻‍🦰
+303,17,4,queue,wait_here_health_check,20.172464961450228,,,,,2.0,29,175,225.0,Having a<br>health check,,165.0,0.0,,🧑🏻
+304,21,5,queue,wait_here_health_check,21.363167624520067,,,,,3.0,29,175,225.0,Having a<br>health check,,155.0,0.0,,👩🏿‍🦱
+305,26,8,queue,wait_here_health_check,27.387476322715152,,,,,4.0,29,175,225.0,Having a<br>health check,,145.0,0.0,,👩🏼‍🦳
+306,15,3,queue,wait_here_health_check,19.3315309261356,,,,,1.0,30,175,225.0,Having a<br>health check,,175.0,0.0,,👨🏻‍🦰
+307,17,4,queue,wait_here_health_check,20.172464961450228,,,,,2.0,30,175,225.0,Having a<br>health check,,165.0,0.0,,🧑🏻
+308,21,5,queue,wait_here_health_check,21.363167624520067,,,,,3.0,30,175,225.0,Having a<br>health check,,155.0,0.0,,👩🏿‍🦱
+309,26,8,queue,wait_here_health_check,27.387476322715152,,,,,4.0,30,175,225.0,Having a<br>health check,,145.0,0.0,,👩🏼‍🦳
+310,15,3,queue,wait_here_health_check,19.3315309261356,,,,,1.0,31,175,225.0,Having a<br>health check,,175.0,0.0,,👨🏻‍🦰
+311,17,4,queue,wait_here_health_check,20.172464961450228,,,,,2.0,31,175,225.0,Having a<br>health check,,165.0,0.0,,🧑🏻
+312,21,5,queue,wait_here_health_check,21.363167624520067,,,,,3.0,31,175,225.0,Having a<br>health check,,155.0,0.0,,👩🏿‍🦱
+313,26,8,queue,wait_here_health_check,27.387476322715152,,,,,4.0,31,175,225.0,Having a<br>health check,,145.0,0.0,,👩🏼‍🦳
+314,15,3,queue,wait_here_health_check,19.3315309261356,,,,,1.0,32,175,225.0,Having a<br>health check,,175.0,0.0,,👨🏻‍🦰
+315,17,4,queue,wait_here_health_check,20.172464961450228,,,,,2.0,32,175,225.0,Having a<br>health check,,165.0,0.0,,🧑🏻
+316,21,5,queue,wait_here_health_check,21.363167624520067,,,,,3.0,32,175,225.0,Having a<br>health check,,155.0,0.0,,👩🏿‍🦱
+317,26,8,queue,wait_here_health_check,27.387476322715152,,,,,4.0,32,175,225.0,Having a<br>health check,,145.0,0.0,,👩🏼‍🦳
+318,15,3,queue,wait_here_health_check,19.3315309261356,,,,,1.0,33,175,225.0,Having a<br>health check,,175.0,0.0,,👨🏻‍🦰
+319,17,4,queue,wait_here_health_check,20.172464961450228,,,,,2.0,33,175,225.0,Having a<br>health check,,165.0,0.0,,🧑🏻
+320,21,5,queue,wait_here_health_check,21.363167624520067,,,,,3.0,33,175,225.0,Having a<br>health check,,155.0,0.0,,👩🏿‍🦱
+321,26,8,queue,wait_here_health_check,27.387476322715152,,,,,4.0,33,175,225.0,Having a<br>health check,,145.0,0.0,,👩🏼‍🦳
+322,15,3,queue,wait_here_health_check,19.3315309261356,,,,,1.0,34,175,225.0,Having a<br>health check,,175.0,0.0,,👨🏻‍🦰
+323,17,4,queue,wait_here_health_check,20.172464961450228,,,,,2.0,34,175,225.0,Having a<br>health check,,165.0,0.0,,🧑🏻
+324,21,5,queue,wait_here_health_check,21.363167624520067,,,,,3.0,34,175,225.0,Having a<br>health check,,155.0,0.0,,👩🏿‍🦱
+325,26,8,queue,wait_here_health_check,27.387476322715152,,,,,4.0,34,175,225.0,Having a<br>health check,,145.0,0.0,,👩🏼‍🦳
+326,15,3,queue,wait_here_health_check,19.3315309261356,,,,,1.0,35,175,225.0,Having a<br>health check,,175.0,0.0,,👨🏻‍🦰
+327,17,4,queue,wait_here_health_check,20.172464961450228,,,,,2.0,35,175,225.0,Having a<br>health check,,165.0,0.0,,🧑🏻
+328,21,5,queue,wait_here_health_check,21.363167624520067,,,,,3.0,35,175,225.0,Having a<br>health check,,155.0,0.0,,👩🏿‍🦱
+329,26,8,queue,wait_here_health_check,27.387476322715152,,,,,4.0,35,175,225.0,Having a<br>health check,,145.0,0.0,,👩🏼‍🦳
+330,32,10,queue,wait_here_health_check,34.55356840508031,,,,,5.0,35,175,225.0,Having a<br>health check,,135.0,0.0,,👩🏼‍🦱
+331,17,4,queue,wait_here_health_check,20.172464961450228,,,,,1.0,36,175,225.0,Having a<br>health check,,175.0,0.0,,🧑🏻
+332,21,5,queue,wait_here_health_check,21.363167624520067,,,,,2.0,36,175,225.0,Having a<br>health check,,165.0,0.0,,👩🏿‍🦱
+333,26,8,queue,wait_here_health_check,27.387476322715152,,,,,3.0,36,175,225.0,Having a<br>health check,,155.0,0.0,,👩🏼‍🦳
+334,32,10,queue,wait_here_health_check,34.55356840508031,,,,,4.0,36,175,225.0,Having a<br>health check,,145.0,0.0,,👩🏼‍🦱
+335,26,8,queue,wait_here_health_check,27.387476322715152,,,,,1.0,37,175,225.0,Having a<br>health check,,175.0,0.0,,👩🏼‍🦳
+336,32,10,queue,wait_here_health_check,34.55356840508031,,,,,2.0,37,175,225.0,Having a<br>health check,,165.0,0.0,,👩🏼‍🦱
+337,26,8,queue,wait_here_health_check,27.387476322715152,,,,,1.0,38,175,225.0,Having a<br>health check,,175.0,0.0,,👩🏼‍🦳
+338,32,10,queue,wait_here_health_check,34.55356840508031,,,,,2.0,38,175,225.0,Having a<br>health check,,165.0,0.0,,👩🏼‍🦱
+339,26,8,queue,wait_here_health_check,27.387476322715152,,,,,1.0,39,175,225.0,Having a<br>health check,,175.0,0.0,,👩🏼‍🦳
+340,32,10,queue,wait_here_health_check,34.55356840508031,,,,,2.0,39,175,225.0,Having a<br>health check,,165.0,0.0,,👩🏼‍🦱
+341,44,11,queue,wait_here_health_check,38.529928667312326,,,,,3.0,39,175,225.0,Having a<br>health check,,155.0,0.0,,🧍🏽‍♀️
+342,45,12,queue,wait_here_health_check,38.719627827630134,,,,,4.0,39,175,225.0,Having a<br>health check,,145.0,0.0,,👨🏼‍🔬
+343,26,8,queue,wait_here_health_check,27.387476322715152,,,,,1.0,40,175,225.0,Having a<br>health check,,175.0,0.0,,👩🏼‍🦳
+344,32,10,queue,wait_here_health_check,34.55356840508031,,,,,2.0,40,175,225.0,Having a<br>health check,,165.0,0.0,,👩🏼‍🦱
+345,44,11,queue,wait_here_health_check,38.529928667312326,,,,,3.0,40,175,225.0,Having a<br>health check,,155.0,0.0,,🧍🏽‍♀️
+346,45,12,queue,wait_here_health_check,38.719627827630134,,,,,4.0,40,175,225.0,Having a<br>health check,,145.0,0.0,,👨🏼‍🔬
+347,32,10,queue,wait_here_health_check,34.55356840508031,,,,,1.0,41,175,225.0,Having a<br>health check,,175.0,0.0,,👩🏼‍🦱
+348,44,11,queue,wait_here_health_check,38.529928667312326,,,,,2.0,41,175,225.0,Having a<br>health check,,165.0,0.0,,🧍🏽‍♀️
+349,45,12,queue,wait_here_health_check,38.719627827630134,,,,,3.0,41,175,225.0,Having a<br>health check,,155.0,0.0,,👨🏼‍🔬
+350,32,10,queue,wait_here_health_check,34.55356840508031,,,,,1.0,42,175,225.0,Having a<br>health check,,175.0,0.0,,👩🏼‍🦱
+351,44,11,queue,wait_here_health_check,38.529928667312326,,,,,2.0,42,175,225.0,Having a<br>health check,,165.0,0.0,,🧍🏽‍♀️
+352,45,12,queue,wait_here_health_check,38.719627827630134,,,,,3.0,42,175,225.0,Having a<br>health check,,155.0,0.0,,👨🏼‍🔬
+353,32,10,queue,wait_here_health_check,34.55356840508031,,,,,1.0,43,175,225.0,Having a<br>health check,,175.0,0.0,,👩🏼‍🦱
+354,44,11,queue,wait_here_health_check,38.529928667312326,,,,,2.0,43,175,225.0,Having a<br>health check,,165.0,0.0,,🧍🏽‍♀️
+355,45,12,queue,wait_here_health_check,38.719627827630134,,,,,3.0,43,175,225.0,Having a<br>health check,,155.0,0.0,,👨🏼‍🔬
+356,32,10,queue,wait_here_health_check,34.55356840508031,,,,,1.0,44,175,225.0,Having a<br>health check,,175.0,0.0,,👩🏼‍🦱
+357,44,11,queue,wait_here_health_check,38.529928667312326,,,,,2.0,44,175,225.0,Having a<br>health check,,165.0,0.0,,🧍🏽‍♀️
+358,45,12,queue,wait_here_health_check,38.719627827630134,,,,,3.0,44,175,225.0,Having a<br>health check,,155.0,0.0,,👨🏼‍🔬
+359,32,10,queue,wait_here_health_check,34.55356840508031,,,,,1.0,45,175,225.0,Having a<br>health check,,175.0,0.0,,👩🏼‍🦱
+360,44,11,queue,wait_here_health_check,38.529928667312326,,,,,2.0,45,175,225.0,Having a<br>health check,,165.0,0.0,,🧍🏽‍♀️
+361,45,12,queue,wait_here_health_check,38.719627827630134,,,,,3.0,45,175,225.0,Having a<br>health check,,155.0,0.0,,👨🏼‍🔬
+362,32,10,queue,wait_here_health_check,34.55356840508031,,,,,1.0,46,175,225.0,Having a<br>health check,,175.0,0.0,,👩🏼‍🦱
+363,44,11,queue,wait_here_health_check,38.529928667312326,,,,,2.0,46,175,225.0,Having a<br>health check,,165.0,0.0,,🧍🏽‍♀️
+364,45,12,queue,wait_here_health_check,38.719627827630134,,,,,3.0,46,175,225.0,Having a<br>health check,,155.0,0.0,,👨🏼‍🔬
+365,50,14,queue,wait_here_health_check,45.39212490492995,,,,,4.0,46,175,225.0,Having a<br>health check,,145.0,0.0,,🧕🏿
+366,32,10,queue,wait_here_health_check,34.55356840508031,,,,,1.0,47,175,225.0,Having a<br>health check,,175.0,0.0,,👩🏼‍🦱
+367,44,11,queue,wait_here_health_check,38.529928667312326,,,,,2.0,47,175,225.0,Having a<br>health check,,165.0,0.0,,🧍🏽‍♀️
+368,45,12,queue,wait_here_health_check,38.719627827630134,,,,,3.0,47,175,225.0,Having a<br>health check,,155.0,0.0,,👨🏼‍🔬
+369,50,14,queue,wait_here_health_check,45.39212490492995,,,,,4.0,47,175,225.0,Having a<br>health check,,145.0,0.0,,🧕🏿
+370,44,11,queue,wait_here_health_check,38.529928667312326,,,,,1.0,48,175,225.0,Having a<br>health check,,175.0,0.0,,🧍🏽‍♀️
+371,45,12,queue,wait_here_health_check,38.719627827630134,,,,,2.0,48,175,225.0,Having a<br>health check,,165.0,0.0,,👨🏼‍🔬
+372,50,14,queue,wait_here_health_check,45.39212490492995,,,,,3.0,48,175,225.0,Having a<br>health check,,155.0,0.0,,🧕🏿
+373,44,11,queue,wait_here_health_check,38.529928667312326,,,,,1.0,49,175,225.0,Having a<br>health check,,175.0,0.0,,🧍🏽‍♀️
+374,50,14,queue,wait_here_health_check,45.39212490492995,,,,,2.0,49,175,225.0,Having a<br>health check,,165.0,0.0,,🧕🏿
+375,44,11,queue,wait_here_health_check,38.529928667312326,,,,,1.0,50,175,225.0,Having a<br>health check,,175.0,0.0,,🧍🏽‍♀️
+376,50,14,queue,wait_here_health_check,45.39212490492995,,,,,2.0,50,175,225.0,Having a<br>health check,,165.0,0.0,,🧕🏿
+377,44,11,queue,wait_here_health_check,38.529928667312326,,,,,1.0,51,175,225.0,Having a<br>health check,,175.0,0.0,,🧍🏽‍♀️
+378,50,14,queue,wait_here_health_check,45.39212490492995,,,,,2.0,51,175,225.0,Having a<br>health check,,165.0,0.0,,🧕🏿
+379,50,14,queue,wait_here_health_check,45.39212490492995,,,,,1.0,52,175,225.0,Having a<br>health check,,175.0,0.0,,🧕🏿
+380,50,14,queue,wait_here_health_check,45.39212490492995,,,,,1.0,53,175,225.0,Having a<br>health check,,175.0,0.0,,🧕🏿
+381,50,14,queue,wait_here_health_check,45.39212490492995,,,,,1.0,54,175,225.0,Having a<br>health check,,175.0,0.0,,🧕🏿
+382,50,14,queue,wait_here_health_check,45.39212490492995,,,,,1.0,55,175,225.0,Having a<br>health check,,175.0,0.0,,🧕🏿
+383,50,14,queue,wait_here_health_check,45.39212490492995,,,,,1.0,56,175,225.0,Having a<br>health check,,175.0,0.0,,🧕🏿
+384,50,14,queue,wait_here_health_check,45.39212490492995,,,,,1.0,57,175,225.0,Having a<br>health check,,175.0,0.0,,🧕🏿
+385,50,14,queue,wait_here_health_check,45.39212490492995,,,,,1.0,58,175,225.0,Having a<br>health check,,175.0,0.0,,🧕🏿
+386,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,20,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+387,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,21,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+388,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,22,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+389,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,23,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+390,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,24,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+391,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,25,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+392,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,26,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+393,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,27,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+394,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,28,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+395,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,29,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+396,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,30,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+397,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,31,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+398,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,32,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+399,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,33,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+400,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,34,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+401,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,35,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+402,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,36,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+403,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,37,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+404,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,38,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+405,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,39,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+406,43,13,queue,wait_here_receptionist,38.28801860336987,,,,,2.0,39,75,25.0,Speaking<br>with receptionist,,65.0,0.0,,👩🏻‍🦰
+407,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,40,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+408,43,13,queue,wait_here_receptionist,38.28801860336987,,,,,2.0,40,75,25.0,Speaking<br>with receptionist,,65.0,0.0,,👩🏻‍🦰
+409,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,41,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+410,43,13,queue,wait_here_receptionist,38.28801860336987,,,,,2.0,41,75,25.0,Speaking<br>with receptionist,,65.0,0.0,,👩🏻‍🦰
+411,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,42,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+412,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,43,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+413,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,44,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+414,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,45,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+415,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,46,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+416,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,47,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+417,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,48,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+418,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,49,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+419,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,50,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+420,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,51,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+421,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,52,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+422,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,53,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+423,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,54,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+424,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,55,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+425,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,56,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+426,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,57,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+427,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,58,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+428,64,3,queue,wait_here_receptionist,57.203930270821665,,,,,2.0,58,75,25.0,Speaking<br>with receptionist,,65.0,0.0,,👨🏻‍🦰
+429,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,59,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+430,64,3,queue,wait_here_receptionist,57.203930270821665,,,,,2.0,59,75,25.0,Speaking<br>with receptionist,,65.0,0.0,,👨🏻‍🦰
+431,16,2,queue,wait_here_receptionist,19.410007453835846,,,,,1.0,60,75,25.0,Speaking<br>with receptionist,,75.0,0.0,,👨🏿‍🦯
+432,64,3,queue,wait_here_receptionist,57.203930270821665,,,,,2.0,60,75,25.0,Speaking<br>with receptionist,,65.0,0.0,,👨🏻‍🦰
+433,1,1,queue,wait_here_self_register,0.0,,,,,1.0,0,75,125.0,Registering<br>via machine,,75.0,0.0,,🧔🏼
+434,1,1,queue,wait_here_self_register,0.0,,,,,1.0,1,75,125.0,Registering<br>via machine,,75.0,0.0,,🧔🏼
+435,1,1,queue,wait_here_self_register,0.0,,,,,1.0,2,75,125.0,Registering<br>via machine,,75.0,0.0,,🧔🏼
+436,1,1,queue,wait_here_self_register,0.0,,,,,1.0,3,75,125.0,Registering<br>via machine,,75.0,0.0,,🧔🏼
+437,8,3,queue,wait_here_self_register,16.381456837121853,,,,,1.0,17,75,125.0,Registering<br>via machine,,75.0,0.0,,👨🏻‍🦰
+438,8,3,queue,wait_here_self_register,16.381456837121853,,,,,1.0,18,75,125.0,Registering<br>via machine,,75.0,0.0,,👨🏻‍🦰
+439,10,4,queue,wait_here_self_register,17.32699444351903,,,,,2.0,18,75,125.0,Registering<br>via machine,,65.0,0.0,,🧑🏻
+440,8,3,queue,wait_here_self_register,16.381456837121853,,,,,1.0,19,75,125.0,Registering<br>via machine,,75.0,0.0,,👨🏻‍🦰
+441,10,4,queue,wait_here_self_register,17.32699444351903,,,,,2.0,19,75,125.0,Registering<br>via machine,,65.0,0.0,,🧑🏻
+442,10,4,queue,wait_here_self_register,17.32699444351903,,,,,1.0,20,75,125.0,Registering<br>via machine,,75.0,0.0,,🧑🏻
+443,14,6,queue,wait_here_self_register,19.248983679091438,,,,,2.0,20,75,125.0,Registering<br>via machine,,65.0,0.0,,🤰
+444,20,7,queue,wait_here_self_register,21.30494503390419,,,,,1.0,22,75,125.0,Registering<br>via machine,,75.0,0.0,,👳🏽
+445,20,7,queue,wait_here_self_register,21.30494503390419,,,,,1.0,23,75,125.0,Registering<br>via machine,,75.0,0.0,,👳🏽
+446,24,8,queue,wait_here_self_register,24.70714753907245,,,,,1.0,25,75,125.0,Registering<br>via machine,,75.0,0.0,,👩🏼‍🦳
+447,24,8,queue,wait_here_self_register,24.70714753907245,,,,,1.0,26,75,125.0,Registering<br>via machine,,75.0,0.0,,👩🏼‍🦳
+448,24,8,queue,wait_here_self_register,24.70714753907245,,,,,1.0,27,75,125.0,Registering<br>via machine,,75.0,0.0,,👩🏼‍🦳
+449,63,16,queue,wait_here_self_register,54.96529099208317,,,,,1.0,55,75,125.0,Registering<br>via machine,,75.0,0.0,,👴🏾
+450,63,16,queue,wait_here_self_register,54.96529099208317,,,,,1.0,56,75,125.0,Registering<br>via machine,,75.0,0.0,,👴🏾
+451,63,16,queue,wait_here_self_register,54.96529099208317,,,,,1.0,57,75,125.0,Registering<br>via machine,,75.0,0.0,,👴🏾
+452,66,17,queue,wait_here_self_register,57.38868847068454,,,,,1.0,58,75,125.0,Registering<br>via machine,,75.0,0.0,,👨🏼‍🦱
+453,66,17,queue,wait_here_self_register,57.38868847068454,,,,,1.0,59,75,125.0,Registering<br>via machine,,75.0,0.0,,👨🏼‍🦱
