@@ -136,19 +136,22 @@ And we might have multiple generators for different kinds of patients, if they a
 {{< include animation_examples/entity_sequential_paths_sinks.py >}}
 ```
 
+## Activities and Resources
 
+```{python}
+#| echo: false
+{{< include animation_examples/single_resource.py >}}
+```
 
-## Activities
+## Multiple Resources
 
-## Resources
-
-*Example of simple one-step resource use with a constrained resource*
-
-
-
-## Queues
+```{python}
+#| echo: false
+{{< include animation_examples/several_resource.py >}}
+```
 
 ## FIFO Queues
+
 
 ## Priority-based Queue
 
@@ -160,6 +163,7 @@ And we might have multiple generators for different kinds of patients, if they a
 
 
 ## Jockeying
+
 
 # The Power of Animations
 
