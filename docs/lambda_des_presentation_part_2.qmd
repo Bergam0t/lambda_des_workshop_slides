@@ -150,37 +150,88 @@ And we might have multiple generators for different kinds of patients, if they a
 {{< include animation_examples/several_resource.py >}}
 ```
 
+
 ## FIFO Queues
 
+In the queues we've seen so far, the sooner you arrive, the sooner you are seen.
+
+```{python}
+#| echo: false
+{{< include animation_examples/single_resource.py >}}
+```
 
 ## Priority-based Queue
 
+But it's also possible to have priority-based queueing.
+
+```{python}
+#| echo: false
+{{< include animation_examples/single_resource_priority.py >}}
+```
 
 ## Reneging
 
+If people run out of patience, they may leave the queue (renege).
 
-## Balking
+```{python}
+#| echo: false
+{{< include animation_examples/single_resource_renege.py >}}
+```
 
+## Baulking
 
-## Jockeying
+People might also just look at the size of the queue and decide not to join it (baulking).
 
+```{python}
+#| echo: false
+{{< include animation_examples/single_resource_baulk.py >}}
+```
+
+:::{.notes}
+Patients in the model can have their own personal thresholds for how long a queue is too long
+
+Or there can be a limitation set at a model level, perhaps relating to things like the size of the waiting room
+:::
 
 # The Power of Animations
 
 We've demonstrated a few simple animations here to help recap the concepts.
 
-Each animation is actually a real discrete event simulation running under the hood, using real simulation code.
+Each animation is actually a **real discrete event simulation** running under the hood, using real simulation code.
 
 But these animations aren't just limited to toy examples - they can be applied to real simulations too!
 
 ## From an emergency department...
 
-## To a community-based appointment booking system...
+```{python}
+#| echo: false
+{{< include animation_examples/complex_ed/ex_2_branching_multistep.py >}}
+```
+
+:::{.notes}
+Mention that here we are also showing having multiple different resource pools
+:::
+
+## To multi-clinic booking systems...
+
+```{python}
+#| echo: false
+{{< include animation_examples/complex_community_booking/ex_11_resourceless.py >}}
+```
 
 ## To a simple ward...
 
-## To a complex ward with ringfenced beds and slot cancellation...
+```{python}
+#| echo: false
+{{< include animation_examples/complex_ward/ex_8_model.py >}}
+```
 
+## To a complex ward...
+
+```{python}
+#| echo: false
+{{< include animation_examples/complex_surgery/synchronised_traces.py >}}
+```
 
 # What-if Scenarios
 

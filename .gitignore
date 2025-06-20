@@ -1,1 +1,4 @@
 /.quarto/
+*.pyc
+*output_generate_animation_df*.csv
+*output_reshape_for_animations*.csv
