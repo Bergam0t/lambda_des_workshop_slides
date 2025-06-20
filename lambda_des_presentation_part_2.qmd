@@ -150,16 +150,35 @@ And we might have multiple generators for different kinds of patients, if they a
 {{< include animation_examples/several_resource.py >}}
 ```
 
+
 ## FIFO Queues
 
+In the queues we've seen so far, the sooner you arrive, the sooner you are seen.
+
+```{python}
+#| echo: false
+{{< include animation_examples/single_resource.py >}}
+```
 
 ## Priority-based Queue
 
+But it's also possible to have priority-based queueing.
+
+```{python}
+#| echo: false
+{{< include animation_examples/single_resource_priority.py >}}
+```
 
 ## Reneging
 
 
 ## Balking
+
+
+## Multiple Resource Pools
+
+
+## Multiple Resource Pools
 
 
 ## Jockeying
