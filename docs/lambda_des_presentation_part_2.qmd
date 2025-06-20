@@ -238,26 +238,122 @@ Mention that here we are also showing having multiple different resource pools
 
 ## The Power of Questions
 
+There are some key kinds of questions you can ask using a DES:
+
+What happens if
+
+:::{.incremental}
+- we **add** or **remove** resources?
+  - what about at certain times of day?
+  - or if we change the timing and overlap of different shifts?
+- we **reorder** the process?
+- we **add an extra step** to the process?
+- **demand increases** or **decreases**?
+- parts of the process get **faster** or **slower**?
+- we change how the queue is **prioritised**?
+- the **patient characteristics change**?
+:::
 
 ## And how animations can help you understand the answer to your questions
 
-Demonstrate two animations side-by-side
+![](assets/firefox_EyAaWvxJd1.gif)
 
-:::: {.columns}
+# Other DES Outputs
 
-::: {.column width='50%'}
+Animations can help you understand what's going on - but they're not so good at summarising the answers to your what-if questions.
 
-## With 3 cubicles
+So what other metrics can be measured with DES models?
 
+And how might you see them represented?
+
+## Wait Times
+
+A common thing to measure is the **wait time** for key points in the service.
+
+:::{.incremental}
+- The **mean average** wait time
+- The **median average** wait time
+- The **maximum** wait time
+- The **variation** in wait times (across day/week/seasons or across different cate)
 :::
 
-::: {.column width='50%'}
 
-## With 4 cubicles
+## Visualising Wait Times
 
+- Metric cards
+- Wait times over time in model
+-
+
+
+## Meeting wait targets
+
+Rather than looking purely at the raw wait times, we might be interested in meeting targets.
+
+For example: what % of people waited more than 4 hours?
+
+- Metric Cards
+- Plot showing % of people meeting this target across different points in the day
+
+
+## Queue Lengths
+
+:::{.incremental}
+- Queue lengths
+  - for different resources
+  - for different times of day
 :::
 
-::::
+## Visualising Queue Lengths
+
+- Metric card of average people waiting
+- Line chart of queue lengths over course of day
+
+*Demonstrate these two can tell quite different story*
+
+## Resource Utilisation
+
+We may also be interested in **resource utilisation**.
+
+If our waits are good, but most of the time our resources are sitting idle, this is not optimal.
+
+Conversely, we often don't want all our resources being utilised 100% of the time - they'll burn out!
+
+Or if we have a ward, we might not want it running at 100% occupancy so that there's space for emergency admissions.
+
+:::{.fragment}
+We might be interested in resource utilisation
+:::
+
+:::{.incremental}
+- by staff group
+- at different times
+-
+:::
+
+
+## Visualising Resource Utilisation
+
+- Metric card
+- Bar plot (with boundaries for good/warning/bad)
+- Box plot (with boundaries for good/warning/bad)
+
+
+## Cost Savings
+
+*show something that can show the range of potential cost savings*
+
+
+## And more!
+
+:::{.incremental}
+- Resources being blocked from use by a downstream resource limitation
+  - e.g. ambulances being blocked from unloading patients
+- Patients reneging or baulking
+- Balance between admissions and discharges
+- Throughput
+  - patients treated per day
+:::
+
 
 
 # Interacting with Models
@@ -398,6 +494,8 @@ Let's make it clearer what the wait times mean.
 
 # Exercise: The DES Playground
 
+## The Playground
+
 You're now going to have a go with an interactive app.
 
 In the app, you are running a hospital.
@@ -414,7 +512,7 @@ You need to reallocate the number of rooms available to different steps of the p
 
 2. Change some parameters and run it again. How do the results change?
 
-3. Try to meet all of the goals!
+3. Try to meet all of the goals in the app!
 
 Afterwards, we'll regroup and discuss the following:
 - What combination allowed you to achieve the target?
@@ -423,7 +521,7 @@ Afterwards, we'll regroup and discuss the following:
 
 # How to Make a Useless Model
 
-## ... and How to Avoid that.
+## ... and How to Avoid That.
 
 :::{.fragment}
 
@@ -503,13 +601,19 @@ What is the process - *really*?
 
 :::
 
-::: {.column width='50%'}
+::: {.column width='40%'}
 - What do you need to be able to change?
 
 :::{.fragment}
 
 - Will the simplified model logic support the scenarios you want to test?
 
+:::
+
+:::{.fragment}
+- How do you want to be able to compare scenarios?
+  - looking in-depth at scenarios one at a time?
+  - or displaying outputs side-by-side in a web app?
 :::
 
 :::
@@ -640,13 +744,15 @@ We're going to take your model ideas from earlier and design a web app interface
 
 ## And what can they output?
 
-Text, metric cards, static plots, interactive plots, maps, downloadable reports
+*Text, metric cards, static plots, interactive plots, maps, downloadable reports*
 
 
 ## Your Task
 
+Choose a system to model
+  - it could be the one you discussed earlier
+  - or you can choose something different
 
+Using the provided paper and markers, you are going to draw some **wireframes** of a web application front-end for your system.
 
-Could get them using something like draw.io or Excalidraw?
-
-Choose a system to model from a couple of suggestions (choose some things that are quite simple), or do one of their own systems from their post-it notes earlier.
+Think about the kinds of **inputs** and **outputs** you want in your model.
