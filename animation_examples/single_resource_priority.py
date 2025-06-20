@@ -116,6 +116,8 @@ generate_animation(
     override_y_max=250,
     plotly_height=600,
     plotly_width=1100,
+    custom_resource_icon="☐",
+    resource_icon_size=80,
 ).update_layout(
         plot_bgcolor='white',
     )
