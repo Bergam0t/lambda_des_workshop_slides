@@ -492,6 +492,9 @@ Let's make it clearer what the wait times mean.
 
 *DEMO  incorporating animations into a streamlit web app interface*
 
+
+
+
 # Exercise: The DES Playground
 
 ## The Playground
@@ -508,6 +511,8 @@ Due to building work, you are temporarily going to have 20 rooms available.
 
 You need to reallocate the number of rooms available to different steps of the pathway - but is it possible to keep the hospital running smoothly still?
 
+## The Exercise
+
 1. Run the simulation with the default parameters
 
 2. Change some parameters and run it again. How do the results change?
@@ -518,6 +523,10 @@ Afterwards, we'll regroup and discuss the following:
 - What combination allowed you to achieve the target?
 - What do you like about this app?
 - What would you want to change?
+
+## Discussion
+
+<iframe data-src="https://hsma-programme.github.io/lambda_des_playground/" style="width:100%; height:650px;"></iframe>
 
 # How to Make a Useless Model
 
