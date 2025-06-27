@@ -72,15 +72,8 @@ But what if we could actually see the simulation panning out?
 
 Let's revisit the key concepts.
 
-## Entities arrive in your system...
+## Entities arrive in your system at varying rates
 Entities are often the service users in your model.
-
-```{python}
-#| echo: false
-{{< include animation_examples/entity_arrival.py >}}
-```
-
-## ... at varying rates...
 
 Like buses, you might have none arrive for ages, then several at once.
 
@@ -89,37 +82,7 @@ Like buses, you might have none arrive for ages, then several at once.
 {{< include animation_examples/entity_arrival_varying_rates.py >}}
 ```
 
-## ... and spend varying amounts of time in the system
-
-```{python}
-#| echo: false
-{{< include animation_examples/entity_arrival_varying_rates_varying_time_in_system.py >}}
-```
-
-
-## Entities might go off and do different things in our model...
-
-```{python}
-#| echo: false
-{{< include animation_examples/entity_different_paths.py >}}
-```
-
-## Or they might do things in a sequence...
-
-```{python}
-#| echo: false
-{{< include animation_examples/entity_sequential_paths.py >}}
-```
-
-
-## Or they might take a range of different routes through the system...
-
-```{python}
-#| echo: false
-{{< include animation_examples/entity_sequential_paths_variable.py >}}
-```
-
-## Generators bring entities into being...
+## Generators bring entities into being, and sinks take entities out of being
 
 And we might have multiple generators for different kinds of patients, if they arrive at different rates.
 
@@ -129,38 +92,14 @@ And we might have multiple generators for different kinds of patients, if they a
 ```
 
 
-## And sinks take entities out of being!
+## Our entities might take a range of different routes through the system
 
 ```{python}
 #| echo: false
-{{< include animation_examples/entity_sequential_paths_sinks.py >}}
+{{< include animation_examples/entity_sequential_paths_variable.py >}}
 ```
 
-## Activities and Resources
-
-```{python}
-#| echo: false
-{{< include animation_examples/single_resource.py >}}
-```
-
-## Multiple Resources
-
-```{python}
-#| echo: false
-{{< include animation_examples/several_resource.py >}}
-```
-
-
-## FIFO Queues
-
-In the queues we've seen so far, the sooner you arrive, the sooner you are seen.
-
-```{python}
-#| echo: false
-{{< include animation_examples/single_resource.py >}}
-```
-
-## Priority-based Queue
+## Queues might be seen in the order they arrive, or by priority
 
 But it's also possible to have priority-based queueing.
 
@@ -168,30 +107,6 @@ But it's also possible to have priority-based queueing.
 #| echo: false
 {{< include animation_examples/single_resource_priority.py >}}
 ```
-
-## Reneging
-
-If people run out of patience, they may leave the queue (renege).
-
-```{python}
-#| echo: false
-{{< include animation_examples/single_resource_renege.py >}}
-```
-
-## Baulking
-
-People might also just look at the size of the queue and decide not to join it (baulking).
-
-```{python}
-#| echo: false
-{{< include animation_examples/single_resource_baulk.py >}}
-```
-
-:::{.notes}
-Patients in the model can have their own personal thresholds for how long a queue is too long
-
-Or there can be a limitation set at a model level, perhaps relating to things like the size of the waiting room
-:::
 
 # The Power of Animations
 
@@ -219,14 +134,7 @@ Mention that here we are also showing having multiple different resource pools
 {{< include animation_examples/complex_community_booking/ex_11_resourceless.py >}}
 ```
 
-## To a simple ward...
-
-```{python}
-#| echo: false
-{{< include animation_examples/complex_ward/ex_8_model.py >}}
-```
-
-## To a complex ward...
+## To a ward...
 
 ```{python}
 #| echo: false
@@ -262,10 +170,6 @@ What happens if
 
 Animations can help you understand what's going on - but they're not so good at summarising the answers to your what-if questions.
 
-So what other metrics can be measured with DES models?
-
-And how might you see them represented?
-
 ## Wait Times
 
 A common thing to measure is the **wait time** for key points in the service.
@@ -277,13 +181,15 @@ A common thing to measure is the **wait time** for key points in the service.
 - The **variation** in wait times (across day/week/seasons or across different cate)
 :::
 
+## Discussion
 
-## Visualising Wait Times
+That gives you one idea for what you might measure in a model.
 
-- Metric cards
-- Wait times over time in model
--
+But what other sorts of things might you want to be tracking and discussing?
 
+**Discuss in your groups for 5 minutes**
+
+We'll then put some answers up on the board.
 
 ## Meeting wait targets
 
@@ -291,57 +197,44 @@ Rather than looking purely at the raw wait times, we might be interested in meet
 
 For example: what % of people waited more than 4 hours?
 
-- Metric Cards
-- Plot showing % of people meeting this target across different points in the day
+![](assets/2025-06-27-17-35-21.png)
 
 
 ## Queue Lengths
 
-:::{.incremental}
-- Queue lengths
-  - for different resources
-  - for different times of day
-:::
+We might also be interested in
 
-## Visualising Queue Lengths
+- the average lengths of queues
+- how queues vary across
+  - different resources/parts of the process
+  - different times of day/days of the week/months of the year
 
-- Metric card of average people waiting
-- Line chart of queue lengths over course of day
-
-*Demonstrate these two can tell quite different story*
 
 ## Resource Utilisation
 
 We may also be interested in **resource utilisation**.
 
-If our waits are good, but most of the time our resources are sitting idle, this is not optimal.
+If our waits are good, but most of the time our resources are sitting idle, this is not optimal...
 
-Conversely, we often don't want all our resources being utilised 100% of the time - they'll burn out!
+**But what is the ideal level of resource utilisation?**
+
+:::{.fragment}
+
+We often don't want all our resources being utilised 100% of the time - they'll burn out!
 
 Or if we have a ward, we might not want it running at 100% occupancy so that there's space for emergency admissions.
 
-:::{.fragment}
-We might be interested in resource utilisation
 :::
 
-:::{.incremental}
-- by staff group
-- at different times
--
+:::{.notes}
+Talk a bit here about variability - the impact of not having spare capacity in your ward when someone then arrives needing seeing urgently
 :::
-
-
-## Visualising Resource Utilisation
-
-- Metric card
-- Bar plot (with boundaries for good/warning/bad)
-- Box plot (with boundaries for good/warning/bad)
-
 
 ## Cost Savings
 
 *show something that can show the range of potential cost savings*
 
+*Screenshot from the stroke model outputs?*
 
 ## And more!
 
@@ -353,6 +246,36 @@ We might be interested in resource utilisation
 - Throughput
   - patients treated per day
 :::
+
+
+# Visualising Metrics
+
+Let's look at a couple of key ways you might see these sorts of things displayed in models.
+
+## Bar Plots
+
+Bar plots can be a good way of summarising the outputs of **multiple runs**
+
+![](assets/2025-06-27-17-40-08.png)
+
+## Box Plots
+
+Box plots can help us understand how things can vary **across runs**
+
+![](assets/2025-06-27-17-38-45.png)
+
+## Line Charts
+
+Line charts can be good for helping us understand how things vary **over time**
+
+```{python}
+{{< include other_examples/faceted_queue_plot.py >}}
+```
+
+
+## Histograms
+
+Histograms are another good tool for understanding **variation**
 
 
 
@@ -401,8 +324,20 @@ Run it from the **terminal**...
 ##  {#webappdemo-basic data-menu-title="An Example Web App"}
 
 ```{stlite-python}
-{{< include streamlit_app_examples/simple_interface_app.py >}}
+{{< include streamlit_app_examples/better_outputs_app.py >}}
 ```
+
+:::{.notes}
+- Linking this back to Dan's information on distributions
+  - Mention that the defaults for the average new patients per week might have been set by our analysts based on the historical data that they have looked at
+  - And they may have chosen a particular distribution based on the historical data too
+
+DEMO
+- Default parameters
+  - make sure to look at all tabs
+- Adding an extra clinician
+- Changing back to 4 clinicians, and
+:::
 
 ## Streamlit
 
@@ -421,7 +356,7 @@ Run it from the **terminal**...
   - on-premisis hosting
   - browser-based running
 
-- Alternatives exit (Shiny, Dash)
+- Alternatives exit (Shiny, Plotly Dash)
 
 :::
 
@@ -431,7 +366,7 @@ Run it from the **terminal**...
 
 :::{.fragment}
 
-<iframe data-src="https://webapps.hsma.co.uk/warnings_errors_success_messages.html" style="width:100%; height:700px;"></iframe>
+<iframe data-src="https://webapps.hsma.co.uk/warnings_errors_success_messages.html" style="width:100%; height:600px;"></iframe>
 
 :::
 
@@ -439,38 +374,13 @@ Run it from the **terminal**...
 
 ::::
 
-## Making our app more useful
-
-Let's return to our sample web app.
-
-We'll add
-
-- some extra inputs
-- some analysis of the patient wait times
-
-##  {#webappdemo-intermediate-1 data-menu-title="An Example Web App - Additional Parameters and Outputs"}
-
-```{stlite-python}
-{{< include streamlit_app_examples/intermediate_interface_app.py >}}
-```
-
 :::{.notes}
-Are we seeing the full picture here?
+This is a topic we teach on HSMA
 
-'wait times' too vague.
+Streamlit could be applied to a wide range of problems - not just DES
 :::
 
-##  {#webappdemo-intermediate-2 data-menu-title="An Example Web App - Better Outputs"}
-
-Let's make it clearer what the wait times mean.
-
-```{stlite-python}
-{{< include streamlit_app_examples/better_outputs_app.py >}}
-```
-
 ## Introducing Variability
-
-
 
 ##  {#webappdemo-multiple-runs data-menu-title="An Example Web App - Multiple Runs"}
 
@@ -490,55 +400,46 @@ Let's make it clearer what the wait times mean.
 
 ## Animations
 
-*DEMO  incorporating animations into a streamlit web app interface*
-
-
-
+![](assets/firefox_UPExVIss55.gif){height="800px"}
 
 # Exercise: The DES Playground
 
-## The Playground
+## The Playground {.smaller}
 
 You're now going to have a go with an interactive app.
 
-In the app, you are running a hospital.
+In the app, you are running an emergency department. You usually have 24 cubicles available, which are **strictly divided** between two pathways and multiple steps.
 
-You usually have 24 rooms available, which are divided between
+![](assets/2025-06-27-16-49-11.png){height=500px}
 
-With 24 rooms, your system is coping.
-
-Due to building work, you are temporarily going to have 20 rooms available.
-
-You need to reallocate the number of rooms available to different steps of the pathway - but is it possible to keep the hospital running smoothly still?
 
 ## The Exercise
 
-1. Run the simulation with the default parameters
+With 24 rooms, your system is coping. However, due to building work, you are temporarily going to have 20 rooms available.
+
+You need to reallocate the number of rooms available to different steps of the pathway - but is it possible to keep the hospital running smoothly still?
+
+1. Run the simulation with the default parameters. What results does it give you?
 
 2. Change some parameters and run it again. How do the results change?
 
-3. Try to meet all of the goals in the app!
-
-Afterwards, we'll regroup and discuss the following:
-- What combination allowed you to achieve the target?
-- What do you like about this app?
-- What would you want to change?
+3. Try to meet the goals!
 
 ## Discussion
 
 <iframe data-src="https://hsma-programme.github.io/lambda_des_playground/" style="width:100%; height:650px;"></iframe>
 
-# How to Make a Useless Model
-
-## ... and How to Avoid That.
+# How to Make a Good Model
 
 :::{.fragment}
 
-A model is only as good as it's spec.
+A model is doomed to fail if it's not designed well.
+
+So how can you help ensure that you are enabling your analysts to make good models?
 
 :::
 
-## Understanding the Process
+## Understanding the Process {.smaller}
 
 What is the process - *really*?
 
@@ -546,11 +447,13 @@ What is the process - *really*?
 
 ::: {.column width='67%'}
 
+
 :::{.incremental}
 
 - You're setting the model up for failure if you don't have the experts in the process in the room from the start
 
-- Even then, it can be complex to work out what to model and what to simplify (and the scenarios you want to test can really influence this)
+- Even then, it can be complex to work out what to model and what to simplify
+  - But the scenarios you want to test can really influence this!
 
 - And do you actually hold the data you need to parameterise the model?
   - Expert opinions can be used where data is missing, but this needs to be documented!
@@ -575,7 +478,7 @@ What is the process - *really*?
 
 ::: {.column width='45%'}
 
-- What metrics/KPIs do you want to be able to measure?
+- From the beginning, you need to be thinking about what metrics/KPIs do you want to be able to measure
 
 :::{.fragment}
 
@@ -600,11 +503,11 @@ What is the process - *really*?
 ::::
 
 
-## Scenarios
+## Scenarios {.smaller}
 
 :::: {.columns}
 
-::: {.column width='50%'}
+::: {.column width='40%'}
 
 ![](assets/2025-06-16-16-17-54.png)
 
@@ -668,6 +571,145 @@ Testing needs to be done to make sure that the outputs are sensible
 
 ::::
 
+## Understanding the limits
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+A model is not a crystal ball!
+
+:::
+
+::: {.column width='50%'}
+
+![](assets/2025-06-27-17-48-14.png){height="600px"}
+
+:::
+
+::::
+
+
+:::{.notes}
+Caution against taking the outputs of what the model says as a perfectly accurate representation of what will definitely happen
+
+Compare with weather forecasts
+
+Or the models people use to inform the odds used by bookmakers
+
+And bring it back to the inherent variability - which we do then try to capture in our models
+:::
+
+## Model Detail and Scope
+
+:::: {.columns}
+
+::: {.column width='50%'}
+![](assets/2025-06-27-17-04-28.png)
+:::
+
+::: {.column width='50%'}
+
+"All models are wrong, but some are useful."
+
+- George E.P. Box
+
+(a British Statistician considered one of the greatest statistical minds of the 20th century)
+
+:::
+
+::::
+
+## Model Detail and Scope (continued)
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+### Tube Map
+
+This model is wrong...
+
+![](assets/2025-06-27-17-06-38.png)
+
+:::
+
+::: {.column width='50%'}
+
+:::{.fragment}
+
+### Actual Layout
+
+![](assets/2025-06-27-17-06-20.png)
+
+but very useful!
+
+:::
+
+:::
+
+::::
+
+## Model Simplifications
+
+All models are built on assumptions and simplifications.
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+Assumptions are things we have to assume because we don’t or can’t know something
+
+:::
+
+::: {.column width='50%'}
+
+Simplifications are things in a model which we choose to represent in less detail than the real world equivalent because we don’t believe that added detail will give us added benefit.
+
+:::
+
+::::
+
+:::{.fragment}
+
+::: {.callout-tip appearance="minimal"}
+
+As models are essentially collections of assumptions and simplifications...
+
+--> the more of the real world we choose to capture...
+
+--> the more potential inaccuracy we introduce!
+
+:::
+
+:::
+
+## Scope and Detail
+
+When designing a model, the modeller needs to consider scope and level of detail.
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+**Scope** determines which section of the real world is carved out and represented in the model - where are the boundaries?
+
+:::
+
+::: {.column width='50%'}
+
+**Level of detail** is how much of the real world detail is represented vs simplified
+
+:::
+
+::::
+
+:::{.callout-tip }
+### A good rule of thumb
+Build the simplest model to sufficiently answer the question for which the model is being used
+
+If extra scope or detail is needed, how can its representation be simplified?
+:::
 
 
 ## How soon do you need it?
@@ -701,8 +743,6 @@ How long does a model take?
 
 ::::
 
-
-
 ## No, really, how long?
 
 :::{.incremental .smaller}
@@ -732,14 +772,20 @@ How long does a model take?
 
 In reality, a good model may take weeks to months - and may be iterated on for years
 
-:::
+But the time and effort can be worth it!
 
 :::
 
-## Alternatives to FOSS
+:::
 
-![](assets/2025-06-16-16-39-53.png)
 
+## A classic HSMA Quote
+
+> "I can give you an answer by this afternoon that’s probably wrong and you’ll probably have to ask me again next week.
+>
+> Or I can build a model, which will take a bit longer, but you’ll probably never need to ask me that question again."
+
+- One of our HSMAs from 2016 to their senior managers
 
 # Exercise: Design your own Discrete Event Simulation + Interface
 
@@ -762,6 +808,6 @@ Choose a system to model
   - it could be the one you discussed earlier
   - or you can choose something different
 
-Using the provided paper and markers, you are going to draw some **wireframes** of a web application front-end for your system.
+Using the provided paper and markers, you are going to draw some **wireframes** (mock-ups) of a web application front-end for your system.
 
 Think about the kinds of **inputs** and **outputs** you want in your model.

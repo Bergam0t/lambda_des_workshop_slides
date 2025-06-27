@@ -16,7 +16,7 @@ $link-color: #42affa;
 .reveal h4,
 .reveal h5,
 .reveal h6 {
-  margin: 0 0 20px 0;
+  margin: 0px 20px 20px 20px;
   color: #ffffff;
   line-height: 0.9em;
   letter-spacing: 0.02em;
@@ -25,13 +25,17 @@ $link-color: #42affa;
  }
 
  .reveal h1 {
-   margin: 0 0 20px 0;
+   margin: 0px 20px 20px 20px;
    color: #ffffff;
    line-height: 0.9em;
    letter-spacing: 0.02em;
    text-shadow: -1px -1px 4px black;
    font-family: 'Lexend';
   }
+
+p {
+    margin: 0px 20px 20px 20px !important;
+}
 
 body {
     font-family: 'Lexend';
@@ -60,8 +64,8 @@ body {
   padding: 0 !important;
   /* Style top-level slide sections */
   background-color: rgba(56, 56, 56, 0.7);
-  margin: 0px 20px 20px 20px auto;
-  padding: 0; /* top, right, bottom, left */
+  margin: 0px 20px 20px 20px;
+  padding: 0px 20px 0px 20px; /* top, right, bottom, left */
   border-radius: 12px;
   box-sizing: border-box;
   display: block;
