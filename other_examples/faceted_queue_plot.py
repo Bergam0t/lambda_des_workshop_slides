@@ -85,7 +85,7 @@ def plot_faceted_queue_simulation(df):
 
     # --- Customize the plot's appearance ---
     fig.update_layout(
-        height=700,
+        height=500,
         showlegend=False,
         title_font_size=20,
         title_x=0.5

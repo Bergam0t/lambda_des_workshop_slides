@@ -1077,9 +1077,10 @@ class Hospital:
         for i in range(self.args.n_beds):
             self.args.beds.put(
                 CustomResource(
-                    self.env,
+                    env=self.env,
                     capacity=1,
-                    id_attribute = i+1)
+                    id_attribute=(i+1)
+                    )
                 )
 
     def run(self, results_collection = DEFAULT_RESULTS_COLLECTION_PERIOD+DEFAULT_WARM_UP_PERIOD):

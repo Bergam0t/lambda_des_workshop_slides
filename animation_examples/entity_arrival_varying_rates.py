@@ -54,7 +54,7 @@ animate_activity_log(
   limit_duration=60,
   override_x_max=300,
   override_y_max=50,
-  plotly_height=600,
+  plotly_height=500,
   plotly_width=1100,
   display_stage_labels=False,
   # time_display_units="%M minutes",

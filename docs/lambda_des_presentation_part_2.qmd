@@ -72,7 +72,10 @@ But what if we could actually see the simulation panning out?
 
 Let's revisit the key concepts.
 
-## Entities arrive in your system at varying rates
+## {#animationdemo-entities data-menu-title="Entities"}
+
+Entities arrive in your system at varying rates
+
 Entities are often the service users in your model.
 
 Like buses, you might have none arrive for ages, then several at once.
@@ -82,7 +85,9 @@ Like buses, you might have none arrive for ages, then several at once.
 {{< include animation_examples/entity_arrival_varying_rates.py >}}
 ```
 
-## Generators bring entities into being, and sinks take entities out of being
+## {#animationdemo-generators data-menu-title="Generators"}
+
+Generators bring entities into being, and sinks take entities out of being.
 
 And we might have multiple generators for different kinds of patients, if they arrive at different rates.
 
@@ -92,16 +97,18 @@ And we might have multiple generators for different kinds of patients, if they a
 ```
 
 
-## Our entities might take a range of different routes through the system
+## {#animationdemo-entitypaths data-menu-title="Entity Paths"}
+
+Our entities might take a range of different routes through the system.
 
 ```{python}
 #| echo: false
 {{< include animation_examples/entity_sequential_paths_variable.py >}}
 ```
 
-## Queues might be seen in the order they arrive, or by priority
+## {#animationdemo-queueing data-menu-title="Queueing and Prioritisation"}
 
-But it's also possible to have priority-based queueing.
+Queues might be seen in the order they arrive - or you may use priority-based queueing.
 
 ```{python}
 #| echo: false
@@ -150,17 +157,34 @@ There are some key kinds of questions you can ask using a DES:
 
 What happens if
 
+:::: {.columns}
+
+::: {.column width='50%'}
+
 :::{.incremental}
 - we **add** or **remove** resources?
   - what about at certain times of day?
   - or if we change the timing and overlap of different shifts?
 - we **reorder** the process?
 - we **add an extra step** to the process?
+:::
+
+
+:::
+
+::: {.column width='50%'}
+
+:::{.incremental}
 - **demand increases** or **decreases**?
 - parts of the process get **faster** or **slower**?
 - we change how the queue is **prioritised**?
 - the **patient characteristics change**?
 :::
+
+:::
+
+::::
+
 
 ## And how animations can help you understand the answer to your questions
 
@@ -400,7 +424,7 @@ Streamlit could be applied to a wide range of problems - not just DES
 
 ## Animations
 
-![](assets/firefox_UPExVIss55.gif){height="800px"}
+![](assets/firefox_UPExVIss55.gif){height="650px"}
 
 # Exercise: The DES Playground
 
