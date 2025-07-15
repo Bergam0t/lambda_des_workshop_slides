@@ -1,0 +1,81 @@
+
+## Running the Code
+
+:::: {.columns}
+
+::: {.column width='25%'}
+
+:::{.incremental .smaller}
+- Ask IT for approval to install **Python**
+- Install the additional packages into an **environment**
+:::
+
+:::
+
+::: {.column width='75%'}
+
+:::{.fragment}
+Run it from the **terminal**...
+
+![](assets/Code_Dlz655dql1.gif)
+:::
+
+:::
+
+::::
+
+
+
+
+## Streamlit
+
+:::: {.columns}
+
+::: {.column width='40%'}
+
+:::{.incremental}
+
+- Free Python-based web app framework
+
+- App users don't have to install Python
+
+- Hosting
+  - free online hosting
+  - on-premisis hosting
+  - browser-based running
+
+- Alternatives exit (Shiny, Plotly Dash)
+
+:::
+
+:::
+
+::: {.column width='60%'}
+
+:::{.fragment}
+
+<iframe data-src="https://webapps.hsma.co.uk/warnings_errors_success_messages.html" style="width:100%; height:600px;"></iframe>
+
+:::
+
+:::
+
+::::
+
+:::{.notes}
+This is a topic we teach on HSMA
+
+Streamlit could be applied to a wide range of problems - not just DES
+:::
+
+## Animations
+
+![](assets/firefox_UPExVIss55.gif){height="650px"}
+
+
+
+:::{.fragment}
+
+- How do you assess that it made good predictions, and refine it?
+
+:::

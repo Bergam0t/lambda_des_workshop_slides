@@ -473,100 +473,100 @@ if run_simulation:
                 seen_36_pct_mean = np.mean([m['over_36_pct'] for m in results['all_seen_metrics']])
                 seen_52_pct_mean = np.mean([m['over_52_pct'] for m in results['all_seen_metrics']])
 
-            #     st.write("**Patients Who Were Seen:**")
-            #     seen_col1, seen_col2, seen_col3 = st.columns(3)
+                st.write("**Patients Who Were Seen:**")
+                seen_col1, seen_col2, seen_col3 = st.columns(3)
 
-            #     with seen_col1:
-            #         st.metric(
-            #             label="Waited > 18 weeks",
-            #             value=f"{seen_18_mean:.0f} ± {seen_18_std:.0f}",
-            #             delta=f"{seen_18_pct_mean:.1f}% avg",
-            #             help=f"Mean ± std dev across {num_runs} runs",
-            #             delta_color="off"
-            #         )
+                with seen_col1:
+                    st.metric(
+                        label="Waited > 18 weeks",
+                        value=f"{seen_18_mean:.0f} ± {seen_18_std:.0f}",
+                        delta=f"{seen_18_pct_mean:.1f}% avg",
+                        help=f"Mean ± std dev across {num_runs} runs",
+                        delta_color="off"
+                    )
 
-            #     with seen_col2:
-            #         st.metric(
-            #             label="Waited > 36 weeks",
-            #             value=f"{seen_36_mean:.0f} ± {seen_36_std:.0f}",
-            #             delta=f"{seen_36_pct_mean:.1f}% avg",
-            #             help=f"Mean ± std dev across {num_runs} runs",
-            #             delta_color="off"
-            #         )
+                with seen_col2:
+                    st.metric(
+                        label="Waited > 36 weeks",
+                        value=f"{seen_36_mean:.0f} ± {seen_36_std:.0f}",
+                        delta=f"{seen_36_pct_mean:.1f}% avg",
+                        help=f"Mean ± std dev across {num_runs} runs",
+                        delta_color="off"
+                    )
 
-            #     with seen_col3:
-            #         st.metric(
-            #             label="Waited > 52 weeks",
-            #             value=f"{seen_52_mean:.0f} ± {seen_52_std:.0f}",
-            #             delta=f"{seen_52_pct_mean:.1f}% avg",
-            #             help=f"Mean ± std dev across {num_runs} runs",
-            #             delta_color="off"
-            #         )
+                with seen_col3:
+                    st.metric(
+                        label="Waited > 52 weeks",
+                        value=f"{seen_52_mean:.0f} ± {seen_52_std:.0f}",
+                        delta=f"{seen_52_pct_mean:.1f}% avg",
+                        help=f"Mean ± std dev across {num_runs} runs",
+                        delta_color="off"
+                    )
 
-            # # Wait time analysis for patients still waiting
-            # if results['all_waiting_metrics']:
-            #     waiting_18_mean = np.mean([m['over_18_count'] for m in results['all_waiting_metrics']])
-            #     waiting_18_std = np.std([m['over_18_count'] for m in results['all_waiting_metrics']])
-            #     waiting_36_mean = np.mean([m['over_36_count'] for m in results['all_waiting_metrics']])
-            #     waiting_36_std = np.std([m['over_36_count'] for m in results['all_waiting_metrics']])
-            #     waiting_52_mean = np.mean([m['over_52_count'] for m in results['all_waiting_metrics']])
-            #     waiting_52_std = np.std([m['over_52_count'] for m in results['all_waiting_metrics']])
+            # Wait time analysis for patients still waiting
+            if results['all_waiting_metrics']:
+                waiting_18_mean = np.mean([m['over_18_count'] for m in results['all_waiting_metrics']])
+                waiting_18_std = np.std([m['over_18_count'] for m in results['all_waiting_metrics']])
+                waiting_36_mean = np.mean([m['over_36_count'] for m in results['all_waiting_metrics']])
+                waiting_36_std = np.std([m['over_36_count'] for m in results['all_waiting_metrics']])
+                waiting_52_mean = np.mean([m['over_52_count'] for m in results['all_waiting_metrics']])
+                waiting_52_std = np.std([m['over_52_count'] for m in results['all_waiting_metrics']])
 
-            #     waiting_18_pct_mean = np.mean([m['over_18_pct'] for m in results['all_waiting_metrics']])
-            #     waiting_36_pct_mean = np.mean([m['over_36_pct'] for m in results['all_waiting_metrics']])
-            #     waiting_52_pct_mean = np.mean([m['over_52_pct'] for m in results['all_waiting_metrics']])
+                waiting_18_pct_mean = np.mean([m['over_18_pct'] for m in results['all_waiting_metrics']])
+                waiting_36_pct_mean = np.mean([m['over_36_pct'] for m in results['all_waiting_metrics']])
+                waiting_52_pct_mean = np.mean([m['over_52_pct'] for m in results['all_waiting_metrics']])
 
-            #     avg_wait_mean = np.mean([m['avg_wait'] for m in results['all_waiting_metrics']])
-            #     avg_wait_std = np.std([m['avg_wait'] for m in results['all_waiting_metrics']])
-            #     max_wait_mean = np.mean([m['max_wait'] for m in results['all_waiting_metrics']])
-            #     max_wait_std = np.std([m['max_wait'] for m in results['all_waiting_metrics']])
+                avg_wait_mean = np.mean([m['avg_wait'] for m in results['all_waiting_metrics']])
+                avg_wait_std = np.std([m['avg_wait'] for m in results['all_waiting_metrics']])
+                max_wait_mean = np.mean([m['max_wait'] for m in results['all_waiting_metrics']])
+                max_wait_std = np.std([m['max_wait'] for m in results['all_waiting_metrics']])
 
-            #     st.write("**Patients Still Waiting:**")
-            #     waiting_col1, waiting_col2, waiting_col3 = st.columns(3)
+                st.write("**Patients Still Waiting:**")
+                waiting_col1, waiting_col2, waiting_col3 = st.columns(3)
 
-            #     with waiting_col1:
-            #         st.metric(
-            #             label="Waiting > 18 weeks",
-            #             value=f"{waiting_18_mean:.0f} ± {waiting_18_std:.0f}",
-            #             delta=f"{waiting_18_pct_mean:.1f}% avg",
-            #             help=f"Mean ± std dev across {num_runs} runs",
-            #             delta_color="off"
-            #         )
+                with waiting_col1:
+                    st.metric(
+                        label="Waiting > 18 weeks",
+                        value=f"{waiting_18_mean:.0f} ± {waiting_18_std:.0f}",
+                        delta=f"{waiting_18_pct_mean:.1f}% avg",
+                        help=f"Mean ± std dev across {num_runs} runs",
+                        delta_color="off"
+                    )
 
-            #     with waiting_col2:
-            #         st.metric(
-            #             label="Waiting > 36 weeks",
-            #             value=f"{waiting_36_mean:.0f} ± {waiting_36_std:.0f}",
-            #             delta=f"{waiting_36_pct_mean:.1f}% avg",
-            #             help=f"Mean ± std dev across {num_runs} runs",
-            #             delta_color="off"
-            #         )
+                with waiting_col2:
+                    st.metric(
+                        label="Waiting > 36 weeks",
+                        value=f"{waiting_36_mean:.0f} ± {waiting_36_std:.0f}",
+                        delta=f"{waiting_36_pct_mean:.1f}% avg",
+                        help=f"Mean ± std dev across {num_runs} runs",
+                        delta_color="off"
+                    )
 
-            #     with waiting_col3:
-            #         st.metric(
-            #             label="Waiting > 52 weeks",
-            #             value=f"{waiting_52_mean:.0f} ± {waiting_52_std:.0f}",
-            #             delta=f"{waiting_52_pct_mean:.1f}% avg",
-            #             help=f"Mean ± std dev across {num_runs} runs",
-            #             delta_color="off"
-            #         )
+                with waiting_col3:
+                    st.metric(
+                        label="Waiting > 52 weeks",
+                        value=f"{waiting_52_mean:.0f} ± {waiting_52_std:.0f}",
+                        delta=f"{waiting_52_pct_mean:.1f}% avg",
+                        help=f"Mean ± std dev across {num_runs} runs",
+                        delta_color="off"
+                    )
 
-            #     # Additional summary metrics for patients still waiting
-            #     additional_col1, additional_col2 = st.columns(2)
-            #     with additional_col1:
-            #         st.metric(
-            #             label="Average Current Wait",
-            #             value=f"{avg_wait_mean:.1f} ± {avg_wait_std:.1f} weeks",
-            #             help=f"Mean ± std dev across {num_runs} runs",
-            #             delta_color="off"
-            #         )
-            #     with additional_col2:
-            #         st.metric(
-            #             label="Longest Current Wait",
-            #             value=f"{max_wait_mean:.1f} ± {max_wait_std:.1f} weeks",
-            #             help=f"Mean ± std dev across {num_runs} runs",
-            #             delta_color="off"
-            #         )
+                # Additional summary metrics for patients still waiting
+                additional_col1, additional_col2 = st.columns(2)
+                with additional_col1:
+                    st.metric(
+                        label="Average Current Wait",
+                        value=f"{avg_wait_mean:.1f} ± {avg_wait_std:.1f} weeks",
+                        help=f"Mean ± std dev across {num_runs} runs",
+                        delta_color="off"
+                    )
+                with additional_col2:
+                    st.metric(
+                        label="Longest Current Wait",
+                        value=f"{max_wait_mean:.1f} ± {max_wait_std:.1f} weeks",
+                        help=f"Mean ± std dev across {num_runs} runs",
+                        delta_color="off"
+                    )
 
     # Display results for both scenarios
     display_scenario_results(result_col1, 1, scenario1_results)

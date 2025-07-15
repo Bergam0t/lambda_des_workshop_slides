@@ -134,13 +134,6 @@ But these animations aren't just limited to toy examples - they can be applied t
 Mention that here we are also showing having multiple different resource pools
 :::
 
-## To multi-clinic booking systems...
-
-```{python}
-#| echo: false
-{{< include animation_examples/complex_community_booking/ex_11_resourceless.py >}}
-```
-
 ## To a ward...
 
 ```{python}
@@ -159,22 +152,23 @@ What happens if
 
 :::: {.columns}
 
-::: {.column width='50%'}
+::: {.column width='48%'}
 
 :::{.incremental}
 - we **add** or **remove** resources?
   - what about at certain times of day?
   - or if we change the timing and overlap of different shifts?
+- we **change operating hours**
 - we **reorder** the process?
-- we **add an extra step** to the process?
 :::
 
 
 :::
 
-::: {.column width='50%'}
+::: {.column width='48%'}
 
 :::{.incremental}
+- we **add an extra step** to the process?
 - **demand increases** or **decreases**?
 - parts of the process get **faster** or **slower**?
 - we change how the queue is **prioritised**?
@@ -186,15 +180,21 @@ What happens if
 ::::
 
 
-## And how animations can help you understand the answer to your questions
+## And animations can help you understand the answer to your questions!
 
 ![](assets/firefox_EyAaWvxJd1.gif)
 
 # Other DES Outputs
 
+:::{.column width="90%"}
+
 Animations can help you understand what's going on - but they're not so good at summarising the answers to your what-if questions.
 
+:::
+
 ## Wait Times
+
+:::{.column width="98%"}
 
 A common thing to measure is the **wait time** for key points in the service.
 
@@ -202,7 +202,9 @@ A common thing to measure is the **wait time** for key points in the service.
 - The **mean average** wait time
 - The **median average** wait time
 - The **maximum** wait time
-- The **variation** in wait times (across day/week/seasons or across different cate)
+- The **variation** in wait times (across day/week/seasons or across different patient types)
+:::
+
 :::
 
 ## Discussion
@@ -211,18 +213,22 @@ That gives you one idea for what you might measure in a model.
 
 But what other sorts of things might you want to be tracking and discussing?
 
-**Discuss in your groups for 5 minutes**
+**Discuss in your groups for 5 minutes**, and then we'll share some ideas.
 
-We'll then put some answers up on the board.
 
-## Meeting wait targets
+
+## Meeting wait *targets*
+
+:::{.columns width="90%"}
 
 Rather than looking purely at the raw wait times, we might be interested in meeting targets.
 
-For example: what % of people waited more than 4 hours?
+For example:
 
-![](assets/2025-06-27-17-35-21.png)
+- what % of people waited more than 4 hours?
+- what % of cases met the 2 week wait target?
 
+:::
 
 ## Queue Lengths
 
@@ -234,13 +240,17 @@ We might also be interested in
   - different times of day/days of the week/months of the year
 
 
+:::{.notes}
+Recap runs
+:::
+
 ## Resource Utilisation
 
 We may also be interested in **resource utilisation**.
 
 If our waits are good, but most of the time our resources are sitting idle, this is not optimal...
 
-**But what is the ideal level of resource utilisation?**
+**But what is the ideal level of resource utilisation? Shout out your thoughts.**
 
 :::{.fragment}
 
@@ -252,23 +262,47 @@ Or if we have a ward, we might not want it running at 100% occupancy so that the
 
 :::{.notes}
 Talk a bit here about variability - the impact of not having spare capacity in your ward when someone then arrives needing seeing urgently
+
+And how this can vary with different ward sizes, what the impact of a bed *not* being available, etc.
+
+"Research using computer simulation finds that the ideal occupancy depends on ward size, specialty, and tolerance for capacity breaches. For example, a typical 25-bed ward might have an optimal occupancy ranging from 57% (Gynaecology) to 74% (Adult Mental Health), with larger wards supporting higher occupancy before reaching crisis points. The traditional 85% target may overestimate safe occupancy for many real-world settings" -https://pubmed.ncbi.nlm.nih.gov/34219171/
+:::
+
+## Resource Utilisation (continued)
+
+```{python}
+{{< include other_examples/high_utilisation_risks.py >}}
+```
+
+:::{.notes}
+This isn't representative of every ward
 :::
 
 ## Cost Savings
 
-*show something that can show the range of potential cost savings*
+We can bring in cost estimates of different parts of the system and use this to explore the cost-effectiveness of scenarios.
 
-*Screenshot from the stroke model outputs?*
+```{python}
+{{< include other_examples/high_utilisation_risks_cost_idea.py >}}
+```
+
+:::{.notes}
+We've had real-world HSMA projects recently that have shown the value of spending to save - e.g. demonstrating the impact of spending more on staffing a stroke offshoot of SDEC 24 hours a day rather than 12 through admission avoidance.
+:::
 
 ## And more!
 
+:::{.column width="98%"}
+
 :::{.incremental}
-- Resources being blocked from use by a downstream resource limitation
-  - e.g. ambulances being blocked from unloading patients
+- Resources being blocked from use by a downstream resource limitation (e.g. ambulances being blocked from unloading patients)
 - Patients reneging or baulking
+- Non-attenders
 - Balance between admissions and discharges
-- Throughput
-  - patients treated per day
+- Throughput (e.g. patients treated per day)
+- Total resources used (e.g. medication)
+:::
+
 :::
 
 
@@ -301,13 +335,18 @@ Line charts can be good for helping us understand how things vary **over time**
 
 Histograms are another good tool for understanding **variation**
 
+![](assets/dan_q_time_histogram_variable.png){height="600px"}
 
 
 # Interacting with Models
 
+There are a couple of different ways to interact with models.
+
+We'll start with the old-school way...
+
 ## The Code
 
-Here's a sample of some code for a simulation model
+Here's a sample of some code for a simulation model (that your HSMA would write!)
 
 ```{python}
 #| eval: false
@@ -316,32 +355,6 @@ Here's a sample of some code for a simulation model
 {{< include other_examples/sample_model.py >}}
 
 ```
-
-## Running the Code
-
-:::: {.columns}
-
-::: {.column width='25%'}
-
-:::{.incremental .smaller}
-- Ask IT for approval to install **Python**
-- Install the additional packages into an **environment**
-:::
-
-:::
-
-::: {.column width='75%'}
-
-:::{.fragment}
-Run it from the **terminal**...
-
-![](assets/Code_Dlz655dql1.gif)
-:::
-
-:::
-
-::::
-
 
 # Web App Interfaces
 
@@ -352,6 +365,8 @@ Run it from the **terminal**...
 ```
 
 :::{.notes}
+COVER BASICS OF STREAMLIT HERE
+
 - Linking this back to Dan's information on distributions
   - Mention that the defaults for the average new patients per week might have been set by our analysts based on the historical data that they have looked at
   - And they may have chosen a particular distribution based on the historical data too
@@ -361,47 +376,6 @@ DEMO
   - make sure to look at all tabs
 - Adding an extra clinician
 - Changing back to 4 clinicians, and
-:::
-
-## Streamlit
-
-:::: {.columns}
-
-::: {.column width='40%'}
-
-:::{.incremental}
-
-- Free Python-based web app framework
-
-- App users don't have to install Python
-
-- Hosting
-  - free online hosting
-  - on-premisis hosting
-  - browser-based running
-
-- Alternatives exit (Shiny, Plotly Dash)
-
-:::
-
-:::
-
-::: {.column width='60%'}
-
-:::{.fragment}
-
-<iframe data-src="https://webapps.hsma.co.uk/warnings_errors_success_messages.html" style="width:100%; height:600px;"></iframe>
-
-:::
-
-:::
-
-::::
-
-:::{.notes}
-This is a topic we teach on HSMA
-
-Streamlit could be applied to a wide range of problems - not just DES
 :::
 
 ## Introducing Variability
@@ -421,10 +395,9 @@ Streamlit could be applied to a wide range of problems - not just DES
 {{< include streamlit_app_examples/scenario_comparison_app.py >}}
 ```
 
+## Summary
 
-## Animations
-
-![](assets/firefox_UPExVIss55.gif){height="650px"}
+FILL THIS IN
 
 # Exercise: The DES Playground
 
@@ -527,7 +500,7 @@ What is the process - *really*?
 ::::
 
 
-## Scenarios {.smaller}
+## Scenarios
 
 :::: {.columns}
 
@@ -537,8 +510,9 @@ What is the process - *really*?
 
 :::
 
-::: {.column width='40%'}
+::: {.column width='50%'}
 - What do you need to be able to change?
+  - and what can you *actually* change in your system?
 
 :::{.fragment}
 
@@ -546,16 +520,15 @@ What is the process - *really*?
 
 :::
 
+:::
+
+::::
+
 :::{.fragment}
 - How do you want to be able to compare scenarios?
   - looking in-depth at scenarios one at a time?
   - or displaying outputs side-by-side in a web app?
 :::
-
-:::
-
-::::
-
 
 :::{.notes}
 
@@ -570,18 +543,15 @@ Testing needs to be done to make sure that the outputs are sensible
 :::: {.columns}
 
 ::: {.column width='50%'}
-
-- What do you need to be able to export?
-
-:::{.fragment}
-
 - Is this a one and done output, or an ongoing tool?
 
+:::{.fragment}
+- What do you need to be able to export?
 :::
 
 :::{.fragment}
 
-- How do you assess that it made good predictions, and refine it?
+- Have you asked the modeller how they are assessing it against the real system, and refine it?
 
 :::
 
@@ -603,6 +573,15 @@ Testing needs to be done to make sure that the outputs are sensible
 
 A model is not a crystal ball!
 
+:::{.fragment}
+
+As well, a common mistake amongst those newer to modelling is to assume that
+
+- models need to capture **everything** (and in detail)
+- and that a more "realistic" model is a better one
+
+:::
+
 :::
 
 ::: {.column width='50%'}
@@ -623,6 +602,7 @@ Or the models people use to inform the odds used by bookmakers
 
 And bring it back to the inherent variability - which we do then try to capture in our models
 :::
+
 
 ## Model Detail and Scope
 
@@ -646,6 +626,9 @@ And bring it back to the inherent variability - which we do then try to capture 
 
 ## Model Detail and Scope (continued)
 
+::: {.spacer}
+:::
+
 :::: {.columns}
 
 ::: {.column width='50%'}
@@ -664,6 +647,8 @@ This model is wrong...
 
 ### Actual Layout
 
+<br>
+
 ![](assets/2025-06-27-17-06-20.png)
 
 but very useful!
@@ -678,31 +663,33 @@ but very useful!
 
 All models are built on assumptions and simplifications.
 
+<br>
+
 :::: {.columns}
 
-::: {.column width='50%'}
+::: {.column width='30%'}
 
-Assumptions are things we have to assume because we don’t or can’t know something
+**Assumptions** are things we have to include because we don’t or can’t know something
+
+:::
+
+::: {.column width='8%'}
 
 :::
 
 ::: {.column width='50%'}
 
-Simplifications are things in a model which we choose to represent in less detail than the real world equivalent because we don’t believe that added detail will give us added benefit.
+**Simplifications** are things in a model which we choose to represent in less detail than the real world equivalent because the added detail *won't* give us added benefit
 
 :::
 
 ::::
 
+:::{.column width='90%'}
+
 :::{.fragment}
 
-::: {.callout-tip appearance="minimal"}
-
-As models are essentially collections of assumptions and simplifications...
-
---> the more of the real world we choose to capture...
-
---> the more potential inaccuracy we introduce!
+As models are essentially collections of assumptions and simplifications, the more of the real world we choose to capture, the more potential inaccuracy we introduce!
 
 :::
 
@@ -712,15 +699,23 @@ As models are essentially collections of assumptions and simplifications...
 
 When designing a model, the modeller needs to consider scope and level of detail.
 
+:::{.spacer}
+
+:::
+
 :::: {.columns}
 
-::: {.column width='50%'}
+::: {.column width='44%'}
 
 **Scope** determines which section of the real world is carved out and represented in the model - where are the boundaries?
 
 :::
 
-::: {.column width='50%'}
+::: {.column width='10%'}
+
+:::
+
+::: {.column width='44%'}
 
 **Level of detail** is how much of the real world detail is represented vs simplified
 
@@ -728,12 +723,29 @@ When designing a model, the modeller needs to consider scope and level of detail
 
 ::::
 
-:::{.callout-tip }
-### A good rule of thumb
-Build the simplest model to sufficiently answer the question for which the model is being used
+## Scope and Detail (continued)
+
+Imagine you’re modelling an ED to identify strategies to reduce waits.
+
+**Does modelling all the tasks a nurse does during a triage give you anything above simplifying to a “triage” process that takes x amount of time?**
+
+:::{.fragment}
+
+If I want to use the model to explore changing some of those processes then maybe…
+
+:::
+
+:::{.fragment}
+
+But if it will just change the overall amount of time with the nurse, it’s equally effective to say “What if the average triage time was reduced by 2 minutes?”
+
+:::
+
+## A good rule of thumb
+
+**Build the simplest model to sufficiently answer the question for which the model is being used**
 
 If extra scope or detail is needed, how can its representation be simplified?
-:::
 
 
 ## How soon do you need it?
@@ -742,17 +754,17 @@ How long does a model take?
 
 :::: {.columns}
 
-::: {.column width='40%'}
+::: {.column width='30%'}
 
 :::{.fragment}
 
-![](assets/2025-06-16-16-29-51.png){height="600px"}
+![](assets/2025-06-16-16-29-51.png){height="500px"}
 
 :::
 
 :::
 
-::: {.column width='60%'}
+::: {.column width='70%'}
 
 :::{.incremental}
 - A good model can take time to create
@@ -760,6 +772,7 @@ How long does a model take?
 - You can help it go faster by carefully considering the things on the preceding slides
 - Set your analysts up for success!
 - A rushed model can do more harm than good
+- But it's generally still quicker than trialling the real world changes!
 :::
 
 
@@ -779,7 +792,6 @@ How long does a model take?
   - and more complex inputs and scenarios...
   - and the ability to compare things side-by-side...
   - and the ability to download a summary table...
-  - and robust tests...
 
 :::
 
@@ -787,16 +799,22 @@ How long does a model take?
 ## There's more?
 
 :::{.incremental}
-  - and conform with the [20-item best-practice guidance on model reporting](https://des.hsma.co.uk/stress_des.html) and the [7 essential components and 5 optional components of the STARS reproducibility framework](https://des.hsma.co.uk/stars.html)...
+  - and robust tests...
+  - and conform with the [20-item best-practice guidance on model reporting](https://des.hsma.co.uk/stress_des.html)
+  - and the [7 essential components and 5 optional components of the STARS reproducibility framework](https://des.hsma.co.uk/stars.html)...
 :::
 
 :::{.fragment}
+
+:::{.columns width="90%"}
 
 :::{.callout-tip}
 
 In reality, a good model may take weeks to months - and may be iterated on for years
 
 But the time and effort can be worth it!
+
+:::
 
 :::
 
@@ -813,17 +831,7 @@ But the time and effort can be worth it!
 
 # Exercise: Design your own Discrete Event Simulation + Interface
 
-We're going to take your model ideas from earlier and design a web app interface to go with them.
-
-## What can these web apps contain?
-
-```{stlite-python}
-{{< include streamlit_app_examples/streamlit_input_demo_app.py >}}
-```
-
-## And what can they output?
-
-*Text, metric cards, static plots, interactive plots, maps, downloadable reports*
+We're going to design a web app interface to help with .
 
 
 ## Your Task
@@ -835,3 +843,17 @@ Choose a system to model
 Using the provided paper and markers, you are going to draw some **wireframes** (mock-ups) of a web application front-end for your system.
 
 Think about the kinds of **inputs** and **outputs** you want in your model.
+
+You can use multiple pieces of paper to represent different pages of the app.
+
+## A reminder - what might apps contain?
+
+<!-- ## What can these web apps contain? -->
+
+```{stlite-python}
+{{< include streamlit_app_examples/streamlit_input_demo_app.py >}}
+```
+
+<!-- ## And what can they output?
+
+*Text, metric cards, static plots, interactive plots, maps, downloadable reports* -->
