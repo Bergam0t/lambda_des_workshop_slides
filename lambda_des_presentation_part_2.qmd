@@ -192,7 +192,7 @@ What happens if
   - or if we change the timing and overlap of different shifts?
 - **demand increases** or **decreases**?
   - from certain patient subgroups?
-- the **patient characteristics change**?
+- patient characteristics **change**?
 :::
 
 
@@ -259,6 +259,18 @@ What happens if
 
 Animations can help you understand what's going on - but they're not so good at summarising the answers to your what-if questions.
 
+What else might we track?
+
+:::
+
+:::{.notes}
+If you're going to run 10 different scenarios, it's not easy to summarise the animations.
+
+And you can't print an animation in a report!
+
+And while they might be nice for helping us to understand flow and bottlenecks, they're not the only things we might want to pull out of a simulation.
+
+So what else is available to us?
 :::
 
 ## Wait Times
@@ -271,8 +283,32 @@ A common thing to measure is the **wait time** for key points in the service.
 - The **mean average** wait time
 - The **median average** wait time
 - The **maximum** wait time
-- The **variation** in wait times (across day/week/seasons or across different patient types)
+- The **variation** in wait times
 :::
+
+:::{.fragment}
+You might also subset this by time (like the hour or day), or across different patient types
+:::
+
+:::
+
+:::{.notes}
+
+Mean average = add up how long every person waited, and divide it by the total number of waits
+
+Can be very affected by unusually long or short waits
+
+Median average - give everyone a clipboard where they record how long they waited, then ask themselves to put themselves in a line based on their wait times, shortest to longest.
+
+Then I walk up to the person in the middle of that line, and ask how long they waited.
+
+Not as affected by outliers.
+
+Maximum wait is important - those extreme values could be otherwise masked.
+
+Variation in wait time - and I'll talk more about how you'd measure that later. But it's important to understand if there's a lot of variation, or not much, and how much variation varies across scenarios.
+
+And it might
 
 :::
 
@@ -338,25 +374,8 @@ And how this can vary with different ward sizes, what the impact of a bed *not* 
 
 "Research using computer simulation finds that the ideal occupancy depends on ward size, specialty, and tolerance for capacity breaches. For example, a typical 25-bed ward might have an optimal occupancy ranging from 57% (Gynaecology) to 74% (Adult Mental Health), with larger wards supporting higher occupancy before reaching crisis points. The traditional 85% target may overestimate safe occupancy for many real-world settings" -https://pubmed.ncbi.nlm.nih.gov/34219171/
 
-"For instance, it is found
-that 77% average occupancy is sufficient to ensure only 4%
-of obstetrics presentations must wait for admission [14]. A
-figure of 55% is required to achieve the 2% divert tolerance
-for cardiac admissions [15]. In keeping with the principle
-that stricter tolerances require lower average occupancies, it
-is found that a 51% average occupancy is required to ensure
-that no more than 1% of stroke arrivals must either wait or
-divert"
-:::
-
-## Cost Savings
-
-We can bring in cost estimates of different parts of the system and use this to explore the cost-effectiveness of scenarios.
-
-![](assets/2025-07-15-12-03-01.png){height="650px"}
-
-:::{.notes}
-We've had real-world HSMA projects recently that have shown the value of spending to save - e.g. demonstrating the impact of spending more on staffing a stroke offshoot of SDEC 24 hours a day rather than 12 through admission avoidance.
+"For instance, it is found that 77% average occupancy is sufficient to ensure only 4%
+of obstetrics presentations must wait for admission [14]. A figure of 55% is required to achieve the 2% divert tolerance for cardiac admissions [15]. In keeping with the principle that stricter tolerances require lower average occupancies, it is found that a 51% average occupancy is required to ensure that no more than 1% of stroke arrivals must either wait or divert"
 :::
 
 ## And more!
@@ -374,6 +393,20 @@ We've had real-world HSMA projects recently that have shown the value of spendin
 
 :::
 
+## Cost Savings
+
+We can bring in cost estimates of different parts of the system and use this to explore the cost-effectiveness of scenarios.
+
+![](assets/2025-07-15-12-03-01.png){height="450px"}
+
+:::{.notes}
+This often comes out of the other things you're measuring.
+
+We've had real-world HSMA projects recently that have shown the value of spending to save - e.g. demonstrating the impact of spending more on staffing a stroke offshoot of SDEC 24 hours a day rather than 12 through admission avoidance.
+
+So while it might cost to, say, employ an extra resource, you can explore the savings too.
+:::
+
 
 # Visualising Metrics
 
@@ -383,13 +416,75 @@ Let's look at a couple of key ways you might see these sorts of things displayed
 
 Bar plots can be a good way of summarising the outputs of **multiple runs**
 
-![](assets/2025-06-27-17-40-08.png)
+:::: {.columns}
+
+::: {.column width='55%'}
+
+::: {.r-stack}
+![](assets/2025-06-27-17-40-08_copy.png){height="500px"}
+
+![](assets/2025-06-27-17-40-08.png){.fragment height="500px"}
+:::
+
+
+:::
+
+::: {.column width='42%'}
+
+:::{.fragment}
+We can bring in background graphics to help us quickly interpret the results.
+:::
+
+:::
+
+::::
+
+
+
+::: {.notes}
+So remember earlier we talked about means?
+
+So here, we are looking at the utilisation.
+
+And we might say that on average, across our runs,
+:::
+
 
 ## Box Plots
 
 Box plots can help us understand how things can vary **across runs**
 
-![](assets/2025-06-27-17-38-45.png)
+::: {.r-stack}
+![](assets/2025-06-27-17-38-45_copy_2.png)
+
+![](assets/2025-06-27-17-38-45_copy.png){.fragment}
+
+![](assets/2025-06-27-17-38-45_copy_3.png){.fragment}
+
+![](assets/2025-06-27-17-38-45.png){.fragment}
+:::
+
+:::{.notes}
+
+Here, each dot represents the percentage of time in the simulation the resource was utilised for one run
+
+We then build a box to summarise what these points are telling us - so when we've got 100, or 1000 runs, we have a way of quickly comparing the variation across multiple metrics
+
+And then we can also build in these limits again - so we can start to see that sometimes, here, we fall into the unacceptable range
+
+But most of the time, for that metric, we are in the good range - so you have to determine your appetite for risk, and that depends on the metric and the system.
+
+In 1 third of simulated years, we breached our target, but in 2 thirds, we didn't
+
+More runs would give us a better idea of this split - were we just really unlucky in those two with patterns of arrivals?
+
+:::
+
+## Histograms
+
+Histograms are another good tool for understanding **variation**
+
+![](assets/dan_q_time_histogram_variable.png){height="550px"}
 
 ## Line Charts
 
@@ -398,13 +493,6 @@ Line charts can be good for helping us understand how things vary **over time**
 ```{python}
 {{< include other_examples/faceted_queue_plot.py >}}
 ```
-
-
-## Histograms
-
-Histograms are another good tool for understanding **variation**
-
-![](assets/dan_q_time_histogram_variable.png){height="600px"}
 
 
 # Interacting with Models
@@ -417,6 +505,8 @@ We'll start with the old-school way...
 
 Here's a sample of some code for a simulation model (that your HSMA would write!)
 
+:::{.column width="95%"}
+
 ```{python}
 #| eval: false
 #| echo: true
@@ -425,7 +515,11 @@ Here's a sample of some code for a simulation model (that your HSMA would write!
 
 ```
 
-# Web App Interfaces
+:::
+
+:::{.notes}
+Scroll through, talk a bit about how interacting with this is challenging because of additional software install requirements, not user friendly, etc.
+:::
 
 ##  {#webappdemo-basic data-menu-title="An Example Web App"}
 
@@ -435,6 +529,12 @@ Here's a sample of some code for a simulation model (that your HSMA would write!
 
 :::{.notes}
 COVER BASICS OF STREAMLIT HERE
+
+Tool that allows building of web app interfaces
+
+Can be deployed on free hosting (as no patient identifiable data)
+
+Or ways of deploying internally - it's not just for simulations (I'm working with someone that's using it to develop an app for creating an interactive knowledge base for elderly care interventions, and we've had people use it as interfaces for geographic optimization problems, etc.)
 
 - Linking this back to Dan's information on distributions
   - Mention that the defaults for the average new patients per week might have been set by our analysts based on the historical data that they have looked at
@@ -449,7 +549,9 @@ DEMO
 
 ##  {#webappdemo-multiple-runs data-menu-title="An Example Web App - Multiple Runs"}
 
+<div style="font-size: 0.75em;">
 Let's now introduce multiple runs to capture variation.
+</div>
 
 ```{stlite-python}
 {{< include streamlit_app_examples/multiple_runs_app.py >}}
@@ -477,20 +579,28 @@ Not all error bars are showing the same thing...
 :::
 
 :::{.notes}
-We might also represent variation visually with plots like box plots, which we'll come onto in a minute.
+
 :::
 
 ##  {#webappdemo-multiple-runs-scenario-comparison data-menu-title="An Example Web App - Comparing Scenarios"}
 
+<div style="font-size: 0.75em;">
 Now let's make it easier to compare scenarios in the app.
+</div>
 
 ```{stlite-python}
 {{< include streamlit_app_examples/scenario_comparison_app.py >}}
 ```
 
+:::{.notes}
+We have
+:::
+
 ## Summary
 
-FILL THIS IN
+- Building a web app interface to simulation code can make it easier for non-experts to interact with simulation models
+- Animations can help communicate how the model works, and start spotting patterns
+- Thinking about the metrics to track, and how to display them, is an important part of the modelling process
 
 # Exercise: The DES Playground
 
@@ -505,15 +615,22 @@ In the app, you are running an emergency department. You usually have 24 cubicle
 
 ## The Exercise
 
+Go to [hsma.co.uk/workshop](https://hsma.co.uk/workshop)
+
 With 24 rooms, your system is coping. However, due to building work, you are temporarily going to have 20 rooms available.
 
 You need to reallocate the number of rooms available to different steps of the pathway - but is it possible to keep the hospital running smoothly still?
 
+
+<div style="font-size: 0.75em;">
 1. Run the simulation with the default parameters. What results does it give you?
 
 2. Change some parameters and run it again. How do the results change?
 
 3. Try to meet the goals!
+</div>
+
+You have **10 minutes**.
 
 ## Discussion
 
@@ -527,6 +644,12 @@ A model is doomed to fail if it's not designed well.
 
 So how can you help ensure that you are enabling your analysts to make good models?
 
+:::
+
+:::{.notes}
+Hopefully from what you've seen so far, you're able to see applications of DES in your own system, and keen to implement it.
+
+But how can you maximise the chance of the project being successful?
 :::
 
 ## Understanding the Process {.smaller}
@@ -597,13 +720,13 @@ What is the process - *really*?
 
 :::: {.columns}
 
-::: {.column width='40%'}
+::: {.column width='35%'}
 
 ![](assets/2025-06-16-16-17-54.png)
 
 :::
 
-::: {.column width='50%'}
+::: {.column width='60%'}
 - What do you need to be able to change?
   - and what can you *actually* change in your system?
 
@@ -711,9 +834,13 @@ And bring it back to the inherent variability - which we do then try to capture 
 
 "All models are wrong, but some are useful."
 
+<div style="font-size: 0.75em;">
 - George E.P. Box
+</div>
 
+<div style="font-size: 0.5em;">
 (a British Statistician considered one of the greatest statistical minds of the 20th century)
+</div>
 
 :::
 
@@ -764,6 +891,7 @@ All models are built on assumptions and simplifications.
 
 ::: {.column width='30%'}
 
+
 **Assumptions** are things we have to include because we don’t or can’t know something
 
 :::
@@ -774,7 +902,11 @@ All models are built on assumptions and simplifications.
 
 ::: {.column width='50%'}
 
+:::{.fragment}
+
 **Simplifications** are things in a model which we choose to represent in less detail than the real world equivalent because the added detail *won't* give us added benefit
+
+:::
 
 :::
 
@@ -812,7 +944,11 @@ When designing a model, the modeller needs to consider scope and level of detail
 
 ::: {.column width='44%'}
 
+:::{.fragment}
+
 **Level of detail** is how much of the real world detail is represented vs simplified
+
+:::
 
 :::
 
@@ -836,12 +972,22 @@ But if it will just change the overall amount of time with the nurse, it’s equ
 
 :::
 
-## A good rule of thumb
+:::{.notes}
+And the more complexity and assumptions you're building into that unnecessary task breakdown, the more risk you have of making your model not representative!
+:::
 
+## A good rule of thumb {.center}
+
+<br>
+
+<br>
+<div style="text-align: center;">
 **Build the simplest model to sufficiently answer the question for which the model is being used**
 
-If extra scope or detail is needed, how can its representation be simplified?
+<br>
 
+If extra scope or detail is needed, how can its representation be simplified?
+</div>
 
 ## How soon do you need it?
 
@@ -887,47 +1033,26 @@ How long does a model take?
   - and more complex inputs and scenarios...
   - and the ability to compare things side-by-side...
   - and the ability to download a summary table...
-
-:::
-
-
-## There's more?
-
-:::{.incremental}
   - and robust tests...
-  - and conform with the [20-item best-practice guidance on model reporting](https://des.hsma.co.uk/stress_des.html)
-  - and the [7 essential components and 5 optional components of the STARS reproducibility framework](https://des.hsma.co.uk/stars.html)...
 :::
 
-:::{.fragment}
-
-:::{.columns width="90%"}
-
-:::{.callout-tip}
+## Summary
 
 In reality, a good model may take weeks to months - and may be iterated on for years
 
 But the time and effort can be worth it!
 
-:::
-
-:::
-
-:::
-
-
-## A classic HSMA Quote
-
+:::{.fragment}
 > "I can give you an answer by this afternoon that’s probably wrong and you’ll probably have to ask me again next week.
 >
 > Or I can build a model, which will take a bit longer, but you’ll probably never need to ask me that question again."
 
+<div style="font-size: 0.75em;">
 - One of our HSMAs from 2016 to their senior managers
+</div>
+:::
 
 # Exercise: Design your own Discrete Event Simulation + Interface
-
-We're going to design a web app interface to help with .
-
 
 ## Your Task
 
@@ -940,15 +1065,3 @@ Using the provided paper and markers, you are going to draw some **wireframes** 
 Think about the kinds of **inputs** and **outputs** you want in your model.
 
 You can use multiple pieces of paper to represent different pages of the app.
-
-## A reminder - what might apps contain?
-
-<!-- ## What can these web apps contain? -->
-
-```{stlite-python}
-{{< include streamlit_app_examples/streamlit_input_demo_app.py >}}
-```
-
-<!-- ## And what can they output?
-
-*Text, metric cards, static plots, interactive plots, maps, downloadable reports* -->

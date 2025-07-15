@@ -79,3 +79,17 @@ Streamlit could be applied to a wide range of problems - not just DES
 - How do you assess that it made good predictions, and refine it?
 
 :::
+
+
+
+## A reminder - what might apps contain?
+
+<!-- ## What can these web apps contain? -->
+
+```{stlite-python}
+{{< include streamlit_app_examples/streamlit_input_demo_app.py >}}
+```
+
+<!-- ## And what can they output?
+
+*Text, metric cards, static plots, interactive plots, maps, downloadable reports* -->

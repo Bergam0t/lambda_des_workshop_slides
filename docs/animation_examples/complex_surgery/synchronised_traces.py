@@ -162,19 +162,34 @@ full_patient_df_plus_pos = generate_animation_df(
                             debug_mode=debug_mode
                     )
 
+# def set_icon(row):
+#     if row["surgery type"] == "p_knee":
+#         return "🦵<br>1️⃣<br> "
+#     elif row["surgery type"] == "r_knee":
+#         return "🦵<br>♻️<br> "
+#     elif row["surgery type"] == "p_hip":
+#         return "🕺<br>1️⃣<br> "
+#     elif row["surgery type"] == "r_hip":
+#         return "🕺<br>♻️<br> "
+#     elif row["surgery type"] == "uni_knee":
+#         return "🦵<br>✳️<br> "
+#     else:
+#         return f"CHECK<br>{row['icon']}"
+
 def set_icon(row):
     if row["surgery type"] == "p_knee":
-        return "🦵<br>1️⃣<br> "
+        return "🦵<br> "
     elif row["surgery type"] == "r_knee":
-        return "🦵<br>♻️<br> "
+        return "🦵<br> "
     elif row["surgery type"] == "p_hip":
-        return "🕺<br>1️⃣<br> "
+        return "🕺<br> "
     elif row["surgery type"] == "r_hip":
-        return "🕺<br>♻️<br> "
+        return "🕺<br> "
     elif row["surgery type"] == "uni_knee":
-        return "🦵<br>✳️<br> "
+        return "🦵<br> "
     else:
         return f"CHECK<br>{row['icon']}"
+
 
 full_patient_df_plus_pos = full_patient_df_plus_pos.assign(icon=full_patient_df_plus_pos.apply(set_icon, axis=1))
 
@@ -255,7 +270,7 @@ fig = generate_animation(
         entity_col_name="patient",
         event_position_df=event_position_df,
         scenario=args,
-        plotly_height=600,
+        plotly_height=650,
         plotly_width=1000,
         override_x_max=1000,
         override_y_max=700,

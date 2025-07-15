@@ -71,17 +71,17 @@ def plot_faceted_queue_simulation(df):
     """
     Generates and customizes a faceted Plotly line chart from the simulated queue data.
     """
-    fig = px.line(df,
+    fig = px.line(df[df['queue_name']=="Triage Queue"],
                   x='timestamp',
                   y='queue_length',
-                  facet_row='queue_name', # This creates the separate plots for each queue
+                #   facet_row='queue_name', # This creates the separate plots for each queue
                   color='queue_name',     # Assigns a unique color to each queue
                   labels={
                       "timestamp": "Date and Time",
                       "queue_length": "Patients in Queue",
                       "queue_name": "Queue Type"
                   },
-                  title="Simulated Patient Queue Lengths: Triage vs. Nurse")
+                  title="Simulated Patient Queue Lengths: Triage")
 
     # --- Customize the plot's appearance ---
     fig.update_layout(
@@ -93,10 +93,10 @@ def plot_faceted_queue_simulation(df):
     )
 
     # Set independent y-axes for each facet to best show individual trends
-    fig.update_yaxes(matches=None, title_standoff=5)
+    # fig.update_yaxes(matches=None, title_standoff=5)
 
     # Improve facet labels
-    fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1], font_size=14))
+    # fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1], font_size=14))
 
     return fig
 
