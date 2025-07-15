@@ -652,9 +652,11 @@ Hopefully from what you've seen so far, you're able to see applications of DES i
 But how can you maximise the chance of the project being successful?
 :::
 
-## Understanding the Process {.smaller}
+## Understanding the Process
 
 What is the process - *really*?
+
+<div style="font-size: 0.8em;">
 
 :::: {.columns}
 
@@ -682,6 +684,7 @@ What is the process - *really*?
 
 ::::
 
+</div>
 
 ## Measuring Up
 
@@ -838,7 +841,7 @@ And bring it back to the inherent variability - which we do then try to capture 
 - George E.P. Box
 </div>
 
-<div style="font-size: 0.5em;">
+<div style="font-size: 0.65em;">
 (a British Statistician considered one of the greatest statistical minds of the 20th century)
 </div>
 
@@ -914,11 +917,15 @@ All models are built on assumptions and simplifications.
 
 :::{.column width='90%'}
 
+<div style="font-size: 0.85em;">
+
 :::{.fragment}
 
 As models are essentially collections of assumptions and simplifications, the more of the real world we choose to capture, the more potential inaccuracy we introduce!
 
 :::
+
+</div>
 
 :::
 
@@ -960,6 +967,10 @@ Imagine you’re modelling an ED to identify strategies to reduce waits.
 
 **Does modelling all the tasks a nurse does during a triage give you anything above simplifying to a “triage” process that takes x amount of time?**
 
+<br>
+
+<div style="font-size: 0.85em;">
+
 :::{.fragment}
 
 If I want to use the model to explore changing some of those processes then maybe…
@@ -972,6 +983,8 @@ But if it will just change the overall amount of time with the nurse, it’s equ
 
 :::
 
+</div>
+
 :::{.notes}
 And the more complexity and assumptions you're building into that unnecessary task breakdown, the more risk you have of making your model not representative!
 :::
@@ -981,13 +994,16 @@ And the more complexity and assumptions you're building into that unnecessary ta
 <br>
 
 <br>
-<div style="text-align: center;">
-**Build the simplest model to sufficiently answer the question for which the model is being used**
+
+<div style="font-size: 1.2em;">
+
+> **Build the simplest model to sufficiently answer the question for which the model is being used**
+
+</div>
 
 <br>
 
 If extra scope or detail is needed, how can its representation be simplified?
-</div>
 
 ## How soon do you need it?
 
@@ -1042,6 +1058,8 @@ In reality, a good model may take weeks to months - and may be iterated on for y
 
 But the time and effort can be worth it!
 
+<br>
+
 :::{.fragment}
 > "I can give you an answer by this afternoon that’s probably wrong and you’ll probably have to ask me again next week.
 >
@@ -1056,12 +1074,47 @@ But the time and effort can be worth it!
 
 ## Your Task
 
-Choose a system to model
+:::: {.columns}
+
+::: {.column width='40%'}
+
+Choose a system
+
   - it could be the one you discussed earlier
   - or you can choose something different
 
 Using the provided paper and markers, you are going to draw some **wireframes** (mock-ups) of a web application front-end for your system.
 
-Think about the kinds of **inputs** and **outputs** you want in your model.
+:::
+
+::: {.column width='58%'}
+![](assets/2025-07-15-17-10-47.png)
+:::
+
+::::
+
+
+
+
+
+## Your Task (continued)
+
+:::: {.columns}
+
+::: {.column width='65%'}
+
+![](assets/2025-07-15-17-02-04.png)
+
+:::
+
+::: {.column width='30%'}
+
+
+Think about the kinds of **inputs** and **outputs** you want in your web app.
 
 You can use multiple pieces of paper to represent different pages of the app.
+
+
+:::
+
+::::
